@@ -1,20 +1,20 @@
 language: node_js
 node_js:
-    - "8.11.1"
+  - 8.11.1
 branches:
   only:
     - master
 before_install:
-    - npm install -g npm@6.4.1
+  - npm install -g npm@6.4.1
 install:
-    - npm install -g @angular/cli@6.2.4
-    - npm install -g firebase-tools@6.1.0
-    - npm install
+  - npm install -g @angular/cli@6.2.4
+  - npm install -g firebase-tools@6.1.0
+  - npm install
 script:
-    - ng build --prod
+  - ng build --prod
 deploy:
   provider: firebase
   skip_cleanup: true
   token:
-    secure: "p0StlooS1Wo3hw+FiAersnfCdyUJiMjYRuIAH1ZdBrwq75ruDVqrjQxi6GUMupO0rQqeSht11hUqFm4bwNzHM1wKU6Yy3IieEWnpRrUSdixzn+XFQpaha0yAk180w8g7zVFj/RZMaW01nxJfjOzU/rHU1sIn7c/a45bAWmKO6vaGlsaIuJWHVpfsae8w1I0KnlKc2Vhs5aVCEQ11g74hZO1MJaV3tiUMBLoSmbhWMu01W8Fi6kzJy1CNuFvY76PK64wIYa/3QAkqDTbXbfi+mCa7+lIBpDwypwYAbpJHAbsBX+6OIelvZtKeHaoS0iLZrrCOcxH6M92cKQOoRAJVJ5ZfmyP7WixJkytlCXYUnEgKBRVR9utsXHDOX3JTi7LEFaYh2bqSU+6KQjpoMg5ixI/+ygbcw3dtkyKxvGwPguOcNKVaSw5b9y8wHmRTCspf/R/4mzQYpV5qhcKbFkPrxCBq5Q+rwCrfayCz/TvrkKg6VBSb57Jl1yCfkVk2ZHDb1ErAVy75lTU4VG0h85izmZOuaajpYfJeZdTE6M8XNB4k65apnFf5MWELtLG2763nR1Q0+1/UiBg42RIofVlGx6tB7954+H3w+IxTc7T1/Q2PemHPXPGbW19vyXWViThu7MZo8i5w4unTFcpWac8m4U32mdjPianGqqOupmdLguw="
+    secure: "oelHojkv15vJbdljTsep6U8TM8kDrOjQpZ1MHddSb+ZM8qshqp4fpUr6I5/hxRilwnoeUC9S3/00GHSa9SlaCqgbUHN+KEW1XfEgBL54v9i1TUpR+M5c3TTc4PRCmqYt0cDrGAZ8iW/dWDvG+n+zJZxPS7Y5FWk+R41J8JWKAzRPcxAGNFOGPioCoyR1JlFUYf5DPRnT+DatG+oibJVtK51eo/QvqwxpJiLzKdkp8e+YcYtWpZlqoOYuwmaqGGQ2NLtAY8fjbT/T5tCxkA4TxYml3MxXKucn7A0vK286vagYHqwLgjYddqy9wEJnq2oIbB/8Ej3FSrL0VuTlsVNPMx6xMmiLNvPfP2oUsz1ItKiYZ3HooqrGiGiOpRjAVVh1zw7xqECvfRHJtdI9X7x0nUN+nqZAXqgzXtjN6SaxhgqBTay/Yl2TLVJUGHVEp2ERqrKpXhEWpMh0fyROsMBRV51QrUjM1YJ3UyJVLvCwNxkyqvBZ7uksXwNkQbXLP9qrkiaGPle3s2+ENRQwpMjfm/IKjK2KtMEYU82IUXMdulDrBA+rVru9yig+ZJROvdYS/+Q+SWds59M5MeXzXXNFKRYfO0Pwydt5at+xkeRlEOIUyVsHyASNQSvl/5g8dovSWy6Huj/AjeAqgOs9GKuwqkULMZ3yI1ZtedppHVBrhew="
   project: "stack-attack"
