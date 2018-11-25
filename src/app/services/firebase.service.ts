@@ -81,6 +81,8 @@ export class FirebaseService {
         weapons: []
       },
       role: playerRole,
+      xPos: 0
+      yPos: 0
       suggestions: {
         rooms: {
           "Study": null,
