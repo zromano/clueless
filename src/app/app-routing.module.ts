@@ -5,9 +5,9 @@ import { GameBoardComponent } from './game-board/game-board.component';
 import { GameComponent } from "./game/game.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/session', pathMatch: 'full' },
-  { path: 'board', component: GameBoardComponent },
-  { path: 'session', component: GameComponent }
+  // { path: '', redirectTo: '/session', pathMatch: 'full' },
+  { path: 'board', component: GameBoardComponent }//,
+  // { path: 'session', component: GameComponent }
 ];
 
 @NgModule({
