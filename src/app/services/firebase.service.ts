@@ -50,7 +50,7 @@ export class FirebaseService {
   playersRef(): AngularFirestoreCollection<Player> {
     return this.db.collection<Player>("sessions/" + this.sessionId + "/players");
   }
-  
+
   sessionRef(): AngularFirestoreDocument<Session> {
     return this.db.doc<Session>("sessions/" + this.sessionId);
   }
@@ -81,6 +81,8 @@ export class FirebaseService {
         weapons: []
       },
       role: "",
+      xPos: 0,
+      yPos: 0,
       suggestions: {
         rooms: {
           "Study": null,

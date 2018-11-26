@@ -30,6 +30,7 @@
     "lodash": "^4.17.11",
     "popper.js": "^1.14.3",
     "rxjs": "^6.3.0",
+    "snapsvg-cjs": "0.0.6",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
