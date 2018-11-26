@@ -5,6 +5,8 @@ export interface Player {
     weapons: string[];
   };
   role: string;
+  xPos: integer;
+  yPos: integer;
   suggestions: {
     rooms: {
       "Study": boolean;
