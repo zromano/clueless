@@ -12,10 +12,10 @@ export class GameService {
 
   constructor(private firebaseService: FirebaseService) { }
 
-  move(playerRole: string, dirToMove: int){
+  // move(playerRole: string, dirToMove: int){
 
     
-  }
+  // }
 
   addPlayer(playerRole: string, playerIds?: string[]) {
     var playerId = this.firebaseService.addPlayer(playerRole);
