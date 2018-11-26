@@ -1,0 +1,505 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 650">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        fill: #fff;
+      }
+
+      .cls-1, .cls-6 {
+        stroke: #707070;
+      }
+
+      .cls-1 {
+        stroke-linecap: round;
+        stroke-linejoin: bevel;
+        stroke-width: 5px;
+      }
+
+      .cls-2, .cls-4, .cls-5 {
+        stroke: rgba(112,112,112,0.17);
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        stroke: rgba(112,112,112,0.73);
+      }
+
+      .cls-4 {
+        opacity: 0.48;
+      }
+
+      .cls-5 {
+        opacity: 0.47;
+      }
+
+      .cls-10, .cls-6 {
+        fill: #707070;
+      }
+
+      .cls-7, .cls-8 {
+        fill: rgba(38,153,251,0.6);
+      }
+
+      .cls-8 {
+        font-size: 25px;
+        font-family: AvenirNextCondensed-Regular, Avenir Next Condensed;
+      }
+
+      .cls-9 {
+        fill: #8562a3;
+      }
+
+      .cls-11 {
+        fill: #348ea9;
+      }
+
+      .cls-12 {
+        fill: #53bb9b;
+      }
+
+      .cls-13 {
+        fill: #f04946;
+      }
+
+      .cls-14 {
+        fill: #f48c37;
+      }
+
+      .cls-15 {
+        stroke: none;
+      }
+
+      .cls-16 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Board" transform="translate(-726 -99)">
+    <g id="Outline" class="cls-1" transform="translate(726 99)">
+      <rect class="cls-15" width="650" height="650"/>
+      <rect class="cls-16" x="2.5" y="2.5" width="645" height="645"/>
+    </g>
+    <g id="Rooms" transform="translate(678 61)">
+      <g id="Kitchen" transform="translate(73 225)">
+        <g id="_89" data-name="89" class="cls-2" transform="translate(519 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_88" data-name="88" class="cls-2" transform="translate(469 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_87" data-name="87" class="cls-2" transform="translate(419 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_86" data-name="86" class="cls-2" transform="translate(519 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_85" data-name="85" class="cls-2" transform="translate(469 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_84" data-name="84" class="cls-2" transform="translate(419 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_83" data-name="83" class="cls-2" transform="translate(519 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_82" data-name="82" class="cls-2" transform="translate(469 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_81" data-name="81" class="cls-3" transform="translate(419 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+      </g>
+      <g id="Ballroom" transform="translate(-127 225)">
+        <g id="_79" data-name="79" class="cls-2" transform="translate(519 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_78" data-name="78" class="cls-2" transform="translate(469 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_77" data-name="77" class="cls-2" transform="translate(419 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_76" data-name="76" class="cls-2" transform="translate(519 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_75" data-name="75" class="cls-2" transform="translate(469 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_74" data-name="74" class="cls-2" transform="translate(419 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_73" data-name="73" class="cls-2" transform="translate(519 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_72" data-name="72" class="cls-2" transform="translate(469 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_71" data-name="71" class="cls-2" transform="translate(419 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+      </g>
+      <g id="Conservatory" transform="translate(-327 225)">
+        <g id="_69" data-name="69" class="cls-2" transform="translate(519 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_68" data-name="68" class="cls-2" transform="translate(469 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_67" data-name="67" class="cls-2" transform="translate(419 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_66" data-name="66" class="cls-2" transform="translate(519 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_65" data-name="65" class="cls-2" transform="translate(469 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_64" data-name="64" class="cls-2" transform="translate(419 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_63" data-name="63" class="cls-3" transform="translate(519 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_62" data-name="62" class="cls-2" transform="translate(469 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_61" data-name="61" class="cls-2" transform="translate(419 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+      </g>
+      <g id="Dining_Room" data-name="Dining Room" transform="translate(73 25)">
+        <g id="_59" data-name="59" class="cls-2" transform="translate(519 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_58" data-name="58" class="cls-2" transform="translate(469 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_57" data-name="57" class="cls-2" transform="translate(419 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_56" data-name="56" class="cls-2" transform="translate(519 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_55" data-name="55" class="cls-2" transform="translate(469 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_54" data-name="54" class="cls-2" transform="translate(419 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_53" data-name="53" class="cls-2" transform="translate(519 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_52" data-name="52" class="cls-2" transform="translate(469 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_51" data-name="51" class="cls-2" transform="translate(419 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+      </g>
+      <g id="Billiard_Room" data-name="Billiard Room" transform="translate(-127 25)">
+        <g id="_49" data-name="49" class="cls-2" transform="translate(519 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_48" data-name="48" class="cls-4" transform="translate(469 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_47" data-name="47" class="cls-5" transform="translate(419 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_46" data-name="46" class="cls-2" transform="translate(519 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_45" data-name="45" class="cls-2" transform="translate(469 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_44" data-name="44" class="cls-2" transform="translate(419 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_43" data-name="43" class="cls-2" transform="translate(519 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_42" data-name="42" class="cls-2" transform="translate(469 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_41" data-name="41" class="cls-2" transform="translate(419 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+      </g>
+      <g id="Library" transform="translate(-327 25)">
+        <g id="_39" data-name="39" class="cls-2" transform="translate(519 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_38" data-name="38" class="cls-2" transform="translate(469 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_37" data-name="37" class="cls-2" transform="translate(419 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_36" data-name="36" class="cls-2" transform="translate(519 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_35" data-name="35" class="cls-2" transform="translate(469 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_34" data-name="34" class="cls-2" transform="translate(419 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_33" data-name="33" class="cls-2" transform="translate(519 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_32" data-name="32" class="cls-2" transform="translate(469 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_31" data-name="31" class="cls-2" transform="translate(419 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+      </g>
+      <g id="Lounge" transform="translate(73 -175)">
+        <g id="_29" data-name="29" class="cls-2" transform="translate(519 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_28" data-name="28" class="cls-2" transform="translate(469 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_27" data-name="27" class="cls-3" transform="translate(419 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_26" data-name="26" class="cls-2" transform="translate(519 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_25" data-name="25" class="cls-2" transform="translate(469 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_24" data-name="24" class="cls-2" transform="translate(419 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_23" data-name="23" class="cls-2" transform="translate(519 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_22" data-name="22" class="cls-2" transform="translate(469 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_21" data-name="21" class="cls-2" transform="translate(419 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+      </g>
+      <g id="Hall" transform="translate(-127 -175)">
+        <g id="_19" data-name="19" class="cls-2" transform="translate(519 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_18" data-name="18" class="cls-2" transform="translate(469 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_17" data-name="17" class="cls-2" transform="translate(419 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_16" data-name="16" class="cls-2" transform="translate(519 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_15" data-name="15" class="cls-2" transform="translate(469 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_14" data-name="14" class="cls-2" transform="translate(419 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_13" data-name="13" class="cls-2" transform="translate(519 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_12" data-name="12" class="cls-2" transform="translate(469 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_11" data-name="11" class="cls-2" transform="translate(419 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+      </g>
+      <g id="Study" transform="translate(-327 -175)">
+        <g id="_09" data-name="09" class="cls-3" transform="translate(519 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_08" data-name="08" class="cls-2" transform="translate(469 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_07" data-name="07" class="cls-2" transform="translate(419 355)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_06" data-name="06" class="cls-2" transform="translate(519 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_05" data-name="05" class="cls-2" transform="translate(469 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_04" data-name="04" class="cls-2" transform="translate(419 305)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_03" data-name="03" class="cls-2" transform="translate(519 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_02" data-name="02" class="cls-2" transform="translate(469 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+        <g id="_01" data-name="01" class="cls-2" transform="translate(419 255)">
+          <rect class="cls-15" width="50" height="50"/>
+          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+        </g>
+      </g>
+    </g>
+    <g id="Hallways" transform="translate(325 -34)">
+      <g id="Ballroom-Kitchen" class="cls-6" transform="translate(795 625)">
+        <rect class="cls-15" width="50" height="50"/>
+        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      </g>
+      <g id="Conservatory-Ballroom" class="cls-6" transform="translate(595 625)">
+        <rect class="cls-15" width="50" height="50"/>
+        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      </g>
+      <g id="Dining_Room-Kitchen" data-name="Dining Room-Kitchen" class="cls-6" transform="translate(895 525)">
+        <rect class="cls-15" width="50" height="50"/>
+        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      </g>
+      <g id="Billiard_Room-Ballroom" data-name="Billiard Room-Ballroom" class="cls-6" transform="translate(695 525)">
+        <rect class="cls-15" width="50" height="50"/>
+        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      </g>
+      <g id="Library-Conservatory" class="cls-6" transform="translate(495 525)">
+        <rect class="cls-15" width="50" height="50"/>
+        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      </g>
+      <g id="Billiard_Room-Dining_Room" data-name="Billiard Room-Dining Room" class="cls-6" transform="translate(795 425)">
+        <rect class="cls-15" width="50" height="50"/>
+        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      </g>
+      <g id="Library-Billiard_Room" data-name="Library-Billiard Room" class="cls-6" transform="translate(595 425)">
+        <rect class="cls-15" width="50" height="50"/>
+        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      </g>
+      <g id="Lounge-Dining_Room" data-name="Lounge-Dining Room" class="cls-6" transform="translate(895 325)">
+        <rect class="cls-15" width="50" height="50"/>
+        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      </g>
+      <g id="Hall-Billiard_Room" data-name="Hall-Billiard Room" class="cls-6" transform="translate(695 325)">
+        <rect class="cls-15" width="50" height="50"/>
+        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      </g>
+      <g id="Hall-Lounge" class="cls-6" transform="translate(795 225)">
+        <rect class="cls-15" width="50" height="50"/>
+        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      </g>
+      <g id="Study-Hall" class="cls-6" transform="translate(595 225)">
+        <rect class="cls-15" width="50" height="50"/>
+        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      </g>
+      <g id="Study-Library" class="cls-6" transform="translate(495 325)">
+        <rect class="cls-15" width="50" height="50"/>
+        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      </g>
+    </g>
+    <g id="Passages" transform="translate(678 61)">
+      <path id="Kitchen-Study" class="cls-7" d="M8,0,6.545,1.455l5.506,5.506H0V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(504 503.314) rotate(-135)"/>
+      <path id="Conservatory-Lounge" class="cls-7" d="M8,0,6.545,1.455l5.506,5.506H0V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(217.686 492) rotate(-45)"/>
+      <path id="Lounge-Conservatory" class="cls-7" d="M8,0,6.545,1.455l5.506,5.506H0V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(515.314 218) rotate(135)"/>
+      <path id="Study-Kitchen" class="cls-7" d="M8,0,6.545,1.455l5.506,5.506H0V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(229 205.686) rotate(45)"/>
+    </g>
+    <g id="Labels" transform="translate(678 61)">
+      <text id="KITCHEN-2" data-name="KITCHEN" class="cls-8" transform="translate(567 563)"><tspan x="-38.438" y="0">KITCHEN</tspan></text>
+      <text id="BALLROOM-2" data-name="BALLROOM" class="cls-8" transform="translate(367 563)"><tspan x="-49.925" y="0">BALLROOM</tspan></text>
+      <text id="CONSERVATORY-2" data-name="CONSERVATORY" class="cls-8" transform="translate(167 563)"><tspan x="-70.175" y="0">CONSERVATORY</tspan></text>
+      <text id="DINING_ROOM-2" data-name="DINING ROOM" class="cls-8" transform="translate(567 363)"><tspan x="-64.713" y="0">DINING ROOM</tspan></text>
+      <text id="BILLIARD_ROOM-2" data-name="BILLIARD ROOM" class="cls-8" transform="translate(367 363)"><tspan x="-70.75" y="0">BILLIARD ROOM</tspan></text>
+      <text id="LIBRARY-2" data-name="LIBRARY" class="cls-8" transform="translate(167 363)"><tspan x="-36.413" y="0">LIBRARY</tspan></text>
+      <text id="LOUNGE-2" data-name="LOUNGE" class="cls-8" transform="translate(567 163)"><tspan x="-37.013" y="0">LOUNGE</tspan></text>
+      <text id="HALL-2" data-name="HALL" class="cls-8" transform="translate(367 163)"><tspan x="-21.887" y="0">HALL</tspan></text>
+      <text id="STUDY-2" data-name="STUDY" class="cls-8" transform="translate(167 163)"><tspan x="-28.462" y="0">STUDY</tspan></text>
+    </g>
+    <g id="People" transform="translate(325 -34)">
+      <path id="Professor_Plum" data-name="Professor Plum" class="cls-9" d="M145.137,230.085a2.988,2.988,0,1,0-2.985-2.989A2.99,2.99,0,0,0,145.137,230.085Zm6.829,3.838a2.725,2.725,0,0,0-2.725-2.726h-8.4a2.724,2.724,0,0,0-2.723,2.726l.008,11a1.189,1.189,0,1,0,2.377,0V234.869h.5V261.76a1.782,1.782,0,0,0,3.564,0V247.035h.975v14.721a1.783,1.783,0,1,0,3.565,0V234.869h.48v10.014a1.191,1.191,0,1,0,2.381,0Z" transform="translate(378 508)"/>
+      <path id="Mrs_White" data-name="Mrs. White" class="cls-10" d="M145.137,230.085a2.988,2.988,0,1,0-2.985-2.989A2.99,2.99,0,0,0,145.137,230.085Zm6.829,3.838a2.725,2.725,0,0,0-2.725-2.726h-8.4a2.724,2.724,0,0,0-2.723,2.726l.008,11a1.189,1.189,0,1,0,2.377,0V234.869h.5V261.76a1.782,1.782,0,0,0,3.564,0V247.035h.975v14.721a1.783,1.783,0,1,0,3.565,0V234.869h.48v10.014a1.191,1.191,0,1,0,2.381,0Z" transform="translate(403 508)"/>
+      <path id="Mrs_Peacock" data-name="Mrs. Peacock" class="cls-11" d="M162.344,144.129a2.989,2.989,0,1,0-2.985-2.99A2.991,2.991,0,0,0,162.344,144.129Zm6.829,3.837a2.725,2.725,0,0,0-2.726-2.726h-8.4a2.725,2.725,0,0,0-2.723,2.726l.008,11a1.189,1.189,0,1,0,2.377,0V148.912h.5V175.8a1.782,1.782,0,1,0,3.564,0V161.079h.975V175.8a1.783,1.783,0,1,0,3.565,0V148.912h.48v10.014a1.191,1.191,0,1,0,2.381,0Z" transform="translate(260 594)"/>
+      <path id="Mr_Green" data-name="Mr. Green" class="cls-12" d="M179.551,144.129a2.989,2.989,0,1,0-2.985-2.99A2.991,2.991,0,0,0,179.551,144.129Zm6.829,3.837a2.725,2.725,0,0,0-2.726-2.726h-8.4a2.725,2.725,0,0,0-2.723,2.726l.008,11a1.189,1.189,0,1,0,2.377,0V148.912h.5V175.8a1.782,1.782,0,1,0,3.564,0V161.079h.975V175.8a1.783,1.783,0,1,0,3.565,0V148.912h.48v10.014a1.191,1.191,0,1,0,2.381,0Z" transform="translate(268 594)"/>
+      <path id="Miss_Scarlet" data-name="Miss Scarlet" class="cls-13" d="M59.1,230.085a2.988,2.988,0,1,0-2.985-2.989A2.99,2.99,0,0,0,59.1,230.085Zm6.829,3.838a2.725,2.725,0,0,0-2.725-2.726h-8.4a2.725,2.725,0,0,0-2.723,2.726l.009,11a1.188,1.188,0,1,0,2.376,0V234.869h.5V261.76a1.783,1.783,0,0,0,3.565,0V247.035h.974v14.721a1.783,1.783,0,1,0,3.565,0V234.869h.48v10.014a1.19,1.19,0,1,0,2.38,0Z" transform="translate(439 508)"/>
+      <path id="Colonel_Mustard" data-name="Colonel Mustard" class="cls-14" d="M127.93,187.106a2.988,2.988,0,1,0-2.985-2.988A2.99,2.99,0,0,0,127.93,187.106Zm6.828,3.838a2.724,2.724,0,0,0-2.724-2.725h-8.4a2.724,2.724,0,0,0-2.723,2.725l.008,11a1.189,1.189,0,1,0,2.377,0V191.891h.5v26.89a1.783,1.783,0,0,0,3.566,0V204.057h.974v14.72a1.783,1.783,0,1,0,3.565,0V191.891h.48V201.9a1.191,1.191,0,1,0,2.381,0Z" transform="translate(345 551)"/>
+    </g>
+  </g>
+</svg>

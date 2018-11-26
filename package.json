@@ -26,6 +26,7 @@
     "firebase": "^5.5.8",
     "lodash": "^4.17.11",
     "rxjs": "~6.2.0",
+    "snapsvg-cjs": "0.0.6",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
