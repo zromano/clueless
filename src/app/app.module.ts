@@ -8,7 +8,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { environment } from "../environments/environment";
 
 import { AppComponent } from "./app.component";
-import { GameComponent } from "./game/game.component";
 import { SessionListComponent } from "./session-list/session-list.component";
 import { AppRoutingModule } from './app-routing.module';
 
