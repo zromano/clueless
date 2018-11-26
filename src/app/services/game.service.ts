@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import * as _ from "lodash";
 import { Rooms, Suspects, Weapons } from "../share/constants";
 
-import { FirebaseService } from "../services/firebase.service";
+import { FirebaseService } from "./firebase.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,40 +12,22 @@ export class GameService {
 
   constructor(private firebaseService: FirebaseService) { }
 
-  addPlayer(playerRole: string, playerIds?: string[]) {
-    var playerId = this.firebaseService.addPlayer(playerRole);
+  addPlayer(playerRole?: string, playerIds?: string[]) : string{
+    var playerId = this.firebaseService.addPlayer();
 
-    if (playerIds) {
-      playerIds.push(playerId);
-      var turnOrder = _.shuffle(playerIds);
+    this.firebaseService.addEvent("Adding Player: " + " (" + playerId + ")");
 
-      // Update turnOrder list after each player addition
-      this.firebaseService.sessionRef().update({
-        turnOrder: turnOrder
-      });
-    }
+    return this.firebaseService.getPlayerId();
 
-    this.firebaseService.addEvent("Adding Player: " + playerRole + " (" + playerId + ")");
-
-    console.log("Added Player: " + playerRole + " (" + playerId + ")");
+    console.log("Added Player: " + " (" + playerId + ")");
   }
 
-  createSession() {
-    this.firebaseService.addSession();
-
-    // TODO: Colonel Mustard is currently set as the default user when the session is created
-    this.firebaseService.setPlayerRole("Colonel Mustard");
-    var playerId = this.firebaseService.addPlayer(this.firebaseService.getPlayerRole());
-    this.firebaseService.setPlayerId(playerId);
-
-    this.firebaseService.sessionRef().update({
-      currentTurn: playerId,
-      turnOrder: [ playerId ]
-    });
+  createSession(sessionName: string, hostName: string) : string {
+    this.firebaseService.addSession(sessionName, hostName);
 
     console.log("Session Id: " + this.firebaseService.getSessionId());
-    console.log("Player Id: " + this.firebaseService.getPlayerId());
-    console.log("Player Role: " + this.firebaseService.getPlayerRole());
+
+    return this.firebaseService.getSessionId();
   }
 
   assignCards(playerIds: string[]) {

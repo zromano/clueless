@@ -20,6 +20,9 @@ export class GameComponent implements OnInit {
   playerList: string[];
   selectedPlayer: string;
   session: Session;
+  sessionName: string;
+  hostName: string;
+
 
   events$: Observable<Event[]>;
   player$: Observable<Player>;
@@ -47,7 +50,7 @@ export class GameComponent implements OnInit {
   }
 
   createSession() {
-    this.gameService.createSession();
+    this.gameService.createSession(this.sessionName, this.hostName);
 
     this.events$ = this.firebaseService.eventRef().valueChanges();
     this.player$ = this.firebaseService.playerRef().valueChanges();

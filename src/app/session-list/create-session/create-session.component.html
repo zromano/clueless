@@ -1,0 +1,12 @@
+<h3>Create Session</h3>
+<form (ngSubmit)="createSession()">
+  <div class="form-group">
+    <label for="sessionName">Session Name</label>
+    <input type="text" class="form-control" id="sessionName" name="sessionName" [(ngModel)]="sessionName" required>
+  </div>
+  <div class="form-group">
+    <label for="hostName">Host Name</label>
+    <input type="text" class="form-control" id="hostName" name="hostName" [(ngModel)]="hostName" required>
+  </div>
+  <button type="submit" class="btn btn-success">Create</button>
+</form>

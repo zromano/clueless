@@ -2,7 +2,9 @@
 <p>Open <a target="_blank" href="https://console.firebase.google.com/u/1/project/stack-attack/database/firestore/data~2Fsessions">Firebase Database</a> to view data records<p>
 
 <ol>
-  <li><button (click)="createSession()">Create Game Session</button></li>
+  <li>Session Name: <input type="text" [(ngModel)]="sessionName"> Host Name:  <input type="text" [(ngModel)]="hostName">
+    <button (click)="createSession()">Create Game Session</button>
+  </li>
   <li>
     <button (click)="addPlayer()">Add Player</button>
     <select [(ngModel)]="selectedPlayer">

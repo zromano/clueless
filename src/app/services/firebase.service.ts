@@ -14,7 +14,6 @@ import { Session } from "../models/session";
 export class FirebaseService {
 
   private playerId: string;
-  private playerRole: string;
   private sessionId: string;
 
   constructor(private db: AngularFirestore) {}
@@ -29,14 +28,6 @@ export class FirebaseService {
 
   setPlayerId(id: string) {
     this.playerId = id;
-  }
-
-  getPlayerRole(): string {
-    return this.playerRole;
-  }
-
-  setPlayerRole(role: string) {
-    this.playerRole = role;
   }
 
   getSessionId(): string {
@@ -56,23 +47,32 @@ export class FirebaseService {
     return this.db.doc<Player>("sessions/" + this.sessionId + "/players/" + playerId);
   }
 
+  playersRef(): AngularFirestoreCollection<Player> {
+    return this.db.collection<Player>("sessions/" + this.sessionId + "/players");
+  }
+  
   sessionRef(): AngularFirestoreDocument<Session> {
     return this.db.doc<Session>("sessions/" + this.sessionId);
+  }
+
+  gameRef(): AngularFirestoreCollection<Session> {
+    return this.db.collection<Session>("sessions/");
   }
 
   addEvent(message: string) {
     const event: Event = {
       authorId: this.getPlayerId(),
       message: message,
-      role: this.getPlayerRole(),
+      role: "",
       timestamp: firebase.firestore.Timestamp.now()
     };
 
     this.eventRef().add(event);
   }
 
-  addPlayer(playerRole: string): string {
+  addPlayer(): string {
     var playerId = this.generateId();
+    this.setPlayerId(playerId);
 
     const player: Player = {
       cards: {
@@ -80,7 +80,7 @@ export class FirebaseService {
         suspects: [],
         weapons: []
       },
-      role: playerRole,
+      role: "",
       suggestions: {
         rooms: {
           "Study": null,
@@ -117,11 +117,14 @@ export class FirebaseService {
     return playerId;
   }
 
-  addSession() {
+  addSession(sessionName: string, hostName: string) {
     const sessionId = this.generateId();
     this.setSessionId(sessionId);
 
     const session: Session = {
+      sessionName: sessionName,
+      hostName: hostName,
+      status: "WAITING",
       confidential: {
         room: "",
         suspect: "",

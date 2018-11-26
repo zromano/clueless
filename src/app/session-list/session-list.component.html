@@ -1,0 +1,23 @@
+<div class="container">
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Session Name</th>
+          <th scope="col">Host Name</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let session of sessions$ | async"> 
+            <td>{{session.sessionName}}</td>
+            <td>{{session.hostName}}</td>
+            <td>
+              <div *ngIf="session.status=='WAITING'"><button type="button" class="btn btn-success" (click)="joinSession(session)">Join</button></div>
+              <div *ngIf="session.status!='WAITING'">{{session.status}}</div>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<button type="button" class="btn btn-secondary" routerLink="create-session">Create Session</button>
+<router-outlet></router-outlet>

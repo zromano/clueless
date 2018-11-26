@@ -1,4 +1,7 @@
 export interface Session {
+  sessionName: string;
+  hostName: string;
+  status: string;
   confidential: {
     room: string;
     suspect: string;
