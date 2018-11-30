@@ -1,5 +1,6 @@
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from "@angular/fire/firestore";
 import { Injectable } from "@angular/core";
+import { map } from 'rxjs/operators';
 
 import * as firebase from "firebase/app";
 import "firebase/firestore";
@@ -8,6 +9,7 @@ import { Event } from "../models/event";
 import { Player } from "../models/player";
 import { Session } from "../models/session";
 
+
 @Injectable({
   providedIn: "root"
 })
@@ -15,6 +17,8 @@ export class FirebaseService {
 
   private playerId: string;
   private sessionId: string;
+  private curXPos: number = 0;
+  private curYPos: number = 0;
 
   constructor(private db: AngularFirestore) {}
 
@@ -37,6 +41,32 @@ export class FirebaseService {
   setSessionId(id: string) {
     this.sessionId = id;
   }
+
+  getPlayerXPos(): number {
+    var curPlayer = this.playerRef().valueChanges().subscribe(data=>{
+         this.curXPos = data.xPos;
+    });
+    return this.curXPos;
+  }
+
+  setPlayerXPos(newX: number) {
+    console.log("setX: " + newX)
+    this.playerRef().update({ xPos: newX });
+  }
+
+  getPlayerYPos(): number {
+    var curPlayer = this.playerRef().valueChanges().subscribe(data=>{
+         this.curYPos = data.yPos;
+    });
+    return this.curYPos;
+  }
+
+  setPlayerYPos(newY: number) {
+    console.log("setY: " + newY)
+    this.playerRef().update({ yPos: newY });
+  }
+
+
 
   eventRef(): AngularFirestoreCollection<Event> {
     return this.db.collection<Event>("sessions/" + this.sessionId + "/events");

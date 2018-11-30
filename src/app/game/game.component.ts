@@ -41,24 +41,22 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {}
 
-  // moveUp(){
-  //   movePlayer(0)
-  // }
-  // moveRight(){
-  //   movePlayer(1)
-  // }
-  // moveDown(){
-  //   movePlayer(2)
-  // }
-  // moveLeft(){
-  //   movePlayer(3)
-  // }
+  moveUp(){
+    this.movePlayer(0);
+  }
+  moveRight(){
+    this.movePlayer(1);
+  }
+  moveDown(){
+    this.movePlayer(2);
+  }
+  moveLeft(){
+    this.movePlayer(3);
+  }
 
-  // private movePlayer(var dirToMove) {
-  //   this.gameService.move(this.selectedPlayer, dirToMove)
-
-
-  // }
+  movePlayer(dirToMove: number) {
+    this.gameService.move(dirToMove);
+  }
 
 
   addPlayer() {

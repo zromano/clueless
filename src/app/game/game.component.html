@@ -12,6 +12,11 @@
     </select>
   </li>
   <li><button (click)="startSession()">Start Session</button></li>
+  <li><button (click)="moveUp()">Move Up</button>
+    <button (click)="moveRight()">Move Right</button>
+    <button (click)="moveDown()">Move Down</button>
+    <button (click)="moveLeft()">Move Left</button>
+  </li>
 </ol>
 
 <div *ngIf="session">
