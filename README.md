@@ -4,6 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # Getting Started
 
+Steve 
+
 Install the Angular CLI: `npm install -g @angular/cli`
 
 Navigate to the `clueless` project directory and run `npm install` to install required dependencies.
