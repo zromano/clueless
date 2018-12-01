@@ -4,6 +4,7 @@ import * as _ from "lodash";
 import { Rooms, Suspects, Weapons } from "../share/constants";
 
 import { FirebaseService } from "./firebase.service";
+import { Session } from '../models/session';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,23 @@ export class GameService {
 
     this.firebaseService.addEvent("Adding Player: " + " (" + playerId + ")");
 
+    this.firebaseService.sessionRef().get().toPromise().then( (function(doc) {
+      // console.log(obj.docs.forEach);
+      // var playerIdArrMutable = [];
+      var session = doc.data() as Session;
+
+      var updatedNumPlayers = session.numPlayers + 1;
+
+      this.firebaseService.sessionRef().update({
+        numPlayers: updatedNumPlayers
+      });
+      
+      if (updatedNumPlayers >= 6) {
+        this.firebaseService.sessionRef().update({
+          status: "FULL"
+        });
+      } 
+    }).bind(this))
 
     return this.firebaseService.getPlayerId();
 

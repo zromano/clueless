@@ -1,7 +1,9 @@
 export interface Session {
   sessionName: string;
   hostName: string;
+  hostId: string;
   status: string;
+  numPlayers: number;
   confidential: {
     room: string;
     suspect: string;
@@ -9,6 +11,7 @@ export interface Session {
   };
   currentTurn: string;
   turnOrder: string[];
+  availableRoles: string[]
   suspects: {
     "Colonel Mustard": string;
     "Miss Scarlet": string;

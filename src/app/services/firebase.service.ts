@@ -156,7 +156,9 @@ export class FirebaseService {
     const session: Session = {
       sessionName: sessionName,
       hostName: hostName,
+      hostId: "",
       status: "WAITING",
+      numPlayers: 0,
       confidential: {
         room: "",
         suspect: "",
@@ -164,6 +166,13 @@ export class FirebaseService {
       },
       currentTurn: "",
       turnOrder: [],
+      availableRoles: [
+        "Colonel Mustard", 
+        "Miss Scarlet", 
+        "Professor Plum", 
+        "Mr. Green", 
+        "Mrs. White", 
+        "Mrs. Peacock"],
       suspects: {
         "Colonel Mustard": "",
         "Miss Scarlet": "",

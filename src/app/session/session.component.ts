@@ -9,6 +9,9 @@ import { Player } from "../models/player";
 import { Event } from "../models/event";
 
 import { FirebaseService } from "../services/firebase.service";
+import * as $ from "jquery";
+import { Suspects, Weapons, Rooms } from '../share/constants';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-session',
@@ -18,10 +21,13 @@ import { FirebaseService } from "../services/firebase.service";
 export class SessionComponent implements OnInit {
   sessionId: string;
   playerId: string;
+  currPlayer: Player;
   events$: Observable<Event[]>;
   players$: Observable<Player[]>;
   session$: Observable<Session>;
   session: Session;
+  selectedRole: string;
+  isHost: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +37,7 @@ export class SessionComponent implements OnInit {
 
   ngOnInit() {
     this.sessionId = this.route.snapshot.paramMap.get('sessionId');
-    this.playerId = this.route.snapshot.paramMap.get('sessionId');
+    this.playerId = this.route.snapshot.paramMap.get('playerId');
 
     this.firebaseService.setSessionId(this.sessionId);
     this.firebaseService.setPlayerId(this.playerId);
@@ -40,6 +46,9 @@ export class SessionComponent implements OnInit {
 
     this.firebaseService.sessionRef().valueChanges().subscribe(session => {
       this.session = session;
+    });
+    this.firebaseService.playerRef().valueChanges().subscribe(player => {
+      this.currPlayer = player;
     });
 
     this.players$ = this.firebaseService.playersRef().snapshotChanges().pipe(
@@ -51,7 +60,163 @@ export class SessionComponent implements OnInit {
         });
       })
     );
-    this.events$ = this.firebaseService.eventRef().valueChanges();
 
+    this.events$ = this.firebaseService.eventRef().valueChanges();
+  }
+
+  selectRole() {
+    this.firebaseService.playerRef().update({ role: this.selectedRole });
+
+    var updatedAvailableRoles = [];
+    var selectedRole = this.selectedRole;
+
+    this.session.availableRoles.forEach(function(aRole) {
+      if (aRole != selectedRole) {
+        updatedAvailableRoles.push(aRole);
+      }
+    })
+
+    $("#selectRoleBtn").prop('disabled', true);
+
+    this.firebaseService.addEvent("Player (" + this.playerId + ") has selected role: " + selectedRole );
+    this.firebaseService.sessionRef().update({ availableRoles: updatedAvailableRoles });
+    console.log(this.selectedRole);
+  }
+
+  initiateSession(playerIdArrMutable) {
+    var suspects = this.shuffle(Suspects.slice());
+    var rooms = this.shuffle(Rooms.slice());
+    var weapons = this.shuffle(Weapons.slice());
+
+
+    var confidential = {
+      suspect: suspects.pop().name,
+      room: rooms.pop().name,
+      weapon: weapons.pop().name,
+    };
+
+    this.shuffle(playerIdArrMutable);
+    
+    // playerIdArr = ["hi", "bye"];s
+    console.log(playerIdArrMutable);
+    console.log(playerIdArrMutable.length);
+
+    this.firebaseService.sessionRef().update({
+      confidential: confidential,
+      turnOrder: playerIdArrMutable,
+      currentTurn: playerIdArrMutable[0]
+    })
+
+    // deal cards
+    var playerIterStart = 0;
+    var playerIterEnd = playerIdArrMutable.length;
+
+    var rotatingPlayers = playerIdArrMutable;
+
+    var playerSuspectCards = {};
+    var playerRoomCards = {};
+    var playerWeaponCards = {};
+
+    while(suspects.length > 0) {
+      if (playerSuspectCards[rotatingPlayers[0]] != null) {
+        playerSuspectCards[rotatingPlayers[0]].push(suspects.pop().name);
+      } else {
+        playerSuspectCards[rotatingPlayers[0]] = [suspects.pop().name];
+      }
+
+      rotatingPlayers = this.rotate(rotatingPlayers);
+    }
+
+    while(rooms.length > 0) {
+      if (playerRoomCards[rotatingPlayers[0]] != null) {
+        playerRoomCards[rotatingPlayers[0]].push(rooms.pop().name);
+      } else {
+        playerRoomCards[rotatingPlayers[0]] = [rooms.pop().name];
+      }
+
+      rotatingPlayers = this.rotate(rotatingPlayers);
+    }
+
+    while(weapons.length > 0) {
+      if (playerWeaponCards[rotatingPlayers[0]] != null) {
+        playerWeaponCards[rotatingPlayers[0]].push(weapons.pop().name);
+      } else {
+        playerWeaponCards[rotatingPlayers[0]] = [weapons.pop().name];
+      }
+
+      rotatingPlayers = this.rotate(rotatingPlayers);
+    }
+
+    playerIdArrMutable.forEach((function(id) {
+      this.firebaseService.playerRef(id).update({
+        cards: {
+          rooms: playerRoomCards[id],
+          suspects: playerSuspectCards[id],
+          weapons: playerWeaponCards[id]
+        }
+      })
+    }).bind(this));
+
+    this.firebaseService.sessionRef().update({
+      status: "IN PROGRESS"
+    })
+
+    console.log(playerSuspectCards);
+    console.log(playerRoomCards);
+    console.log(playerWeaponCards);
+  }
+  startSession() {
+    this.firebaseService.playersRef().get().toPromise().then( (function(obj) {
+      var playerIdArrMutable = [];
+      obj.docs.forEach(function (doc) {
+        playerIdArrMutable.push(doc.id);
+      })
+
+      this.initiateSession(playerIdArrMutable);
+    }).bind(this))
+  }
+
+  makeMove() {
+    this.firebaseService.sessionRef().get().toPromise().then( (function(doc) {
+      // console.log(obj.docs.forEach);
+      // var playerIdArrMutable = [];
+      var session = doc.data() as Session;
+
+      var updatedTurnOrder = this.rotate(session.turnOrder);
+      console.log(updatedTurnOrder);
+
+      this.firebaseService.sessionRef().update({
+        turnOrder: updatedTurnOrder,
+        currentTurn: updatedTurnOrder[0]
+      });
+    }).bind(this));
+  }
+
+  //move first element to end
+  rotate(array) {
+    var arrayCopy = array;
+    arrayCopy.push(arrayCopy.shift());
+    return arrayCopy;
+  }
+
+  // from: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+  shuffle(array) {
+    var arrayCopy = array;
+    var currentIndex = arrayCopy.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = arrayCopy[currentIndex];
+      arrayCopy[currentIndex] = arrayCopy[randomIndex];
+      arrayCopy[randomIndex] = temporaryValue;
+    }
+  
+    return arrayCopy;
   }
 }

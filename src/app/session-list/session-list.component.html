@@ -13,7 +13,9 @@
             <td>{{session.hostName}}</td>
             <td>
               <div *ngIf="session.status=='WAITING'"><button type="button" class="btn btn-success" (click)="joinSession(session)">Join</button></div>
-              <div *ngIf="session.status!='WAITING'">{{session.status}}</div>
+              <div *ngIf="session.status=='IN PROGRESS'"><button type="button" class="btn btn-danger">In Progress</button></div>
+              <div *ngIf="session.status=='FULL'"><button type="button" class="btn btn-danger">Full</button></div>
+              <!-- <div *ngIf="session.status!='WAITING' or session.status!='IN PROGRESS'">{{session.status}}</div> -->
             </td>
         </tr>
       </tbody>

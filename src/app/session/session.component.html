@@ -1,17 +1,51 @@
-<div *ngIf="player">
-  <h2>Player Info</h2>
-  <ul>
-    <li>Player Role: {{player.role}}</li>
-  </ul>
-</div>
 <div *ngIf="session">
+  <div *ngIf="playerId == session.hostId&& session.status!='IN PROGRESS'">
+    <h2>Host Only</h2>
+    <button id="startSessionBtn" type="submit" class="btn btn-secondary" (click)="startSession()">Start Session</button>
+  </div>
+  <div *ngIf="session.status=='IN PROGRESS' && session.turnOrder[0] == playerId">
+    <h2>My Turn</h2>
+    <button id="startSessionBtn" type="submit" class="btn btn-secondary" (click)="makeMove()">Make Move</button>
+  </div>
+  <div *ngIf="session.status=='IN PROGRESS'">
+    <h2>Turn Order</h2>
+    <ol>
+      <li *ngFor="let i of session.turnOrder">
+        {{ i }}
+      </li>
+    </ol>
+  </div>
+  <div *ngIf="currPlayer">
+    <h2>Player Info</h2>
+    <ul>
+      <li>Player Role: {{currPlayer.role}}</li>
+    </ul>
+    <div *ngIf="currPlayer.role == ''">
+      <br/>
+      <h5>Select Role</h5>
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Select Role</label>
+          <select class="form-control" id="selectedRole" [(ngModel)]="selectedRole" name="selectedRole">
+            <option *ngFor = "let role of session.availableRoles">{{role}}</option>
+          </select>
+        </div>
+        <button id="selectRoleBtn" type="submit" class="btn btn-secondary" (click)="selectRole()">Select</button>
+      </form>
+      <br/>
+    </div>
+  </div>
+
   <h2>Session Info</h2>
   <ul>
     <li>Session Name: {{ session.sessionName }}</li>
     <li>Host Name: {{ session.hostName }}</li>
+    <li>Host Id: {{ session.hostId }}</li>
     <li>Status: {{ session.status }}</li>
+    <li>Number of Players: {{ session.numPlayers }}</li>
     <li>Current Player ID: {{ session.currentTurn }}</li>
     <li>Turn Order: {{ session.turnOrder }}</li>
+    <li>Available Roles: {{ session.availableRoles }}</li>
     <li>Confidential</li>
     <ul>
       <li>Room: {{ session.confidential.room }}</li>
@@ -23,6 +57,8 @@
 
   <div *ngFor = "let player of players$ | async">
     <h5>Player Id: {{player.id}}</h5>
+    <h6>Player Id: {{player.role}}</h6>
+
     Cards
     <ul>
       <li>Rooms: {{player.cards.rooms}}</li>
