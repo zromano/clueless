@@ -37,7 +37,7 @@ export class GameService {
     // doesn't update quick enough??
     // console.log(this.firebaseService.getPlayerXPos() + "," +
     //   this.firebaseService.getPlayerYPos());
-    
+
   }
 
   addPlayer(playerRole?: string, playerIds?: string[]) : string{
@@ -55,17 +55,17 @@ export class GameService {
       this.firebaseService.sessionRef().update({
         numPlayers: updatedNumPlayers
       });
-      
+
       if (updatedNumPlayers >= 6) {
         this.firebaseService.sessionRef().update({
           status: "FULL"
         });
-      } 
+      }
     }).bind(this))
 
-    return this.firebaseService.getPlayerId();
+    onsole.log("Added Player: " + " (" + playerId + ")");
 
-    console.log("Added Player: " + " (" + playerId + ")");
+    return this.firebaseService.getPlayerId();
   }
 
   createSession(sessionName: string, hostName: string) : string {

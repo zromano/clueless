@@ -1,18 +1,18 @@
-<div *ngIf="session">
-  <div *ngIf="currPlayer && currPlayer.role">
-    <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
-      <form class="form-inline">
-        <label class="my-1 mr-2" for="selectedRole">
-          <strong>Action Required</strong> Select Your Player Role:
-        </label>
-        <select class="custom-select my-1 mr-sm-2" id="selectedRole" [(ngModel)]="selectedRole" name="selectedRole">
-          <option *ngFor="let role of session.availableRoles">{{role}}</option>
-        </select>
-        <button id="selectRoleBtn" type="submit" class="btn btn-outline-success btn-sm float-right" (click)="selectRole()">Submit</button>
-      </form>
-    </div>
+<div *ngIf="currPlayer && currPlayer.role">
+  <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
+    <form class="form-inline">
+      <label class="my-1 mr-2" for="selectedRole">
+        <strong>Action Required</strong> Select Your Player Role:
+      </label>
+      <select class="custom-select my-1 mr-sm-2" id="selectedRole" [(ngModel)]="selectedRole" name="selectedRole">
+        <option *ngFor="let role of session.availableRoles">{{role}}</option>
+      </select>
+      <button id="selectRoleBtn" type="submit" class="btn btn-outline-success btn-sm float-right" (click)="selectRole()">Submit</button>
+    </form>
   </div>
+</div>
 
+<div *ngIf="session">
   <div *ngIf="playerId != session.hostId && session.status != 'IN PROGRESS'">
     <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
       <strong>Host Action Required</strong> Standby for other players to join and for the host to start the session. Open Roles ({{session.availableRoles.length}})
