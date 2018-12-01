@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
-  selector: 'app-create-session',
+  selector: 'create-session',
   templateUrl: './create-session.component.html',
   styleUrls: ['./create-session.component.css']
 })
@@ -20,8 +20,7 @@ export class CreateSessionComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   createSession() {
     var sessionId = this.gameService.createSession(this.sessionName, this.hostName);

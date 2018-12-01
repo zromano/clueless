@@ -1,25 +1,37 @@
-<div class="container">
-  <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Session Name</th>
-          <th scope="col">Host Name</th>
-          <th scope="col">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let session of sessions$ | async"> 
-            <td>{{session.sessionName}}</td>
-            <td>{{session.hostName}}</td>
+<div class="container rounded session-lobby">
+  <div class="row">
+    <div class="col-md-7 session-ready">
+      <h1>READY TO PLAY?</h1>
+      <div style="padding-top: 15px;">
+        <p>Find a session on the right to join or create a new session below with friends.</p>
+        <create-session></create-session>
+      </div>
+    </div>
+    <div class="col-md-5 session-list">
+      <table class="table table-borderless table-hover justify-content-center">
+        <thead>
+          <tr>
+            <th scope="col">SESSIONS</th>
+            <th scope="col">STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let session of sessions$ | async">
             <td>
-              <div *ngIf="session.status=='WAITING'"><button type="button" class="btn btn-success" (click)="joinSession(session)">Join</button></div>
-              <div *ngIf="session.status=='IN PROGRESS'"><button type="button" class="btn btn-danger">In Progress</button></div>
-              <div *ngIf="session.status=='FULL'"><button type="button" class="btn btn-danger">Full</button></div>
-              <!-- <div *ngIf="session.status!='WAITING' or session.status!='IN PROGRESS'">{{session.status}}</div> -->
+              <b>{{session.sessionName}}</b>
+              <p>{{session.hostName}}</p>
             </td>
-        </tr>
-      </tbody>
-    </table>
+            <td>
+              <div *ngIf="session.status == 'WAITING'">
+                <button type="button" class="btn btn-success btn-sm" (click)="joinSession(session)">JOIN</button>
+              </div>
+              <div *ngIf="session.status != 'WAITING'">
+                <button type="button" class="btn btn-secondary btn-sm" disabled>{{session.status}}</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-<button type="button" class="btn btn-secondary" routerLink="create-session">Create Session</button>
-<router-outlet></router-outlet>

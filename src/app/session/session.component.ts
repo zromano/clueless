@@ -4,6 +4,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
+import * as _ from "lodash";
+
 import { Session } from "../models/session";
 import { Player } from "../models/player";
 import { Event } from "../models/event";
@@ -28,12 +30,25 @@ export class SessionComponent implements OnInit {
   session: Session;
   selectedRole: string;
   isHost: boolean;
+  selectedMove: string;
+  availableMoves: string[];
+
+  rooms: string[];
+  suspects: string[];
+  weapons: string[];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private firebaseService: FirebaseService
-  ) { }
+  ) {
+    this.rooms = _.map(Rooms, "name");
+    this.suspects = _.map(Suspects, "name");
+    this.weapons = _.map(Weapons, "name");
+
+    //TODO: Update with actual available moves
+    this.availableMoves = ["Study", "Library", "Hallway"];
+  }
 
   ngOnInit() {
     this.sessionId = this.route.snapshot.paramMap.get('sessionId');
@@ -41,7 +56,7 @@ export class SessionComponent implements OnInit {
 
     this.firebaseService.setSessionId(this.sessionId);
     this.firebaseService.setPlayerId(this.playerId);
-    
+
     this.session$ = this.firebaseService.sessionRef().valueChanges();
 
     this.firebaseService.sessionRef().valueChanges().subscribe(session => {
@@ -88,7 +103,6 @@ export class SessionComponent implements OnInit {
     var rooms = this.shuffle(Rooms.slice());
     var weapons = this.shuffle(Weapons.slice());
 
-
     var confidential = {
       suspect: suspects.pop().name,
       room: rooms.pop().name,
@@ -96,7 +110,7 @@ export class SessionComponent implements OnInit {
     };
 
     this.shuffle(playerIdArrMutable);
-    
+
     // playerIdArr = ["hi", "bye"];s
     console.log(playerIdArrMutable);
     console.log(playerIdArrMutable.length);
@@ -203,20 +217,16 @@ export class SessionComponent implements OnInit {
   shuffle(array) {
     var arrayCopy = array;
     var currentIndex = arrayCopy.length, temporaryValue, randomIndex;
-  
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-  
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-  
       // And swap it with the current element.
       temporaryValue = arrayCopy[currentIndex];
       arrayCopy[currentIndex] = arrayCopy[randomIndex];
       arrayCopy[randomIndex] = temporaryValue;
     }
-  
     return arrayCopy;
   }
 }

@@ -1,12 +1,9 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div class="container">
-  <div style="text-align:center">
-    <h1>
-      Welcome to {{ title }}!
-    </h1>
-    <img width="300" alt="Stack Attack Logo" src="../assets/logo.png">
-  </div>
-  <button type="button" class="btn btn-primary" routerLink="/session-list">Session List</button>
-  <button type="button" class="btn btn-primary" routerLink="/original">Original</button>
+<nav class="navbar fixed-top navbar-light" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="#">
+    <img src="/assets/icon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    {{title}}
+  </a>
+</nav>
+<div style="margin-top: 56px;">
   <router-outlet></router-outlet>
 </div>

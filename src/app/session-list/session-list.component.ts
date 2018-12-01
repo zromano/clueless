@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { RouterModule, Routes, Router} from '@angular/router';
-import { AngularFirestore, AngularFirestoreDocument, DocumentChangeAction } from '@angular/fire/firestore';
 
 import { Session } from "../models/session";
 
@@ -21,9 +20,7 @@ export class SessionListComponent implements OnInit {
     private gameService: GameService,
     private firebaseService: FirebaseService,
     private router: Router
-  ) {
-
-  }
+  ) {}
 
   ngOnInit() {
     this.sessions$ = this.firebaseService.gameRef().snapshotChanges().pipe(

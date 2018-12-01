@@ -23,7 +23,6 @@ export class GameComponent implements OnInit {
   sessionName: string;
   hostName: string;
 
-
   events$: Observable<Event[]>;
   player$: Observable<Player>;
 
@@ -57,7 +56,6 @@ export class GameComponent implements OnInit {
   movePlayer(dirToMove: number) {
     this.gameService.move(dirToMove);
   }
-
 
   addPlayer() {
     this.gameService.addPlayer(this.selectedPlayer, this.session.turnOrder);

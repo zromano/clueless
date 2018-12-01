@@ -9,7 +9,6 @@ import { Event } from "../models/event";
 import { Player } from "../models/player";
 import { Session } from "../models/session";
 
-
 @Injectable({
   providedIn: "root"
 })
@@ -65,8 +64,6 @@ export class FirebaseService {
     console.log("setY: " + newY)
     this.playerRef().update({ yPos: newY });
   }
-
-
 
   eventRef(): AngularFirestoreCollection<Event> {
     return this.db.collection<Event>("sessions/" + this.sessionId + "/events");
@@ -167,12 +164,13 @@ export class FirebaseService {
       currentTurn: "",
       turnOrder: [],
       availableRoles: [
-        "Colonel Mustard", 
-        "Miss Scarlet", 
-        "Professor Plum", 
-        "Mr. Green", 
-        "Mrs. White", 
-        "Mrs. Peacock"],
+        "Colonel Mustard",
+        "Miss Scarlet",
+        "Professor Plum",
+        "Mr. Green",
+        "Mrs. White",
+        "Mrs. Peacock"
+      ],
       suspects: {
         "Colonel Mustard": "",
         "Miss Scarlet": "",

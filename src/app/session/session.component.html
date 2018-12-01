@@ -1,12 +1,129 @@
 <div *ngIf="session">
-  <div *ngIf="playerId == session.hostId&& session.status!='IN PROGRESS'">
-    <h2>Host Only</h2>
-    <button id="startSessionBtn" type="submit" class="btn btn-secondary" (click)="startSession()">Start Session</button>
+  <div *ngIf="currPlayer && currPlayer.role">
+    <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
+      <form class="form-inline">
+        <label class="my-1 mr-2" for="selectedRole">
+          <strong>Action Required</strong> Select Your Player Role:
+        </label>
+        <select class="custom-select my-1 mr-sm-2" id="selectedRole" [(ngModel)]="selectedRole" name="selectedRole">
+          <option *ngFor="let role of session.availableRoles">{{role}}</option>
+        </select>
+        <button id="selectRoleBtn" type="submit" class="btn btn-outline-success btn-sm float-right" (click)="selectRole()">Submit</button>
+      </form>
+    </div>
   </div>
-  <div *ngIf="session.status=='IN PROGRESS' && session.turnOrder[0] == playerId">
-    <h2>My Turn</h2>
-    <button id="startSessionBtn" type="submit" class="btn btn-secondary" (click)="makeMove()">Make Move</button>
+
+  <div *ngIf="playerId != session.hostId && session.status != 'IN PROGRESS'">
+    <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
+      <strong>Host Action Required</strong> Standby for other players to join and for the host to start the session. Open Roles ({{session.availableRoles.length}})
+    </div>
   </div>
+
+  <div *ngIf="playerId == session.hostId && session.status != 'IN PROGRESS'">
+    <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
+      <form class="form-inline">
+        <label class="my-1 mr-2" for="selectedRole">
+          <strong>Action Required</strong> Open Roles ({{session.availableRoles.length}})
+        </label>
+        <button id="startSessionBtn" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="startSession()">Start Session</button>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="session.status == 'IN PROGRESS' && session.turnOrder[0] == playerId">
+    <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
+      <form class="form-inline">
+        <label class="my-1 mr-2" for="selectedRole">
+          <strong>Action Required - Your Turn</strong> Select A Location
+        </label>
+        <select class="custom-select my-1 mr-sm-2" id="selectedMove" [(ngModel)]="selectedMove" name="selectedMove">
+          <option *ngFor="let option of availableMoves" value="option">{{option}}</option>
+        </select>
+        <button id="startSessionBtn" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="makeMove()">Move</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-left: 0px; margin-right: 0px;">
+  <div class="row">
+    <div class="col">
+      <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h6 class="border-bottom border-gray pb-2 mb-0">Check List</h6>
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <strong class="text-gray-dark">Rooms</strong>
+            </div>
+            <div>
+              <table class="table table-borderless table-hover">
+                <tbody>
+                  <tr *ngFor="let room of rooms">
+                    <td><input type="checkbox" name="room" value="room"></td>
+                    <td>{{room}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <strong class="text-gray-dark">Suspects</strong>
+            </div>
+            <div>
+              <table class="table table-borderless table-hover">
+                <tbody>
+                  <tr *ngFor="let suspect of suspects">
+                    <td><input type="checkbox" name="suspect" value="suspect"></td>
+                    <td>{{suspect}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <strong class="text-gray-dark">Weapons</strong>
+            </div>
+            <div>
+              <table class="table table-borderless table-hover">
+                <tbody>
+                  <tr *ngFor="let weapon of weapons">
+                    <td><input type="checkbox" name="weapon" value="weapon"></td>
+                    <td>{{weapon}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-auto-md">
+      <div class="rounded shadow-sm">
+        <game-board></game-board>
+      </div>
+    </div>
+    <div class="col">
+      <div class="my-3 p-3 bg-white rounded shadow-sm recent-updates">
+        <h6 class="border-bottom border-gray pb-2 mb-0">Recent Updates</h6>
+        <div class="media text-muted pt-3" *ngFor="let event of events$ | async">
+          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">@{{event.role}}</strong>
+            {{ event.timestamp.seconds * 1000 | date:'medium' }} - {{ event.message }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="session">
   <div *ngIf="session.status=='IN PROGRESS'">
     <h2>Turn Order</h2>
     <ol>
@@ -66,11 +183,4 @@
       <li>Weapons: {{player.cards.weapons}}</li>
     </ul>
   </div>
-
-  <h2>Event Messages</h2>
-  <ul>
-    <li *ngFor="let event of events$ | async">
-      {{ event.timestamp.seconds * 1000 | date:'medium' }} | {{ event.role }} ({{ event.authorId }}) | {{ event.message }}
-    </li>
-  </ul>
 </div>

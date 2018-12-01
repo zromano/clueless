@@ -9,7 +9,6 @@ import { environment } from "../environments/environment";
 
 import { AppComponent } from "./app.component";
 import { SessionListComponent } from "./session-list/session-list.component";
-import { AppRoutingModule } from './app-routing.module';
 
 import { FirebaseService } from "./services/firebase.service";
 import { GameBoardComponent } from './game-board/game-board.component';
@@ -19,7 +18,7 @@ import { SessionComponent } from './session/session.component';
 import { CreateSessionComponent } from './session-list/create-session/create-session.component';
 
 const appRoutes: Routes = [
-  { path: 'session-list',
+  { path: '',
     component: SessionListComponent,
     children:[
       { path: 'create-session', component: CreateSessionComponent }
@@ -41,7 +40,6 @@ const appRoutes: Routes = [
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AppRoutingModule,
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(
