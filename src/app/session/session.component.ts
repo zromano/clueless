@@ -83,11 +83,11 @@ export class SessionComponent implements OnInit {
     console.log(this.selectedRole);
   }
 
-  initiateSession(playerIdArrMutable) {
+  initiateSession(playerObjs) {
+    var playerArrMutable = Object.keys(playerObjs);
     var suspects = this.shuffle(Suspects.slice());
     var rooms = this.shuffle(Rooms.slice());
     var weapons = this.shuffle(Weapons.slice());
-
 
     var confidential = {
       suspect: suspects.pop().name,
@@ -95,23 +95,18 @@ export class SessionComponent implements OnInit {
       weapon: weapons.pop().name,
     };
 
-    this.shuffle(playerIdArrMutable);
+    this.shuffle(playerArrMutable);
     
     // playerIdArr = ["hi", "bye"];s
-    console.log(playerIdArrMutable);
-    console.log(playerIdArrMutable.length);
+    console.log(playerArrMutable);
+    console.log(playerArrMutable.length);
 
     this.firebaseService.sessionRef().update({
-      confidential: confidential,
-      turnOrder: playerIdArrMutable,
-      currentTurn: playerIdArrMutable[0]
+      confidential: confidential
     })
 
     // deal cards
-    var playerIterStart = 0;
-    var playerIterEnd = playerIdArrMutable.length;
-
-    var rotatingPlayers = playerIdArrMutable;
+    var rotatingPlayers = playerArrMutable.slice();
 
     var playerSuspectCards = {};
     var playerRoomCards = {};
@@ -147,18 +142,37 @@ export class SessionComponent implements OnInit {
       rotatingPlayers = this.rotate(rotatingPlayers);
     }
 
-    playerIdArrMutable.forEach((function(id) {
+    var updatedAvailableRoles = this.session.availableRoles.slice();
+    var turnOrder = [];
+
+    playerArrMutable.forEach((function(id) {
       this.firebaseService.playerRef(id).update({
         cards: {
           rooms: playerRoomCards[id],
           suspects: playerSuspectCards[id],
           weapons: playerWeaponCards[id]
         }
-      })
+      });
+
+      if (playerObjs[id].role == "") {
+        var role = updatedAvailableRoles.pop();
+        this.firebaseService.playerRef(id).update({
+          role: role
+        });
+
+        turnOrder.push(role);
+      } else {
+        turnOrder.push(playerObjs[id].role);
+      }
     }).bind(this));
 
+
+
     this.firebaseService.sessionRef().update({
-      status: "IN PROGRESS"
+      status: "IN PROGRESS",
+      availableRoles: updatedAvailableRoles,
+      turnOrder: turnOrder,
+      currentTurn: turnOrder[0]
     })
 
     console.log(playerSuspectCards);
@@ -167,29 +181,23 @@ export class SessionComponent implements OnInit {
   }
   startSession() {
     this.firebaseService.playersRef().get().toPromise().then( (function(obj) {
-      var playerIdArrMutable = [];
+      var playerObjSnapshot = {};
       obj.docs.forEach(function (doc) {
-        playerIdArrMutable.push(doc.id);
+        playerObjSnapshot[doc.id] = doc.data();
       })
 
-      this.initiateSession(playerIdArrMutable);
+      this.initiateSession(playerObjSnapshot);
     }).bind(this))
   }
 
   makeMove() {
-    this.firebaseService.sessionRef().get().toPromise().then( (function(doc) {
-      // console.log(obj.docs.forEach);
-      // var playerIdArrMutable = [];
-      var session = doc.data() as Session;
+    var updatedTurnOrder = this.rotate(this.session.turnOrder);
+    console.log(updatedTurnOrder);
 
-      var updatedTurnOrder = this.rotate(session.turnOrder);
-      console.log(updatedTurnOrder);
-
-      this.firebaseService.sessionRef().update({
-        turnOrder: updatedTurnOrder,
-        currentTurn: updatedTurnOrder[0]
-      });
-    }).bind(this));
+    this.firebaseService.sessionRef().update({
+      turnOrder: updatedTurnOrder,
+      currentTurn: updatedTurnOrder[0]
+    });
   }
 
   //move first element to end

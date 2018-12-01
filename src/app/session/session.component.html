@@ -3,7 +3,7 @@
     <h2>Host Only</h2>
     <button id="startSessionBtn" type="submit" class="btn btn-secondary" (click)="startSession()">Start Session</button>
   </div>
-  <div *ngIf="session.status=='IN PROGRESS' && session.turnOrder[0] == playerId">
+  <div *ngIf="session.status=='IN PROGRESS' && session.turnOrder[0] == currPlayer.role">
     <h2>My Turn</h2>
     <button id="startSessionBtn" type="submit" class="btn btn-secondary" (click)="makeMove()">Make Move</button>
   </div>
@@ -16,9 +16,12 @@
     </ol>
   </div>
   <div *ngIf="currPlayer">
-    <h2>Player Info</h2>
+    <h2>My Info</h2>
     <ul>
-      <li>Player Role: {{currPlayer.role}}</li>
+      <li>Role: {{currPlayer.role}}</li>
+      <li>Room Cards: {{currPlayer.cards.rooms}}</li>
+      <li>Suspect Cards: {{currPlayer.cards.suspects}}</li>
+      <li>Weapon Cards: {{currPlayer.cards.weapons}}</li>
     </ul>
     <div *ngIf="currPlayer.role == ''">
       <br/>
