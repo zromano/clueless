@@ -13,16 +13,24 @@
 </div>
 
 <div *ngIf="session">
+  <div *ngFor="let event of events$ | async as event; last as isLast">
+    <div *ngIf="isLast" class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-bottom: 0px;">
+        {{ event.message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div> 
+  </div>
   <div *ngIf="playerId != session.hostId && session.status != 'IN PROGRESS'">
     <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
       <strong>Host Action Required</strong> Standby for other players to join and for the host to start the session. Open Roles ({{session.availableRoles.length}})
     </div>
   </div>
 
-  <div *ngIf="playerId == session.hostId && session.status != 'IN PROGRESS'">
+  <div *ngIf="playerId == session.hostId && session.status != 'IN PROGRESS' && session.numPlayers >= 2">
     <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
       <form class="form-inline">
-        <label class="my-1 mr-2" for="selectedRole">
+        <label class="my-1 mr-2" for="startSessionBtn">
           <strong>Action Required</strong> Open Roles ({{session.availableRoles.length}})
         </label>
         <button id="startSessionBtn" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="startSession()">Start Session</button>
@@ -30,16 +38,69 @@
     </div>
   </div>
 
-  <div *ngIf="session.status == 'IN PROGRESS' && session.turnOrder[0] == currPlayer.role">
+  <div *ngIf="currPlayer && session.status == 'IN PROGRESS' && session.turnOrder[0] == currPlayer.role">
     <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
       <form class="form-inline">
-        <label class="my-1 mr-2" for="selectedRole">
+        <label class="my-1 mr-2" for="startSessionBtn">
           <strong>Action Required - Your Turn</strong> Select A Location
         </label>
         <select class="custom-select my-1 mr-sm-2" id="selectedMove" [(ngModel)]="selectedMove" name="selectedMove">
-          <option *ngFor="let option of availableMoves" value="option">{{option}}</option>
+          <option *ngFor="let option of availableMoves" value={{option}}>{{option}}</option>
         </select>
         <button id="startSessionBtn" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="makeMove()">Move</button>
+      </form>
+
+      <div *ngIf="!session.suggestionInProgess">
+        <form class="form-inline">
+          <label class="my-1 mr-2" for="makeSuggestionBtn">
+            <strong>Action Required - Your Turn</strong> Make A Suggestion
+          </label>
+          <label class="my-1 mr-2" for="suggestedRoom">
+            Room
+          </label>
+          <select class="custom-select my-1 mr-sm-2" id="suggestedRoom" [(ngModel)]="suggestion.room" name="suggestedRoom">
+            <option *ngFor="let option of rooms" value={{option}}>{{option}}</option>
+          </select>
+          <label class="my-1 mr-2" for="suggestedSuspect">
+            Suspect
+          </label>
+          <select class="custom-select my-1 mr-sm-2" id="suggestedSuspect" [(ngModel)]="suggestion.suspect" name="suggestedSuspect">
+            <option *ngFor="let option of suspects" value={{option}}>{{option}}</option>
+          </select>
+          <label class="my-1 mr-2" for="suggestedWeapon">
+            Weapon
+          </label>
+          <select class="custom-select my-1 mr-sm-2" id="suggestedWeapon" [(ngModel)]="suggestion.weapon" name="suggestedWeapon">
+            <option *ngFor="let option of weapons" value={{option}}>{{option}}</option>
+          </select>
+          <button id="makeSuggestionBtn" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="makeSuggestion()">Submit</button>
+        </form>
+      </div>
+      <div *ngIf="session.suggestionInProgess">
+        Waiting for Players to Evaluate Suggestion
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currPlayer && session.suggestionInProgess && session.suggestionInProgess.checkArr[0] == currPlayer.role">
+    <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
+      <form class="form-inline">
+        <label class="my-1 mr-2">
+          <strong>Action Required</strong> Validate Suggestion ({{session.suggestionInProgess.room}}, {{session.suggestionInProgess.suspect}}, {{session.suggestionInProgess.weapon}})
+        </label>
+        <select *ngIf="currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon) || currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect) || currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" 
+          class="custom-select my-1 mr-sm-2" id="cardShown" [(ngModel)]="session.suggestionInProgess.cardShown" name="cardShown">
+          <option *ngIf="currPlayer.cards.rooms.includes(session.suggestionInProgess.room)" 
+            value={{session.suggestionInProgess.room}}>{{session.suggestionInProgess.room}}</option>
+          <option *ngIf="currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect)" 
+            value={{session.suggestionInProgess.suspect}}>{{session.suggestionInProgess.suspect}}</option>
+          <option *ngIf="currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" 
+            value={{session.suggestionInProgess.weapon}}>{{session.suggestionInProgess.weapon}}</option>
+        </select>
+        <button *ngIf="currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon) || currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect) || currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" 
+          id="suggestionShowCard" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="suggestionShowCard()">Show Card</button>
+        <button *ngIf="!currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon) && !currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect) && !currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" 
+          id="suggestionNoCard" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="suggestionNoCard()">No Card</button>
       </form>
     </div>
   </div>
@@ -114,7 +175,7 @@
         <div class="media text-muted pt-3" *ngFor="let event of events$ | async">
           <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <strong class="d-block text-gray-dark">@{{event.role}}</strong>
+            <strong class="d-block text-gray-dark">{{event.role}}</strong>
             {{ event.timestamp.seconds * 1000 | date:'medium' }} - {{ event.message }}
           </p>
         </div>

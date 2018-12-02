@@ -66,7 +66,7 @@ export class FirebaseService {
   }
 
   eventRef(): AngularFirestoreCollection<Event> {
-    return this.db.collection<Event>("sessions/" + this.sessionId + "/events");
+    return this.db.collection<Event>("sessions/" + this.sessionId + "/events", ref => ref.orderBy('timestamp'));
   }
 
   playerRef(id?: string): AngularFirestoreDocument<Player> {
@@ -163,6 +163,9 @@ export class FirebaseService {
       },
       currentTurn: "",
       turnOrder: [],
+      suggestionInProgess: null,
+      cardsShown: [],
+      lastGlobalAlert: null,
       availableRoles: [
         "Colonel Mustard",
         "Miss Scarlet",

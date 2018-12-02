@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { Observable } from "rxjs";
@@ -9,11 +9,13 @@ import * as _ from "lodash";
 import { Session } from "../models/session";
 import { Player } from "../models/player";
 import { Event } from "../models/event";
+import { Suggestion } from '../models/suggestion';
 
 import { FirebaseService } from "../services/firebase.service";
 import * as $ from "jquery";
 import { Suspects, Weapons, Rooms } from '../share/constants';
 import { forEach } from '@angular/router/src/utils/collection';
+import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-session',
@@ -21,6 +23,7 @@ import { forEach } from '@angular/router/src/utils/collection';
   styleUrls: ['./session.component.css']
 })
 export class SessionComponent implements OnInit {
+  globalAlerts: SafeHtml;
   sessionId: string;
   playerId: string;
   currPlayer: Player;
@@ -32,6 +35,8 @@ export class SessionComponent implements OnInit {
   isHost: boolean;
   selectedMove: string;
   availableMoves: string[];
+  suggestion: Suggestion;
+  lastGlobalAlert: string;
 
   rooms: string[];
   suspects: string[];
@@ -40,7 +45,8 @@ export class SessionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private sanitizer: DomSanitizer
   ) {
     this.rooms = _.map(Rooms, "name");
     this.suspects = _.map(Suspects, "name");
@@ -61,6 +67,11 @@ export class SessionComponent implements OnInit {
 
     this.firebaseService.sessionRef().valueChanges().subscribe(session => {
       this.session = session;
+      if (session.lastGlobalAlert != null && this.lastGlobalAlert != session.lastGlobalAlert) {
+        this.lastGlobalAlert = session.lastGlobalAlert;
+
+        this.addAlert(this.lastGlobalAlert);
+      };
     });
     this.firebaseService.playerRef().valueChanges().subscribe(player => {
       this.currPlayer = player;
@@ -77,6 +88,19 @@ export class SessionComponent implements OnInit {
     );
 
     this.events$ = this.firebaseService.eventRef().valueChanges();
+    
+    this.firebaseService.eventRef().valueChanges().forEach
+
+    this.resetSuggestionForm();
+  }
+
+  addAlert(text) {
+    var newAlert = 
+      "<div class='alert alert-warning alert-dismissible fade show' role='alert' style='margin-bottom: 0px;'>" + 
+      text + 
+      "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
+      "</div>";
+    this.globalAlerts = this.sanitizer.bypassSecurityTrustHtml(newAlert);
   }
 
   selectRole() {
@@ -203,6 +227,90 @@ export class SessionComponent implements OnInit {
 
       this.initiateSession(playerObjSnapshot);
     }).bind(this))
+  }
+
+  makeSuggestion() {
+    console.log(this.suggestion);
+    var checkArr = this.session.turnOrder.slice();
+    checkArr.shift()
+    this.suggestion.checkArr = checkArr;
+
+    this.firebaseService.sessionRef().update({
+      suggestionInProgess: this.suggestion
+    }).then((function() {
+      var outer = function(sessionInstance) {
+        console.log("outerFunc");
+        setTimeout(function() {
+          var suggestionListener = sessionInstance.session.suggestionInProgess;
+          console.log(suggestionListener.cardShown);
+          console.log(suggestionListener.checkArr);
+          if (suggestionListener.cardShown == null && suggestionListener.checkArr.length > 0) {
+            outer(sessionInstance);
+          } else {
+            var card = suggestionListener.cardShown;
+            if (card != null && card != "") {
+              sessionInstance.firebaseService.sessionRef().update({
+                cardShown: sessionInstance.session.cardsShown.push(card),
+                lastGlobalAlert: "Card Shown: " + card
+              });
+
+              sessionInstance.firebaseService.addEvent("New card shown: " + card);
+            } else {
+              sessionInstance.firebaseService.addEvent("Suggestion (" + suggestionListener.room + ", " + suggestionListener.suspect + ", " + suggestionListener.weapon + ") Not Refuted");
+            }
+      
+            sessionInstance.firebaseService.sessionRef().update({
+              suggestionInProgess: null
+            });
+
+            sessionInstance.updateTurnOrder();
+          }
+        }, 500);
+      };
+
+      outer(this);
+    }).bind(this));
+
+    this.resetSuggestionForm();
+  }
+
+  suggestionShowCard() {
+    console.log("showCard");
+
+    this.firebaseService.sessionRef().update({
+      suggestionInProgess: this.session.suggestionInProgess
+    });
+  }
+
+  suggestionNoCard() {
+    console.log("noCard");
+    var suggestion = this.session.suggestionInProgess;
+    suggestion.checkArr.shift()
+
+    this.firebaseService.sessionRef().update({
+      suggestionInProgess: suggestion
+    });
+  }
+
+  resetSuggestionForm() {
+    this.suggestion = {
+      playerId: this.playerId,
+      room: "",
+      suspect: "",
+      weapon: "",
+      checkArr: [],
+      cardShown: null
+    };
+  }
+
+  updateTurnOrder() {
+    var updatedTurnOrder = this.rotate(this.session.turnOrder);
+    console.log(updatedTurnOrder);
+
+    this.firebaseService.sessionRef().update({
+      turnOrder: updatedTurnOrder,
+      currentTurn: updatedTurnOrder[0]
+    });
   }
 
   makeMove() {
