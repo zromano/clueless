@@ -12,7 +12,7 @@ import { Event } from "../models/event";
 
 import { FirebaseService } from "../services/firebase.service";
 import * as $ from "jquery";
-import { Suspects, Weapons, Rooms } from '../share/constants';
+import { Suspects, Weapons, Rooms, Positions } from '../share/constants';
 import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
@@ -32,6 +32,7 @@ export class SessionComponent implements OnInit {
   isHost: boolean;
   selectedMove: string;
   availableMoves: string[];
+  gameBoard: {};
 
   rooms: string[];
   suspects: string[];
@@ -61,6 +62,7 @@ export class SessionComponent implements OnInit {
 
     this.firebaseService.sessionRef().valueChanges().subscribe(session => {
       this.session = session;
+      this.gameBoard = session.gameBoard;
     });
     this.firebaseService.playerRef().valueChanges().subscribe(player => {
       this.currPlayer = player;
@@ -92,6 +94,28 @@ export class SessionComponent implements OnInit {
     })
 
     $("#selectRoleBtn").prop('disabled', true);
+
+
+    // Set starting Position
+    var suspectList = Suspects;
+    var startPosition = "";
+
+    suspectList.forEach(function (arrayItem) {
+      var curSuspect = arrayItem.name;
+      if (curSuspect === selectedRole){
+        console.log("Starting Position for " + curSuspect + " is: " + arrayItem.position);
+        startPosition = arrayItem.position;
+      }
+    });
+    // find space in starting room
+    var startingRoomSpace = Positions[startPosition].uiCoords[0];
+    
+    this.firebaseService.playerRef().update({ 
+      position: startPosition
+      xPos: startingRoomSpace.x;
+      yPos: startingRoomSpace.y;
+    });
+
 
     this.firebaseService.addEvent("Player (" + this.playerId + ") has selected role: " + selectedRole );
     this.firebaseService.sessionRef().update({ availableRoles: updatedAvailableRoles });
@@ -187,13 +211,15 @@ export class SessionComponent implements OnInit {
       status: "IN PROGRESS",
       availableRoles: updatedAvailableRoles,
       turnOrder: turnOrder,
-      currentTurn: turnOrder[0]
+      currentTurn: turnOrder[0],
+      gameBoard: Positions
     })
 
     console.log(playerSuspectCards);
     console.log(playerRoomCards);
     console.log(playerWeaponCards);
   }
+
   startSession() {
     this.firebaseService.playersRef().get().toPromise().then( (function(obj) {
       var playerObjSnapshot = {};
@@ -203,15 +229,78 @@ export class SessionComponent implements OnInit {
 
       this.initiateSession(playerObjSnapshot);
     }).bind(this))
+
+    // get possible moves for first player
+  }
+
+  getPossibleMoves() {
+    var curPos = this.currPlayer.position;
+    var validMoves = ["Error"];
+
+    if (this.gameBoard.hasOwnProperty(curPos)) {
+      validMoves = this.gameBoard[curPos].validMoves;
+      var i = validMoves.length;
+      while (i--) {
+          var curPosToCheck = validMoves[i];
+          if (this.gameBoard[curPosToCheck].type === "hallway" && this.gameBoard[curPosToCheck].uiCoords[0].isOccupied){
+              validMoves.splice(i, 1);
+          } 
+      }
+    }
+    this.availableMoves = validMoves;
+    return validMoves;
   }
 
   makeMove() {
     var updatedTurnOrder = this.rotate(this.session.turnOrder);
     console.log(updatedTurnOrder);
 
+    // marking comingfrom position empty
+    var curX = this.currPlayer.xPos;
+    var curY = this.currPlayer.yPos;
+    var curPos = this.currPlayer.position;
+
+    //loop through coords in current room to find match
+    var i = this.gameBoard[curPos].uiCoords.length;
+    while (i--) {
+        var curPosToCheck = this.gameBoard[curPos].uiCoords[i];
+        if (curPosToCheck.x == curX && curPosToCheck.y == curY){
+          this.gameBoard[curPos].uiCoords[i].isOccupied = false;
+          break;
+      }
+    }
+
+    // will need to loop through possible positions to find open one
+    // this.gameBoard[this.selectedMove].uiCoords.forEach(function (space, index) {
+    
+    this.sendPlayerToRoom(this.selectedMove);
+
     this.firebaseService.sessionRef().update({
       turnOrder: updatedTurnOrder,
-      currentTurn: updatedTurnOrder[0]
+      currentTurn: updatedTurnOrder[0],
+      gameBoard: this.gameBoard
+    });
+  }
+
+  sendPlayerToRoom(targetRoom){
+    var i = this.gameBoard[targetRoom].uiCoords.length;
+    var curX = 0;
+    var curY = 0;
+    while (i--) {
+        var curPosToCheck = this.gameBoard[targetRoom].uiCoords[i];
+
+        if (curPosToCheck.isOccupied == false){
+          this.gameBoard[targetRoom].uiCoords[i].isOccupied = true;
+          curX = curPosToCheck.x;
+          curY = curPosToCheck.y;
+          break;
+      }
+    }
+
+    this.firebaseService.playerRef().update({
+      position: this.selectedMove,
+      xPos: curX,
+      yPos: curY
     });
   }
 

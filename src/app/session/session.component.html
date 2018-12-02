@@ -37,7 +37,7 @@
           <strong>Action Required - Your Turn</strong> Select A Location
         </label>
         <select class="custom-select my-1 mr-sm-2" id="selectedMove" [(ngModel)]="selectedMove" name="selectedMove">
-          <option *ngFor="let option of availableMoves" value="option">{{option}}</option>
+          <option *ngFor="let option of getPossibleMoves()" value={{option}}>{{option}}</option>
         </select>
         <button id="startSessionBtn" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="makeMove()">Move</button>
       </form>
