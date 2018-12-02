@@ -1,3 +1,5 @@
+import { Suggestion } from "./suggestion";
+
 export interface Session {
   sessionName: string;
   hostName: string;
@@ -11,7 +13,10 @@ export interface Session {
   };
   currentTurn: string;
   turnOrder: string[];
-  availableRoles: string[]
+  availableRoles: string[];
+  suggestionInProgess: Suggestion;
+  cardsShown: string[];
+  lastGlobalAlert: string;
   suspects: {
     "Colonel Mustard": string;
     "Miss Scarlet": string;
