@@ -63,7 +63,7 @@ export class GameService {
       }
     }).bind(this))
 
-    onsole.log("Added Player: " + " (" + playerId + ")");
+    console.log("Added Player: " + " (" + playerId + ")");
 
     return this.firebaseService.getPlayerId();
   }
