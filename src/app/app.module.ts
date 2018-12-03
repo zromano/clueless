@@ -16,9 +16,11 @@ import { GameComponent } from "./game/game.component";
 import { GameService } from "./services/game.service";
 import { SessionComponent } from './session/session.component';
 import { CreateSessionComponent } from './session-list/create-session/create-session.component';
+import { LandingComponent } from './landing/landing.component';
 
 const appRoutes: Routes = [
-  { path: '',
+  { path: '', component: LandingComponent },
+  { path: 'session-list',
     component: SessionListComponent,
     children:[
       { path: 'create-session', component: CreateSessionComponent }
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     GameComponent,
     SessionListComponent,
     SessionComponent,
-    CreateSessionComponent
+    CreateSessionComponent,
+    LandingComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

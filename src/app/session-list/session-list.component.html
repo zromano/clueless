@@ -1,32 +1,39 @@
 <div class="container rounded session-lobby">
   <div class="row">
-    <div class="col-md-7 session-ready">
+    <div class="col-md-8 session-ready">
       <h1>READY TO PLAY?</h1>
       <div style="padding-top: 15px;">
         <p>Find a session on the right to join or create a new session below with friends.</p>
         <create-session></create-session>
       </div>
     </div>
-    <div class="col-md-5 session-list">
-      <table class="table table-borderless table-hover justify-content-center">
+    <div class="col-md-4 session-list">
+      <!-- <table class="table table-borderless table-hover justify-content-center"> -->
+      <table class="table table-hover justify-content-center">
         <thead>
           <tr>
-            <th scope="col">SESSIONS</th>
-            <th scope="col">STATUS</th>
+            <th scope="col">Sessions</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let session of sessions$ | async">
             <td>
               <b>{{session.sessionName}}</b>
-              <p>{{session.hostName}}</p>
+              <p><small>{{session.hostName}}</small></p>
             </td>
-            <td>
+            <td class="align-middle">
               <div *ngIf="session.status == 'WAITING'">
-                <button type="button" class="btn btn-success btn-sm" (click)="joinSession(session)">JOIN</button>
+                <!-- <button type="button" class="btn btn-success btn-sm" (click)="joinSession(session)">JOIN</button> -->
+                <button type="button" class="btn btn-success btn-sm" (click)="joinSession(session)">
+                  <i class="material-icons">lock_open</i>
+                </button>
               </div>
               <div *ngIf="session.status != 'WAITING'">
-                <button type="button" class="btn btn-secondary btn-sm" disabled>{{session.status}}</button>
+                <!-- <button type="button" class="btn btn-secondary btn-sm" disabled>{{session.status}}</button> -->
+                <button type="button" class="btn btn-secondary btn-sm" disabled>
+                  <i class="material-icons">lock</i>
+                </button>
               </div>
             </td>
           </tr>

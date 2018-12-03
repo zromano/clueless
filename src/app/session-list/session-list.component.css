@@ -4,13 +4,13 @@ td > p {
 
 /* Sticky table header */
 thead tr:first-child th {
-  background-color: #F1F9FF;
+  background-color: #ECEFF1;
   position: sticky;
   top: 0;
 }
 
 .session-list {
-  background-color: #F1F9FF;
+  background-color: #ECEFF1;
   padding-left: 0px;
   padding-right: 0px;
   height: 400px;
@@ -21,12 +21,12 @@ thead tr:first-child th {
   text-align: center;
   height: 400px;
   width: 800px;
-  margin: 100px auto 100px auto;
+  margin: 50px auto 100px auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .session-ready {
+  background-color: white;
   height: 400px;
-  /* padding: 75px 75px 75px 75px; */
-  padding: 50px 65px 50px 65px;
+  padding: 55px 75px 55px 75px;
 }
