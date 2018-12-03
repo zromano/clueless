@@ -12,14 +12,14 @@
       <table class="table table-hover justify-content-center">
         <thead>
           <tr>
-            <th scope="col">Sessions</th>
-            <th scope="col">Status</th>
+            <th scope="col" style="font-weight: 600;">Sessions</th>
+            <th scope="col" style="font-weight: 600;">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let session of sessions$ | async">
             <td>
-              <b>{{session.sessionName}}</b>
+              <p>{{session.sessionName}}</p>
               <p><small>{{session.hostName}}</small></p>
             </td>
             <td class="align-middle">

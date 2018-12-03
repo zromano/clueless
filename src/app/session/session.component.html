@@ -152,10 +152,10 @@
 
             <div *ngIf="currPlayer && session.status == 'IN PROGRESS' && session.turnOrder[0] == currPlayer.role">
               <div class="btn-toolbar justify-content-center" role="group" style="padding-bottom: 15px;">
-                <button class="btn btn-success btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#moveCollapse" aria-expanded="false" aria-controls="moveCollapse">Move</button>
-                <button class="btn btn-primary btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" aria-expanded="false" aria-controls="suggestCollapse">Suggest</button>
-                <button class="btn btn-warning btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" aria-expanded="false" aria-controls="suggestCollapse">Accuse</button>
-                <button class="btn btn-danger btn-sm">End</button>
+                <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#moveCollapse" aria-expanded="false" aria-controls="moveCollapse">Move</button>
+                <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" aria-expanded="false" aria-controls="suggestCollapse">Suggest</button>
+                <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" aria-expanded="false" aria-controls="suggestCollapse">Accuse</button>
+                <button class="btn btn-dark btn-sm">End</button>
               </div>
 
               <div class="collapse multi-collapse" id="moveCollapse">
@@ -164,7 +164,7 @@
                     <option selected>Choose...</option>
                     <option *ngFor="let option of getPossibleMoves()" value={{option}}>{{option}}</option>
                   </select>
-                  <button id="startSessionBtn" type="submit" class="btn btn-outline-success btn-sm" (click)="makeMove()">Submit</button>
+                  <button id="startSessionBtn" type="submit" class="btn btn-outline-dark btn-sm" (click)="makeMove()">Submit</button>
                 </form>
               </div>
 
@@ -196,7 +196,7 @@
 
                   <div class="form-row text-center">
                     <div class="col-12">
-                      <button id="makeSuggestionBtn" type="submit" class="btn btn-outline-primary btn-sm" (click)="makeSuggestion()">Submit</button>
+                      <button id="makeSuggestionBtn" type="submit" class="btn btn-outline-dark btn-sm" (click)="makeSuggestion()">Submit</button>
                     </div>
                   </div>
                 </form>
@@ -230,13 +230,13 @@
             <div *ngIf="currPlayer && currPlayer.cards" class="collapse multi-collapse show" id="cardsCollapse" style="padding-bottom: 15px;">
               <p style="margin-bottom: 0px;"><small>Role: {{currPlayer.role}}</small></p>
               <p style="margin-bottom: 0px;"><small>Rooms</small></p>
-              <span *ngFor="let room of currPlayer.cards.rooms" class="badge badge-light" style="color: gray; margin-left: 5px;">{{room}}</span>
+              <span *ngFor="let room of currPlayer.cards.rooms" class="badge badge-light shadow-sm" style="color: gray; font-weight: 600; margin-right: 5px; margin-bottom: 5px;">{{room}}</span>
 
               <p style="margin-bottom: 0px;"><small>Suspects</small></p>
-              <span *ngFor="let suspect of currPlayer.cards.suspects" class="badge badge-light" style="color: gray; margin-left: 5px;">{{suspect}}</span>
+              <span *ngFor="let suspect of currPlayer.cards.suspects" class="badge badge-light shadow-sm" style="color: gray; font-weight: 600; margin-right: 5px; margin-bottom: 5px;">{{suspect}}</span>
 
               <p style="margin-bottom: 0px;"><small>Weapons</small></p>
-              <span *ngFor="let weapon of currPlayer.cards.weapons" class="badge badge-light" style="color: gray; margin-left: 5px;">{{weapon}}</span>
+              <span *ngFor="let weapon of currPlayer.cards.weapons" class="badge badge-light shadow-sm" style="color: gray; font-weight: 600; margin-right: 5px; margin-bottom: 5px;;">{{weapon}}</span>
             </div>
           </div>
         </div>
