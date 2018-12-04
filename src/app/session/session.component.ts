@@ -90,8 +90,6 @@ export class SessionComponent implements OnInit {
     );
 
     this.events$ = this.firebaseService.eventRef().valueChanges();
-    
-    this.firebaseService.eventRef().valueChanges().forEach
 
     this.resetSuggestionForm();
   }
@@ -208,7 +206,16 @@ export class SessionComponent implements OnInit {
     var updatedAvailableRoles = this.session.availableRoles.slice();
     var turnOrder = [];
 
+    var initialPositions = Suspects.slice();
+    var suspectPositions = {};
+    initialPositions.forEach (function (suspect) {
+      suspectPositions[suspect["name"]] = suspect["position"];
+    });
+
+    var gameBoard = Positions;
+
     playerArrMutable.forEach((function(id) {
+      var role;
       this.firebaseService.playerRef(id).update({
         cards: {
           rooms: playerRoomCards[id],
@@ -218,17 +225,23 @@ export class SessionComponent implements OnInit {
       });
 
       if (playerObjs[id].role == "") {
-        var role = updatedAvailableRoles.pop();
+        role = updatedAvailableRoles.pop();
         this.firebaseService.playerRef(id).update({
           role: role
         });
 
         turnOrder.push(role);
       } else {
+        role = playerObjs[id].role;
         turnOrder.push(playerObjs[id].role);
       }
-    }).bind(this));
 
+      this.firebaseService.playerRef(id).update({
+        position: suspectPositions[role]
+      });
+
+      this.sendPlayerToRoom(id, suspectPositions[role], gameBoard);
+    }).bind(this));
 
 
     this.firebaseService.sessionRef().update({
@@ -236,7 +249,7 @@ export class SessionComponent implements OnInit {
       availableRoles: updatedAvailableRoles,
       turnOrder: turnOrder,
       currentTurn: turnOrder[0],
-      gameBoard: Positions
+      gameBoard: gameBoard
     })
 
     console.log(playerSuspectCards);
@@ -277,6 +290,7 @@ export class SessionComponent implements OnInit {
 
   makeSuggestion() {
     console.log(this.suggestion);
+    this.suggestion.room = this.currPlayer.position;
     var checkArr = this.session.turnOrder.slice();
     checkArr.shift()
     this.suggestion.checkArr = checkArr;
@@ -285,11 +299,8 @@ export class SessionComponent implements OnInit {
       suggestionInProgess: this.suggestion
     }).then((function() {
       var outer = function(sessionInstance) {
-        console.log("outerFunc");
         setTimeout(function() {
           var suggestionListener = sessionInstance.session.suggestionInProgess;
-          console.log(suggestionListener.cardShown);
-          console.log(suggestionListener.checkArr);
           if (suggestionListener.cardShown == null && suggestionListener.checkArr.length > 0) {
             outer(sessionInstance);
           } else {
@@ -317,19 +328,57 @@ export class SessionComponent implements OnInit {
       outer(this);
     }).bind(this));
 
-    this.resetSuggestionForm();
+    this.firebaseService.playersRef().get().toPromise().then( (function(obj) {
+      var playerObjSnapshot = {};
+      obj.docs.forEach(function (doc) {
+        playerObjSnapshot[doc.id] = doc.data();
+      });
+
+      Object.keys(playerObjSnapshot).forEach((function(playerId) {
+        var player = playerObjSnapshot[playerId];
+        if (player.role == this.suggestion.suspect) {
+          this.firebaseService.playerRef(playerId).update({
+            position: this.suggestion.room
+          });
+
+          // marking comingfrom position empty
+          var curX = player.xPos;
+          var curY = player.yPos;
+          var curPos = player.position;
+
+          //loop through coords in current room to find match
+          var currGameboard = JSON.parse(JSON.stringify(this.gameBoard));
+          var i = currGameboard[curPos].uiCoords.length;
+          while (i--) {
+              var curPosToCheck = currGameboard[curPos].uiCoords[i];
+              if (curPosToCheck.x == curX && curPosToCheck.y == curY){
+                currGameboard[curPos].uiCoords[i].isOccupied = false;
+                break;
+            }
+          }
+
+          // will need to loop through possible positions to find open one
+          // this.gameBoard[this.selectedMove].uiCoords.forEach(function (space, index) {
+          
+          this.sendPlayerToRoom(playerId, this.suggestion.room, currGameboard);
+
+          this.firebaseService.sessionRef().update({
+            gameBoard: currGameboard
+          });
+        }
+      }).bind(this));
+
+      this.resetSuggestionForm();
+    }).bind(this));
   }
 
   suggestionShowCard() {
-    console.log("showCard");
-
     this.firebaseService.sessionRef().update({
       suggestionInProgess: this.session.suggestionInProgess
     });
   }
 
   suggestionNoCard() {
-    console.log("noCard");
     var suggestion = this.session.suggestionInProgess;
     suggestion.checkArr.shift()
 
@@ -369,11 +418,12 @@ export class SessionComponent implements OnInit {
     var curPos = this.currPlayer.position;
 
     //loop through coords in current room to find match
-    var i = this.gameBoard[curPos].uiCoords.length;
+    var currGameboard = JSON.parse(JSON.stringify(this.gameBoard));
+    var i = currGameboard[curPos].uiCoords.length;
     while (i--) {
-        var curPosToCheck = this.gameBoard[curPos].uiCoords[i];
+        var curPosToCheck = currGameboard[curPos].uiCoords[i];
         if (curPosToCheck.x == curX && curPosToCheck.y == curY){
-          this.gameBoard[curPos].uiCoords[i].isOccupied = false;
+          currGameboard[curPos].uiCoords[i].isOccupied = false;
           break;
       }
     }
@@ -381,32 +431,34 @@ export class SessionComponent implements OnInit {
     // will need to loop through possible positions to find open one
     // this.gameBoard[this.selectedMove].uiCoords.forEach(function (space, index) {
     
-    this.sendPlayerToRoom(this.selectedMove);
+    this.sendPlayerToRoom(this.playerId, this.selectedMove, currGameboard);
 
     this.firebaseService.sessionRef().update({
       turnOrder: updatedTurnOrder,
       currentTurn: updatedTurnOrder[0],
-      gameBoard: this.gameBoard
+      gameBoard: currGameboard
     });
   }
 
-  sendPlayerToRoom(targetRoom){
-    var i = this.gameBoard[targetRoom].uiCoords.length;
+  sendPlayerToRoom(playerId, targetRoom, gameBoard){
+    console.log(targetRoom);
+    console.log(gameBoard);
+    var i = gameBoard[targetRoom].uiCoords.length;
     var curX = 0;
     var curY = 0;
     while (i--) {
-        var curPosToCheck = this.gameBoard[targetRoom].uiCoords[i];
+        var curPosToCheck = gameBoard[targetRoom].uiCoords[i];
 
         if (curPosToCheck.isOccupied == false){
-          this.gameBoard[targetRoom].uiCoords[i].isOccupied = true;
+          gameBoard[targetRoom].uiCoords[i].isOccupied = true;
           curX = curPosToCheck.x;
           curY = curPosToCheck.y;
           break;
       }
     }
 
-    this.firebaseService.playerRef().update({
-      position: this.selectedMove,
+    this.firebaseService.playerRef(playerId).update({
+      position: targetRoom,
       xPos: curX,
       yPos: curY
     });
