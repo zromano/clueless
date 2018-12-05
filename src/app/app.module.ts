@@ -11,7 +11,7 @@ import { AppComponent } from "./app.component";
 import { SessionListComponent } from "./session-list/session-list.component";
 
 import { FirebaseService } from "./services/firebase.service";
-import { GameBoardComponent } from './game-board/game-board.component';
+import { GameBoardService } from "./services/game-board.service";
 import { GameComponent } from "./game/game.component";
 import { GameService } from "./services/game.service";
 import { SessionComponent } from './session/session.component';
@@ -33,12 +33,11 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    GameBoardComponent,
-    GameComponent,
-    SessionListComponent,
-    SessionComponent,
     CreateSessionComponent,
-    LandingComponent
+    GameComponent,
+    LandingComponent,
+    SessionListComponent,
+    SessionComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -51,7 +50,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     FirebaseService,
-    GameService
+    GameService,
+    GameBoardService
   ],
   bootstrap: [AppComponent]
 })

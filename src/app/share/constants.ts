@@ -1,31 +1,31 @@
 export const Rooms = [
-  { type: "room", name: "Ballroom", position: "2,0" },
-  { type: "room", name: "Billiard Room", position: "2,2" },
-  { type: "room", name: "Conservatory", position: "0,0" },
-  { type: "room", name: "Dining Room", position: "4,2" },
-  { type: "room", name: "Hall", position: "2,4" },
-  { type: "room", name: "Kitchen", position: "4,0" },
-  { type: "room", name: "Library", position: "0,2" },
-  { type: "room", name: "Lounge", position: "4,4" },
-  { type: "room", name: "Study", position: "0,4"}
+  { type: "room", id: "Ballroom-2", name: "Ballroom" },
+  { type: "room", id: "Billiard_Room-2", name: "Billiard Room" },
+  { type: "room", id: "Conservatory-2", name: "Conservatory", passage: "8,2" },
+  { type: "room", id: "Dining_Room-2", name: "Dining Room" },
+  { type: "room", id: "Hall-2", name: "Hall" },
+  { type: "room", id: "Kitchen-2", name: "Kitchen", passage: "8,8" },
+  { type: "room", id: "Library-2", name: "Library" },
+  { type: "room", id: "Lounge-2", name: "Lounge", passage: "2,8" },
+  { type: "room", id: "Study-2", name: "Study", passage: "2,2" }
 ];
 
 export const Suspects = [
-  { type: "suspect", name: "Colonel Mustard", position: "Hallway: Study-Hall" },
-  { type: "suspect", name: "Miss Scarlet", position: "Hallway: Kitchen-Ballroom" },
-  { type: "suspect", name: "Mr. Green", position: "Hallway: Study-Library" },
-  { type: "suspect", name: "Mrs. Peacock", position: "Hallway: Kitchen-Dining Room" },
-  { type: "suspect", name: "Mrs. White", position: "Hallway: Conservatory-Ballroom" },
-  { type: "suspect", name: "Professor Plum", position: "Hallway: Lounge-Hall" }
+  { type: "suspect", id: "Mustard", name: "Colonel Mustard", position: "Hallway: Study-Hall", board: "10,3" },
+  { type: "suspect", id: "Scarlet", name: "Miss Scarlet", position: "Hallway: Kitchen-Ballroom", board: "7,0" },
+  { type: "suspect", id: "Green", name: "Mr. Green", position: "Hallway: Study-Library", board: "3,10" },
+  { type: "suspect", id: "Peacock", name: "Mrs. Peacock", position: "Hallway: Kitchen-Dining Room", board: "0,7" },
+  { type: "suspect", id: "White", name: "Mrs. White", position: "Hallway: Conservatory-Ballroom", board: "7,10" },
+  { type: "suspect", id: "Plum", name: "Professor Plum", position: "Hallway: Lounge-Hall", board: "0,3" }
 ];
 
 export const Weapons = [
-  { type: "weapon", name: "Candlestick", position: "0,0" },
-  { type: "weapon", name: "Knife", position: "0,2" },
-  { type: "weapon", name: "Lead Pipe", position: "0,4" },
-  { type: "weapon", name: "Revolver", position: "4,0" },
-  { type: "weapon", name: "Rope", position: "4,2" },
-  { type: "weapon", name: "Wrench", position: "4,4" }
+  { type: "weapon", id: "candlestick", name: "Candlestick", position: "4,11" },
+  { type: "weapon", id: "butcher", name: "Knife", position: "3,11" },
+  { type: "weapon", id: "pipe", name: "Lead Pipe", position: "5,11" },
+  { type: "weapon", id: "gun", name: "Revolver", position: "6,11" },
+  { type: "weapon", id: "rope", name: "Rope", position: "7,11" },
+  { type: "weapon", id: "wrench", name: "Wrench", position: "8,11" }
 ];
 
 export const Positions = {

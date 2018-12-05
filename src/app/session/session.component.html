@@ -137,12 +137,12 @@
 
       <div class="col-md-7">
         <div class="rounded shadow text-center" style="padding: 16px;">
-          <game-board></game-board>
+          <svg id="board" width="500px" height="500px" viewBox="0 0 650 650"></svg>
         </div>
       </div>
 
       <div class="col-md-3">
-        <div *ngIf="currPlayer" class="row">
+        <div *ngIf="currPlayer && session.status == 'IN PROGRESS'" class="row">
           <div class="col-md-12 bg-white rounded shadow" style="padding-bottom: 5px; margin-bottom: 15px;">
             <h6 class="pb-2 mb-0 text-center" style="padding-top: 15px;">Your Actions</h6>
 
@@ -159,7 +159,7 @@
                 <div *ngIf="!currPlayer.position.startsWith('Hallway')">
                   <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" aria-expanded="false" aria-controls="suggestCollapse">Suggest</button>
                 </div>
-                <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" aria-expanded="false" aria-controls="suggestCollapse">Accuse</button>
+                <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#accuseCollapse" aria-expanded="false" aria-controls="accuseCollapse">Accuse</button>
                 <button class="btn btn-dark btn-sm">End</button>
               </div>
 
@@ -210,8 +210,8 @@
         <div class="row">
           <div class="col-md-12 bg-white rounded shadow recent-updates" style="margin-bottom: 15px;">
             <h6 class="pb-2 mb-0 text-center" style="padding-top: 15px; display: inline-block;">Session Information</h6>
-            <button type="button" class="btn btn-light btn-sm float-right" data-toggle="collapse" data-target="#sessionCollapse" aria-expanded="false" aria-controls="sessionCollapse">
-              <i class="material-icons">menu</i>
+            <button type="button" class="btn btn-light btn-sm float-right" data-toggle="collapse" data-target="#sessionCollapse" aria-expanded="false" aria-controls="sessionCollapse" style="margin-top: 5px;">
+              <i class="material-icons align-middle">menu</i>
             </button>
             <div *ngIf="session" class="collapse multi-collapse show media text-muted pt-3" id="sessionCollapse" style="padding-bottom: 15px;">
               <small class="text-gray-dark">
@@ -223,11 +223,11 @@
           </div>
         </div>
 
-        <div class="row">
+        <div *ngIf="currPlayer && currPlayer.role" class="row">
           <div class="col-md-12 bg-white rounded shadow recent-updates" style="margin-bottom: 15px;">
             <h6 class="pb-2 mb-0 text-center" style="padding-top: 15px; display: inline-block;">Your Information</h6>
-            <button type="button" class="btn btn-light btn-sm float-right" data-toggle="collapse" data-target="#cardsCollapse" aria-expanded="false" aria-controls="cardsCollapse">
-              <i class="material-icons">menu</i>
+            <button type="button" class="btn btn-light btn-sm float-right" data-toggle="collapse" data-target="#cardsCollapse" aria-expanded="false" aria-controls="cardsCollapse" style="margin-top: 5px;">
+              <i class="material-icons align-middle">menu</i>
             </button>
             <div *ngIf="currPlayer && currPlayer.cards" class="collapse multi-collapse show" id="cardsCollapse" style="padding-bottom: 15px;">
               <p style="margin-bottom: 0px;"><small>Role: {{currPlayer.role}}</small></p>
@@ -246,8 +246,8 @@
         <div class="row">
           <div class="col-md-12 bg-white rounded shadow recent-updates" style="margin-bottom: 15px;">
             <h6 class="pb-2 mb-0 text-center" style="padding-top: 15px; display: inline-block;">Recent Updates</h6>
-            <button type="button" class="btn btn-light btn-sm float-right" data-toggle="collapse" data-target="#eventsCollapse" aria-expanded="false" aria-controls="eventsCollapse">
-              <i class="material-icons">menu</i>
+            <button type="button" class="btn btn-light btn-sm float-right" data-toggle="collapse" data-target="#eventsCollapse" aria-expanded="false" aria-controls="eventsCollapse" style="margin-top: 5px;">
+              <i class="material-icons align-middle">menu</i>
             </button>
             <div *ngFor="let event of events$ | async" class="collapse multi-collapse show media text-muted pt-3" id="eventsCollapse" style="padding-bottom: 15px;">
               <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
