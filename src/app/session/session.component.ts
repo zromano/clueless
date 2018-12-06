@@ -10,6 +10,7 @@ import { Session } from "../models/session";
 import { Player } from "../models/player";
 import { Event } from "../models/event";
 import { Suggestion } from '../models/suggestion';
+import { Accusation } from '../models/accusation';
 
 import { FirebaseService } from "../services/firebase.service";
 import * as $ from "jquery";
@@ -36,6 +37,7 @@ export class SessionComponent implements OnInit {
   selectedMove: string;
   availableMoves: string[];
   suggestion: Suggestion;
+  accusation: Accusation;
   lastGlobalAlert: string;
 
   rooms: string[];
@@ -302,6 +304,24 @@ export class SessionComponent implements OnInit {
       cardShown: null
     };
   }
+
+  makeAccusation(){
+    console.log(this.accusation);
+
+          var confidentialCard = this.session.confidential;
+          
+          if (this.accusation.room == confidentialCard.room && this.accusation.weapon == confidentialCard.weapon && this.accusation.suspect == confidentialCard.suspect) {
+            this.firebaseService.addEvent("Accusation (" + this.accusation.room + "," + this.accusation.weapon + "," + this.accusation.suspect + ") is Correct");
+            this.firebaseService.addEvent(this.currPlayer + "Wins the Game!");
+            this.session.status = "Session is Over!";
+          } else {
+            //need to write code to remove player from turn order and update turn order
+            
+            this.updateTurnOrder();
+          }
+
+  }
+
 
   updateTurnOrder() {
     var updatedTurnOrder = this.rotate(this.session.turnOrder);

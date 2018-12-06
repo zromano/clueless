@@ -138,6 +138,36 @@ export class FirebaseService {
           "Candlestick": null,
           "Revolver": null,
         }
+      },
+
+      accusations: {
+        rooms: {
+          "Study": null,
+          "Hall": null,
+          "Lounge": null,
+          "Library": null,
+          "Billiard Room": null,
+          "Dining Room": null,
+          "Conservatory": null,
+          "Ballroom": null,
+          "Kitchen": null,
+        },
+        suspects: {
+          "Colonel Mustard": null,
+          "Miss Scarlet": null,
+          "Professor Plum": null,
+          "Mr. Green": null,
+          "Mrs. White": null,
+          "Mrs. Peacock": null,
+        },
+        weapons: {
+          "Rope": null,
+          "Lead Pipe": null,
+          "Knife": null,
+          "Wrench": null,
+          "Candlestick": null,
+          "Revolver": null,
+        }
       }
     }
 
