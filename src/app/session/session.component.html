@@ -38,13 +38,13 @@
         </button>
       </div>
     </div>
-    <div *ngIf="playerId != session.hostId && session.status != 'IN PROGRESS'">
+    <div *ngIf="playerId != session.hostId && session.status != 'IN PROGRESS' && session.status != 'FINISHED'">
       <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
         <strong>Host Action Required</strong> Standby for other players to join and for the host to start the session. Open Roles ({{session.availableRoles.length}})
       </div>
     </div>
 
-    <div *ngIf="playerId == session.hostId && session.status != 'IN PROGRESS' && session.numPlayers >= 2">
+    <div *ngIf="playerId == session.hostId && session.status != 'IN PROGRESS' && session.status != 'FINISHED' &&  session.numPlayers >= 2">
       <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
         <form class="form-inline">
           <label class="my-1 mr-2" for="startSessionBtn">
@@ -205,24 +205,37 @@
               </div>
 
               <div class="collapse multi-collapse" id="accuseCollapse">
-                <div *ngIf="!session.accusation">
-                  <form class="form-inline">
-                    <label class="my-1 mr-2" for="makeAccusationBtn">Make An Accusation</label>
-                    <label class="my-1 mr-2" for="accusedRoom">Room</label>
-                    <select class="custom-select my-1 mr-sm-2" id="accusedRoom" [(ngModel)]="accusation.room" name="accusedRoom">
+                <form class="form">
+                  <div class="form-group">
+                    <label class="col-sm-4 col-form-label" for="accusedRoom">Room</label>
+                    <select class="col-sm-8 custom-select" id="accusedRoom" [(ngModel)]="accusation.room" name="accusedRoom">
+                      <option selected>Choose...</option>
                       <option *ngFor="let option of rooms" value={{option}}>{{option}}</option>
                     </select>
-                    <label class="my-1 mr-2" for="accusedSuspect">Suspect</label>
-                    <select class="custom-select my-1 mr-sm-2" id="accusedSuspect" [(ngModel)]="accusation.suspect" name="accusedSuspect">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-4 col-form-label" for="accusedSuspect">Suspect</label>
+                    <select class="col-sm-8 custom-select" id="accusedSuspect" [(ngModel)]="accusation.suspect" name="accusedSuspect">
+                      <option selected>Choose...</option>
                       <option *ngFor="let option of suspects" value={{option}}>{{option}}</option>
                     </select>
-                    <label class="my-1 mr-2" for="accusedWeapon">Weapon</label>
-                    <select class="custom-select my-1 mr-sm-2" id="accusedWeapon" [(ngModel)]="accusation.weapon" name="accusedWeapon">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-4 col-form-label" for="accusedWeapon">Weapon</label>
+                    <select class="col-sm-8 custom-select" id="accusedWeapon" [(ngModel)]="accusation.weapon" name="accusedWeapon">
+                      <option selected>Choose...</option>
                       <option *ngFor="let option of weapons" value={{option}}>{{option}}</option>
                     </select>
-                    <button id="makeAccusationBtn" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="makeAccusation()">Submit</button>
-                  </form>
-                </div>
+                  </div>
+                  
+                  <div class="form-row text-center">
+                    <div class="col-12">
+                      <button id="makeAccusationBtn" type="submit" class="btn btn-outline-dark btn-sm" (click)="makeAccusation()">Submit</button>
+                    </div>
+                  </div>
+                </form>
               </div>
 
             </div>

@@ -72,6 +72,14 @@ export class SessionComponent implements OnInit {
 
     this.session$ = this.firebaseService.sessionRef().valueChanges();
 
+    this.firebaseService.playerRef().valueChanges().subscribe(player => {
+      this.currPlayer = player;
+      this.selectedRole = player.role;
+
+      // Remove player from list of suspects
+      this.suggestionSuspectList = _.without(this.suspects, player.role);
+    });
+
     this.firebaseService.sessionRef().valueChanges().subscribe(session => {
       this.session = session;
       this.gameBoard = session.gameBoard;
@@ -95,14 +103,12 @@ export class SessionComponent implements OnInit {
         var position = session.weapons[weapon].split(",").map(Number);
         this.gameBoardService.moveWeapon(weapon, position[0], position[1]);
       }
-    });
 
-    this.firebaseService.playerRef().valueChanges().subscribe(player => {
-      this.currPlayer = player;
-      this.selectedRole = player.role;
-
-      // Remove player from list of suspects
-      this.suggestionSuspectList = _.without(this.suspects, player.role);
+      // If turn order is curr player and curr player has already made a false accusation, then skip
+      if (this.currPlayer && session.currentTurn == this.currPlayer.role && this.currPlayer.noTurn) {
+        console.log("skipped " + this.currPlayer.role);
+        this.updateTurnOrder();
+      }
     });
 
     this.players$ = this.firebaseService.playersRef().snapshotChanges().pipe(
@@ -118,6 +124,12 @@ export class SessionComponent implements OnInit {
     this.events$ = this.firebaseService.eventRef().valueChanges();
 
     this.resetSuggestionForm();
+
+    this.accusation = {
+      room: "",
+      suspect: "",
+      weapon: ""
+    }
   }
 
   addAlert(text) {
@@ -175,6 +187,8 @@ export class SessionComponent implements OnInit {
     var playerSuspectCards = {};
     var playerRoomCards = {};
     var playerWeaponCards = {};
+
+
 
     while(suspects.length > 0) {
       if (playerSuspectCards[rotatingPlayers[0]] != null) {
@@ -388,13 +402,18 @@ export class SessionComponent implements OnInit {
     var confidentialCard = this.session.confidential;
 
     if (this.accusation.room == confidentialCard.room && this.accusation.weapon == confidentialCard.weapon && this.accusation.suspect == confidentialCard.suspect) {
-      this.firebaseService.addEvent("Accusation (" + this.accusation.room + "," + this.accusation.weapon + "," + this.accusation.suspect + ") is Correct");
-      this.firebaseService.addEvent(this.currPlayer + "Wins the Game!");
-      this.session.status = "Session is Over!";
+      this.firebaseService.addEvent("Accusation (" + this.accusation.room + ", " + this.accusation.weapon + ", " + this.accusation.suspect + ") is Correct");
+      this.firebaseService.addEvent(this.currPlayer.role + " Wins!");
+      this.firebaseService.sessionRef().update({
+        status: "FINISHED"
+      });
     } else {
       //need to write code to remove player from turn order and update turn order
-
-      this.updateTurnOrder();
+      this.firebaseService.playerRef().update({
+        noTurn: true
+      }).then((function(){
+        this.updateTurnOrder();
+      }).bind(this));
     }
 
     $('#accuseCollapse').removeClass('show');
