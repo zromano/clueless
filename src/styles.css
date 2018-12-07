@@ -4,5 +4,5 @@
 /* Global styling for all elements except for font-awesome icons, buttons */
 *:not(i):not(.fa):not(button) {
   color: gray;
-  font-family: "Avenir";
+  font-family: 'Raleway', sans-serif;
 }

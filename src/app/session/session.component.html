@@ -1,110 +1,83 @@
-<div *ngIf="currPlayer && currPlayer.role == ''">
-  <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
-    <form class="form-inline">
-      <label class="my-1 mr-2" for="selectedRole">
-        <strong>Action Required</strong> Select Your Player Role:
-      </label>
-      <select class="custom-select my-1 mr-sm-2" id="selectedRole" [(ngModel)]="selectedRole" name="selectedRole">
-        <option *ngFor="let role of session.availableRoles">{{role}}</option>
-      </select>
-      <button id="selectRoleBtn" type="submit" class="btn btn-outline-success btn-sm float-right" (click)="selectRole()">Submit</button>
-    </form>
-  </div>
-</div>
-
-<div *ngIf="session">
-  <div *ngFor="let event of events$ | async as event; last as isLast">
-    <div *ngIf="isLast" class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-bottom: 0px;">
-        {{ event.message }}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div> 
-  </div>
-  <div *ngIf="playerId != session.hostId && session.status != 'IN PROGRESS'">
-    <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
-      <strong>Host Action Required</strong> Standby for other players to join and for the host to start the session. Open Roles ({{session.availableRoles.length}})
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="/assets/icon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="#about">About</a>
+      <a class="nav-item nav-link" href="#team">Team</a>
+      <a class="nav-item nav-link" href="#credits">Credits</a>
     </div>
   </div>
+</nav>
 
-  <div *ngIf="playerId == session.hostId && session.status != 'IN PROGRESS' && session.numPlayers >= 2">
+<div style="padding-top: 56px;">
+  <div *ngIf="currPlayer && currPlayer.role == ''">
     <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
       <form class="form-inline">
-        <label class="my-1 mr-2" for="startSessionBtn">
-          <strong>Action Required</strong> Open Roles ({{session.availableRoles.length}})
+        <label class="my-1 mr-2" for="selectedRole">
+          <strong>Action Required</strong> Select Your Player Role:
         </label>
-        <button id="startSessionBtn" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="startSession()">Start Session</button>
-      </form>
-    </div>
-  </div>
-
-  <div *ngIf="currPlayer && session.status == 'IN PROGRESS' && session.turnOrder[0] == currPlayer.role">
-    <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
-      <form class="form-inline">
-        <label class="my-1 mr-2" for="startSessionBtn">
-          <strong>Action Required - Your Turn</strong> Select A Location
-        </label>
-        <select class="custom-select my-1 mr-sm-2" id="selectedMove" [(ngModel)]="selectedMove" name="selectedMove">
-          <option *ngFor="let option of availableMoves" value={{option}}>{{option}}</option>
+        <select class="custom-select my-1 mr-sm-2" id="selectedRole" [(ngModel)]="selectedRole" name="selectedRole">
+          <option *ngFor="let role of session.availableRoles">{{role}}</option>
         </select>
-        <button id="startSessionBtn" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="makeMove()">Move</button>
+        <button id="selectRoleBtn" type="submit" class="btn btn-outline-success btn-sm float-right" (click)="selectRole()">Submit</button>
       </form>
+    </div>
+  </div>
 
-      <div *ngIf="!session.suggestionInProgess">
+  <div *ngIf="session">
+    <div *ngFor="let event of events$ | async as event; last as isLast">
+      <div *ngIf="isLast" class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-bottom: 0px;">
+        {{ event.message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="playerId != session.hostId && session.status != 'IN PROGRESS'">
+      <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
+        <strong>Host Action Required</strong> Standby for other players to join and for the host to start the session. Open Roles ({{session.availableRoles.length}})
+      </div>
+    </div>
+
+    <div *ngIf="playerId == session.hostId && session.status != 'IN PROGRESS' && session.numPlayers >= 2">
+      <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
         <form class="form-inline">
-          <label class="my-1 mr-2" for="makeSuggestionBtn">
-            <strong>Action Required - Your Turn</strong> Make A Suggestion
+          <label class="my-1 mr-2" for="startSessionBtn">
+            <strong>Action Required</strong> Open Roles ({{session.availableRoles.length}})
           </label>
-          <label class="my-1 mr-2" for="suggestedRoom">
-            Room
-          </label>
-          <select class="custom-select my-1 mr-sm-2" id="suggestedRoom" [(ngModel)]="suggestion.room" name="suggestedRoom">
-            <option *ngFor="let option of rooms" value={{option}}>{{option}}</option>
-          </select>
-          <label class="my-1 mr-2" for="suggestedSuspect">
-            Suspect
-          </label>
-          <select class="custom-select my-1 mr-sm-2" id="suggestedSuspect" [(ngModel)]="suggestion.suspect" name="suggestedSuspect">
-            <option *ngFor="let option of suspects" value={{option}}>{{option}}</option>
-          </select>
-          <label class="my-1 mr-2" for="suggestedWeapon">
-            Weapon
-          </label>
-          <select class="custom-select my-1 mr-sm-2" id="suggestedWeapon" [(ngModel)]="suggestion.weapon" name="suggestedWeapon">
-            <option *ngFor="let option of weapons" value={{option}}>{{option}}</option>
-          </select>
-          <button id="makeSuggestionBtn" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="makeSuggestion()">Submit</button>
+          <button id="startSessionBtn" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="startSession()">Start Session</button>
         </form>
       </div>
-      <div *ngIf="session.suggestionInProgess">
+    </div>
+
+    <div *ngIf="currPlayer && session.status == 'IN PROGRESS' && session.turnOrder[0] == currPlayer.role && session.suggestionInProgess">
+      <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
         Waiting for Players to Evaluate Suggestion
       </div>
     </div>
-  </div>
 
-  <div *ngIf="currPlayer && session.suggestionInProgess && session.suggestionInProgess.checkArr[0] == currPlayer.role">
-    <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
-      <form class="form-inline">
-        <label class="my-1 mr-2">
-          <strong>Action Required</strong> Validate Suggestion ({{session.suggestionInProgess.room}}, {{session.suggestionInProgess.suspect}}, {{session.suggestionInProgess.weapon}})
-        </label>
-        <select *ngIf="currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon) || currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect) || currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" 
-          class="custom-select my-1 mr-sm-2" id="cardShown" [(ngModel)]="session.suggestionInProgess.cardShown" name="cardShown">
-          <option *ngIf="currPlayer.cards.rooms.includes(session.suggestionInProgess.room)" 
-            value={{session.suggestionInProgess.room}}>{{session.suggestionInProgess.room}}</option>
-          <option *ngIf="currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect)" 
-            value={{session.suggestionInProgess.suspect}}>{{session.suggestionInProgess.suspect}}</option>
-          <option *ngIf="currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" 
-            value={{session.suggestionInProgess.weapon}}>{{session.suggestionInProgess.weapon}}</option>
-        </select>
-        <button *ngIf="currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon) || currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect) || currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" 
-          id="suggestionShowCard" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="suggestionShowCard()">Show Card</button>
-        <button *ngIf="!currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon) && !currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect) && !currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" 
-          id="suggestionNoCard" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="suggestionNoCard()">No Card</button>
-      </form>
+    <div *ngIf="currPlayer && session.suggestionInProgess && session.suggestionInProgess.checkArr[0] == currPlayer.role">
+      <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
+        <form class="form-inline">
+          <label class="my-1 mr-2">
+            <strong>Action Required</strong> Validate Suggestion ({{session.suggestionInProgess.room}}, {{session.suggestionInProgess.suspect}}, {{session.suggestionInProgess.weapon}})
+          </label>
+          <select *ngIf="currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon) || currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect) || currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" class="custom-select my-1 mr-sm-2" id="cardShown" [(ngModel)]="session.suggestionInProgess.cardShown" name="cardShown">
+            <option *ngIf="currPlayer.cards.rooms.includes(session.suggestionInProgess.room)" value={{session.suggestionInProgess.room}}>{{session.suggestionInProgess.room}}</option>
+            <option *ngIf="currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect)" value={{session.suggestionInProgess.suspect}}>{{session.suggestionInProgess.suspect}}</option>
+            <option *ngIf="currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" value={{session.suggestionInProgess.weapon}}>{{session.suggestionInProgess.weapon}}</option>
+          </select>
+          <button *ngIf="currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon) || currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect) || currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" id="suggestionShowCard" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="suggestionShowCard()">Show Card</button>
+          <button *ngIf="!currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon) && !currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect) && !currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" id="suggestionNoCard" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="suggestionNoCard()">No Card</button>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 
 <div *ngIf="!session.accusation">
   <form class="form-inline">
@@ -143,135 +116,149 @@
             <div class="d-flex justify-content-between align-items-center w-100">
               <strong class="text-gray-dark">Rooms</strong>
             </div>
-            <div>
-              <table class="table table-borderless table-hover">
-                <tbody>
-                  <tr *ngFor="let room of rooms">
-                    <td><input type="checkbox" name="room" value="room"></td>
-                    <td>{{room}}</td>
-                  </tr>
-                </tbody>
-              </table>
+          </div>
+          <div class="media text-muted pt-3">
+            <div class="media-body pb-3 mb-0 small lh-125" style="padding-bottom: 0px !important;">
+              <div class="d-flex justify-content-between align-items-center w-100">
+                <strong class="text-gray-dark text-center" style="padding-bottom: 5px;">Weapons</strong>
+              </div>
+              <div>
+                <table class="table table-borderless table-hover">
+                  <tbody>
+                    <tr *ngFor="let weapon of weapons">
+                      <td style="padding-left: 0px;"><input type="checkbox" name="weapon" value="weapon"> {{weapon}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-        <div class="media text-muted pt-3">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">Suspects</strong>
+      </div>
+
+      <div class="col-md-7">
+        <div class="rounded shadow text-center" style="padding: 16px;">
+          <svg id="board" width="500px" height="500px" viewBox="0 0 650 650"></svg>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div *ngIf="currPlayer && session.status == 'IN PROGRESS'" class="row">
+          <div class="col-md-12 bg-white rounded shadow" style="padding-bottom: 5px; margin-bottom: 15px;">
+            <h6 class="pb-2 mb-0 text-center" style="padding-top: 15px;">Your Actions</h6>
+
+            <div *ngIf="currPlayer && session.status == 'IN PROGRESS' && session.turnOrder[0] != currPlayer.role">
+              <p class="text-center">Wait for Your Turn</p>
             </div>
-            <div>
-              <table class="table table-borderless table-hover">
-                <tbody>
-                  <tr *ngFor="let suspect of suspects">
-                    <td><input type="checkbox" name="suspect" value="suspect"></td>
-                    <td>{{suspect}}</td>
-                  </tr>
-                </tbody>
-              </table>
+
+            <div *ngIf="currPlayer && session.status == 'IN PROGRESS' && session.turnOrder[0] == currPlayer.role">
+              <div class="btn-toolbar justify-content-center" role="group" style="padding-bottom: 15px;">
+                <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#moveCollapse" aria-expanded="false" aria-controls="moveCollapse">Move</button>
+                <div *ngIf="currPlayer.position.startsWith('Hallway')">
+                  <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" aria-expanded="false" aria-controls="suggestCollapse" disabled>Suggest</button>
+                </div>
+                <div *ngIf="!currPlayer.position.startsWith('Hallway')">
+                  <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" aria-expanded="false" aria-controls="suggestCollapse">Suggest</button>
+                </div>
+                <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#accuseCollapse" aria-expanded="false" aria-controls="accuseCollapse">Accuse</button>
+                <button class="btn btn-dark btn-sm">End</button>
+              </div>
+
+              <div class="collapse multi-collapse" id="moveCollapse">
+                <form class="form-inline">
+                  <select class="custom-select my-1 mr-sm-2" id="selectedMove" [(ngModel)]="selectedMove" name="selectedMove">
+                    <option selected>Choose...</option>
+                    <option *ngFor="let option of getPossibleMoves()" value={{option}}>{{option}}</option>
+                  </select>
+                  <button id="startSessionBtn" type="submit" class="btn btn-outline-dark btn-sm" (click)="makeMove()">Submit</button>
+                </form>
+              </div>
+
+              <div class="collapse multi-collapse" id="suggestCollapse">
+                <form class="form">
+                  <div class="form-group">
+                    <label class="col-sm-4 col-form-label" for="suggestedRoom">Room</label>
+                    {{currPlayer.position}}
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-4 col-form-label" for="suggestedSuspect">Suspect</label>
+                    <select class="col-sm-8 custom-select" id="suggestedSuspect" [(ngModel)]="suggestion.suspect" name="suggestedSuspect">
+                      <option selected>Choose...</option>
+                      <option *ngFor="let option of suspects" value={{option}}>{{option}}</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-4 col-form-label" for="suggestedWeapon">Weapon</label>
+                    <select class="col-sm-8 custom-select" id="suggestedWeapon" [(ngModel)]="suggestion.weapon" name="suggestedWeapon">
+                      <option selected>Choose...</option>
+                      <option *ngFor="let option of weapons" value={{option}}>{{option}}</option>
+                    </select>
+                  </div>
+
+                  <div class="form-row text-center">
+                    <div class="col-12">
+                      <button id="makeSuggestionBtn" type="submit" class="btn btn-outline-dark btn-sm" (click)="makeSuggestion()">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-        <div class="media text-muted pt-3">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">Weapons</strong>
+
+        <div class="row">
+          <div class="col-md-12 bg-white rounded shadow recent-updates" style="margin-bottom: 15px;">
+            <h6 class="pb-2 mb-0 text-center" style="padding-top: 15px; display: inline-block;">Session Information</h6>
+            <button type="button" class="btn btn-light btn-sm float-right" data-toggle="collapse" data-target="#sessionCollapse" aria-expanded="false" aria-controls="sessionCollapse" style="margin-top: 5px;">
+              <i class="material-icons align-middle">menu</i>
+            </button>
+            <div *ngIf="session" class="collapse multi-collapse show media text-muted pt-3" id="sessionCollapse" style="padding-bottom: 15px;">
+              <small class="text-gray-dark">
+                Session Name: {{session.sessionName}}<br>
+                Session Host: {{session.hostName}}<br>
+                Current Turn: {{session.currentTurn}}<br>
+              </small>
             </div>
-            <div>
-              <table class="table table-borderless table-hover">
-                <tbody>
-                  <tr *ngFor="let weapon of weapons">
-                    <td><input type="checkbox" name="weapon" value="weapon"></td>
-                    <td>{{weapon}}</td>
-                  </tr>
-                </tbody>
-              </table>
+          </div>
+        </div>
+
+        <div *ngIf="currPlayer && currPlayer.role" class="row">
+          <div class="col-md-12 bg-white rounded shadow recent-updates" style="margin-bottom: 15px;">
+            <h6 class="pb-2 mb-0 text-center" style="padding-top: 15px; display: inline-block;">Your Information</h6>
+            <button type="button" class="btn btn-light btn-sm float-right" data-toggle="collapse" data-target="#cardsCollapse" aria-expanded="false" aria-controls="cardsCollapse" style="margin-top: 5px;">
+              <i class="material-icons align-middle">menu</i>
+            </button>
+            <div *ngIf="currPlayer && currPlayer.cards" class="collapse multi-collapse show" id="cardsCollapse" style="padding-bottom: 15px;">
+              <p style="margin-bottom: 0px;"><small>Role: {{currPlayer.role}}</small></p>
+              <p style="margin-bottom: 0px;"><small>Rooms</small></p>
+              <span *ngFor="let room of currPlayer.cards.rooms" class="badge badge-light shadow-sm" style="color: gray; font-weight: 600; margin-right: 5px; margin-bottom: 5px;">{{room}}</span>
+
+              <p style="margin-bottom: 0px;"><small>Suspects</small></p>
+              <span *ngFor="let suspect of currPlayer.cards.suspects" class="badge badge-light shadow-sm" style="color: gray; font-weight: 600; margin-right: 5px; margin-bottom: 5px;">{{suspect}}</span>
+
+              <p style="margin-bottom: 0px;"><small>Weapons</small></p>
+              <span *ngFor="let weapon of currPlayer.cards.weapons" class="badge badge-light shadow-sm" style="color: gray; font-weight: 600; margin-right: 5px; margin-bottom: 5px;;">{{weapon}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 bg-white rounded shadow recent-updates" style="margin-bottom: 15px;">
+            <h6 class="pb-2 mb-0 text-center" style="padding-top: 15px; display: inline-block;">Recent Updates</h6>
+            <button type="button" class="btn btn-light btn-sm float-right" data-toggle="collapse" data-target="#eventsCollapse" aria-expanded="false" aria-controls="eventsCollapse" style="margin-top: 5px;">
+              <i class="material-icons align-middle">menu</i>
+            </button>
+            <div *ngFor="let event of events$ | async" class="collapse multi-collapse show media text-muted pt-3" id="eventsCollapse" style="padding-bottom: 15px;">
+              <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">{{event.role}}</strong>
+                {{ event.timestamp.seconds * 1000 | date:'medium' }} - {{ event.message }}
+              </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-auto-md">
-      <div class="rounded shadow-sm">
-        <game-board></game-board>
-      </div>
-    </div>
-    <div class="col">
-      <div class="my-3 p-3 bg-white rounded shadow-sm recent-updates">
-        <h6 class="border-bottom border-gray pb-2 mb-0">Recent Updates</h6>
-        <div class="media text-muted pt-3" *ngFor="let event of events$ | async">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <strong class="d-block text-gray-dark">{{event.role}}</strong>
-            {{ event.timestamp.seconds * 1000 | date:'medium' }} - {{ event.message }}
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="session">
-  <div *ngIf="session.status=='IN PROGRESS'">
-    <h2>Turn Order</h2>
-    <ol>
-      <li *ngFor="let i of session.turnOrder">
-        {{ i }}
-      </li>
-    </ol>
-  </div>
-  <div *ngIf="currPlayer">
-    <h2>My Info</h2>
-    <ul>
-      <li>Role: {{currPlayer.role}}</li>
-      <li>Room Cards: {{currPlayer.cards.rooms}}</li>
-      <li>Suspect Cards: {{currPlayer.cards.suspects}}</li>
-      <li>Weapon Cards: {{currPlayer.cards.weapons}}</li>
-    </ul>
-    <div *ngIf="currPlayer.role == ''">
-      <br/>
-      <h5>Select Role</h5>
-      <form class="form-inline">
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Select Role</label>
-          <select class="form-control" id="selectedRole" [(ngModel)]="selectedRole" name="selectedRole">
-            <option *ngFor = "let role of session.availableRoles">{{role}}</option>
-          </select>
-        </div>
-        <button id="selectRoleBtn" type="submit" class="btn btn-secondary" (click)="selectRole()">Select</button>
-      </form>
-      <br/>
-    </div>
-  </div>
-
-  <h2>Session Info</h2>
-  <ul>
-    <li>Session Name: {{ session.sessionName }}</li>
-    <li>Host Name: {{ session.hostName }}</li>
-    <li>Host Id: {{ session.hostId }}</li>
-    <li>Status: {{ session.status }}</li>
-    <li>Number of Players: {{ session.numPlayers }}</li>
-    <li>Current Player ID: {{ session.currentTurn }}</li>
-    <li>Turn Order: {{ session.turnOrder }}</li>
-    <li>Available Roles: {{ session.availableRoles }}</li>
-    <li>Confidential</li>
-    <ul>
-      <li>Room: {{ session.confidential.room }}</li>
-      <li>Suspect: {{ session.confidential.suspect }}</li>
-      <li>Weapon: {{ session.confidential.weapon }}</li>
-    </ul>
-  </ul>
-  <h2>Players</h2>
-
-  <div *ngFor = "let player of players$ | async">
-    <h5>Player Id: {{player.id}}</h5>
-    <h6>Player Id: {{player.role}}</h6>
-
-    Cards
-    <ul>
-      <li>Rooms: {{player.cards.rooms}}</li>
-      <li>Suspects: {{player.cards.suspects}}</li>
-      <li>Weapons: {{player.cards.weapons}}</li>
-    </ul>
   </div>
 </div>

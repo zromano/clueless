@@ -1,505 +1,327 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 650">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 650 675">
   <defs>
     <style>
-      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+      .cls-1 {
         fill: #fff;
       }
 
-      .cls-1, .cls-6 {
-        stroke: #707070;
+      .cls-2, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 {
+        fill: none;
       }
 
-      .cls-1 {
-        stroke-linecap: round;
-        stroke-linejoin: bevel;
-        stroke-width: 5px;
+      .cls-2 {
+        stroke: #247ba0;
       }
 
-      .cls-2, .cls-4, .cls-5 {
-        stroke: rgba(112,112,112,0.17);
-      }
-
-      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+      .cls-2, .cls-4, .cls-8 {
         stroke-width: 2px;
       }
 
       .cls-3 {
-        stroke: rgba(112,112,112,0.73);
-      }
-
-      .cls-4 {
-        opacity: 0.48;
-      }
-
-      .cls-5 {
-        opacity: 0.47;
-      }
-
-      .cls-10, .cls-6 {
-        fill: #707070;
-      }
-
-      .cls-7, .cls-8 {
-        fill: rgba(38,153,251,0.6);
-      }
-
-      .cls-8 {
-        font-size: 25px;
+        fill: rgba(112,112,112,0.3);
+        font-size: 20px;
         font-family: AvenirNextCondensed-Regular, Avenir Next Condensed;
       }
 
+      .cls-4 {
+        stroke: rgba(112,112,112,0.15);
+      }
+
+      .cls-6 {
+        opacity: 0.48;
+      }
+
+      .cls-7 {
+        opacity: 0.47;
+      }
+
+      .cls-8 {
+        stroke: rgba(112,112,112,0.73);
+        stroke-dasharray: 2;
+      }
+
       .cls-9 {
+        fill: rgba(38,153,251,0.6);
+      }
+
+      .cls-10 {
         fill: #8562a3;
       }
 
       .cls-11 {
-        fill: #348ea9;
+        fill: #707070;
       }
 
       .cls-12 {
-        fill: #53bb9b;
+        fill: #348ea9;
       }
 
       .cls-13 {
-        fill: #f04946;
+        fill: #53bb9b;
       }
 
       .cls-14 {
-        fill: #f48c37;
+        fill: #f04946;
       }
 
       .cls-15 {
-        stroke: none;
+        fill: #f48c37;
       }
 
       .cls-16 {
-        fill: none;
+        fill: url(#pattern);
+      }
+
+      .cls-17 {
+        fill: url(#pattern-2);
+      }
+
+      .cls-18 {
+        stroke: none;
       }
     </style>
+    <pattern id="pattern" preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 64 64">
+      <image width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABuwAAAbsBOuzj4gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAcrSURBVHic3ZpbbBxXGcd/35mZ3Z3dtXfd1E6ikpKQpiooIEDAQ5ESEtuJeEFIqA+tiOOC1D5AQfBEnlAEb0WKSlwnaSuBFAQoNpHahyhSxAPiIlWCOE6IeChUAhFB4ra+dG9zPTzYu55dr531Xuwx/yd/M+Mz3++/55w5c+YTrTU7USOTpc/7cDYIwsNeEO5GsDJWopJNWv9NmMbdrOaZn41TeVg75lYk200NTxbHHV//uOL7jwEkTYPBvjQp0wSwgQMC8/v/idtKe7JTeoCAOjJRvF50vdHqsbydIp9OIfWXzojPyJVv8kFL7e4EA05eLAwVXX234gePAhhKsbsvTdJc04Fvic9wq/AAqpuJ9kolj79U4QUY6hI87IA54OhE8XrZ8z9SjXdlauO9JhFmfRi5ukl4iHkPODHpnCi63slqbFsmfalE3TUr8MNXx3i/nXvEugeUQ++VaJyzU42X3DYtRq482x48xLgHjFwofqri+k9V44RpYFt1v9cdK8HwL5/lvU7uE9se4Ify3ejzKZOwoqfvWAmOdwJ/7CxmPreQja0BgdafjcYJw6j9bWq+0gn88HnnYGXAuf1AzEJsDQjDcH80TpqrBnhCpt12h887B0uhe8cLQttQWLGdA0JN3Yyn1Gqqohld8w8taBU+sAGUoGJrgAh+NI6uWEVt3oBjk84TUXhTKXb3Zf34GgBeNA4jBmjN0Rdfw1rzT+vo2KTzRMVzb0fh9+ayWIb6e2wNgMZ3nDpl5m2ebqWRE5eWDjWDN5VCa/4aWwMCrWsTnQCG1PsRhg8fBicuLR36sCKzNXhjFR5AhJuxfBs89mp54kPH+VY1ztspBtJrVoElDeeU4sZAmT9deqF+yDTCW4ZiT/8qPOCFBh+NnQHHL1a+Uag4b4ShFlheAA32ZTYcD0BRhN/pkBtauFF2XPVB2Xl7A3iAX02d5rlYGdAmfFN5QUDZ8/GCkJydbIT3tfCF6TFmYrMQ6iY8gGUYWJHVY4POTI8xAzHZEeo2/IbSvDk1zler4bY/BbYUXrjqhpyKHtrWIbAevOv7zC0uMNifI2m1vN7ZSIFozlw5zcuNJ7ZtCKwHP18o8M69f6F1iJ3KcPjx/Riq7f5QQbhsCOd+fYq/NbtgW3pAI3y6CXwyadPfN0DZ88gmE+s19S5wH0ELZLQmg/AAzYzADCFvXXmeuY1y2XIDmsEPNYHP9+9CiWAnmg6BRS18e3qMX3Saz5YasFn4Pf3ZNUtgYFErTk6f4u1u5LRlT4F24KObICvqKjxskQGtwz+ypfCwBQZsDl5tKTz02IC4w0MPDdgJ8NAjA3YKPPTAgJ0ED102oCX4RHzgoYsGtAyfiw88dGklePzV8isFz30pDLUI0JdK8kjGxvX9GrxpWuRiBg8tGDA6UfykL/IdX+vPBWF4AMRKW+b72aT1b0sZrkbv67MTH8skLRCwlMJY2X6aW1xA6xCAZMLGiBk8bGDA6AVnxAm8n5Zd/+Oa5W9zeTtF2jIRkTSwD0CQ5Q+XTXafBvtz3HvvPlprPM+JHTyssx/wpcnStULF/XI1zqWSDGTstnZpHM9jbmmRwVy+WV3PtsJDgwEnLxaGSr78uex6+wCUCIPZNOnmr6SdatvhIfIUEFBFV9+twosIe3PZ/2t4iBhwZKJ4rVqKBvBoxq4rSuiiYgMPKwYMXyg+X4pUY2US1kbbUJ0oVvCwYoDj6R9Fp8L82mqsO6bmgIbDaL4nwjWguMl7xQ4eQEYuuJ9ZKBVvVg2wLYs9/XUVKE0Lkl58DWve5ukwZDTU4fcNUfZGN9LCqW7s4XVbcuR84Xq0GHFXxqY/layGt1spRTsyUfiD4wdftC0L2zLJJBI0bOW9O3Wag13PvgtSodafiB6wVz5EiDDbah2eaRpXglBTcFzmCiXmy+XGS+53LeMuS/mhHowesAxVKz9ttRQtq+w3or94yfXqLxC2/wPkOlJ+ENRmPLVMcWuztbdvvUApaRi1DxBeEOIHYe280H5ZW6+lREnt17EMVRC/vcJjUxl/jMYlb7UXaB1jAxTiAViGUU5J4tObrbevNST8PBqXvUiVm/Cggxx7KmUoNW+ZqpRNJA7/9qXkP9ptyDate9E4WtaGXi5GiKPModB/amExX7jxw/rCxM1o5HXnyWLF/X01tgzFYDZdOy/E14COP4+PvO48WSy5s97KZNqkIKkiIY8/7CvtdqmjPcFGeLNZNZZwOa7w0MGe4NFLS4fcityKwu9dW4oWGMK5TpPspdrqASvws3Xlp2vhAX6wXmVGXLTpOaCx5Dxae1vfMlenxvha1zLtkTY1BFqG17zpBox3LcseqmUDWoT3gTNT4/yky3n2TC0NgWNnMSsDS4ueH6Zh+Z3hsXxfXeExMK2Fl6sVmDtFLfWAfG4h+wCjaIhKBDo0lRKN5h2tmRHhZmhw+Tdf5z+9TrYX+h+9QxRGJDZYpgAAAABJRU5ErkJggg=="/>
+    </pattern>
+    <pattern id="pattern-2" width="1" height="1" viewBox="0 3 40 40">
+      <image preserveAspectRatio="none" width="40" height="40" xlink:href="data:image/png;base64,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"/>
+    </pattern>
   </defs>
-  <g id="Board" transform="translate(-726 -99)">
-    <g id="Outline" class="cls-1" transform="translate(726 99)">
-      <rect class="cls-15" width="650" height="650"/>
-      <rect class="cls-16" x="2.5" y="2.5" width="645" height="645"/>
+  <g id="Board" transform="translate(-726 -106)">
+    <rect id="Outline" class="cls-1" width="650" height="675" transform="translate(726 106)"/>
+    <g id="Outlines" transform="translate(678 61)">
+      <g id="Kitchen" class="cls-2" transform="translate(492 480.5)">
+        <rect class="cls-18" width="150" height="150"/>
+        <rect class="cls-5" x="1" y="1" width="148" height="148"/>
+      </g>
+      <g id="Ballroom" class="cls-2" transform="translate(292 480.5)">
+        <rect class="cls-18" width="150" height="150"/>
+        <rect class="cls-5" x="1" y="1" width="148" height="148"/>
+      </g>
+      <g id="Conservatory" class="cls-2" transform="translate(92 480.5)">
+        <rect class="cls-18" width="150" height="150"/>
+        <rect class="cls-5" x="1" y="1" width="148" height="148"/>
+      </g>
+      <g id="Dining_Room" data-name="Dining Room" class="cls-2" transform="translate(492 280.5)">
+        <rect class="cls-18" width="150" height="150"/>
+        <rect class="cls-5" x="1" y="1" width="148" height="148"/>
+      </g>
+      <g id="Billiard_Room" data-name="Billiard Room" class="cls-2" transform="translate(292 280.5)">
+        <rect class="cls-18" width="150" height="150"/>
+        <rect class="cls-5" x="1" y="1" width="148" height="148"/>
+      </g>
+      <g id="Library" class="cls-2" transform="translate(92 280.5)">
+        <rect class="cls-18" width="150" height="150"/>
+        <rect class="cls-5" x="1" y="1" width="148" height="148"/>
+      </g>
+      <g id="Lounge" class="cls-2" transform="translate(492 80.5)">
+        <rect class="cls-18" width="150" height="150"/>
+        <rect class="cls-5" x="1" y="1" width="148" height="148"/>
+      </g>
+      <g id="Hall" class="cls-2" transform="translate(292 80.5)">
+        <rect class="cls-18" width="150" height="150"/>
+        <rect class="cls-5" x="1" y="1" width="148" height="148"/>
+      </g>
+      <g id="Study" class="cls-2" transform="translate(92 80.5)">
+        <rect class="cls-18" width="150" height="150"/>
+        <rect class="cls-5" x="1" y="1" width="148" height="148"/>
+      </g>
     </g>
-    <g id="Rooms" transform="translate(678 61)">
-      <g id="Kitchen" transform="translate(73 225)">
-        <g id="_89" data-name="89" class="cls-2" transform="translate(519 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_88" data-name="88" class="cls-2" transform="translate(469 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_87" data-name="87" class="cls-2" transform="translate(419 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_86" data-name="86" class="cls-2" transform="translate(519 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_85" data-name="85" class="cls-2" transform="translate(469 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_84" data-name="84" class="cls-2" transform="translate(419 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_83" data-name="83" class="cls-2" transform="translate(519 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_82" data-name="82" class="cls-2" transform="translate(469 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_81" data-name="81" class="cls-3" transform="translate(419 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-      </g>
-      <g id="Ballroom" transform="translate(-127 225)">
-        <g id="_79" data-name="79" class="cls-2" transform="translate(519 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_78" data-name="78" class="cls-2" transform="translate(469 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_77" data-name="77" class="cls-2" transform="translate(419 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_76" data-name="76" class="cls-2" transform="translate(519 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_75" data-name="75" class="cls-2" transform="translate(469 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_74" data-name="74" class="cls-2" transform="translate(419 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_73" data-name="73" class="cls-2" transform="translate(519 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_72" data-name="72" class="cls-2" transform="translate(469 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_71" data-name="71" class="cls-2" transform="translate(419 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-      </g>
-      <g id="Conservatory" transform="translate(-327 225)">
-        <g id="_69" data-name="69" class="cls-2" transform="translate(519 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_68" data-name="68" class="cls-2" transform="translate(469 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_67" data-name="67" class="cls-2" transform="translate(419 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_66" data-name="66" class="cls-2" transform="translate(519 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_65" data-name="65" class="cls-2" transform="translate(469 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_64" data-name="64" class="cls-2" transform="translate(419 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_63" data-name="63" class="cls-3" transform="translate(519 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_62" data-name="62" class="cls-2" transform="translate(469 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_61" data-name="61" class="cls-2" transform="translate(419 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-      </g>
-      <g id="Dining_Room" data-name="Dining Room" transform="translate(73 25)">
-        <g id="_59" data-name="59" class="cls-2" transform="translate(519 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_58" data-name="58" class="cls-2" transform="translate(469 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_57" data-name="57" class="cls-2" transform="translate(419 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_56" data-name="56" class="cls-2" transform="translate(519 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_55" data-name="55" class="cls-2" transform="translate(469 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_54" data-name="54" class="cls-2" transform="translate(419 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_53" data-name="53" class="cls-2" transform="translate(519 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_52" data-name="52" class="cls-2" transform="translate(469 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_51" data-name="51" class="cls-2" transform="translate(419 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-      </g>
-      <g id="Billiard_Room" data-name="Billiard Room" transform="translate(-127 25)">
-        <g id="_49" data-name="49" class="cls-2" transform="translate(519 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_48" data-name="48" class="cls-4" transform="translate(469 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_47" data-name="47" class="cls-5" transform="translate(419 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_46" data-name="46" class="cls-2" transform="translate(519 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_45" data-name="45" class="cls-2" transform="translate(469 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_44" data-name="44" class="cls-2" transform="translate(419 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_43" data-name="43" class="cls-2" transform="translate(519 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_42" data-name="42" class="cls-2" transform="translate(469 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_41" data-name="41" class="cls-2" transform="translate(419 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-      </g>
-      <g id="Library" transform="translate(-327 25)">
-        <g id="_39" data-name="39" class="cls-2" transform="translate(519 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_38" data-name="38" class="cls-2" transform="translate(469 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_37" data-name="37" class="cls-2" transform="translate(419 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_36" data-name="36" class="cls-2" transform="translate(519 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_35" data-name="35" class="cls-2" transform="translate(469 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_34" data-name="34" class="cls-2" transform="translate(419 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_33" data-name="33" class="cls-2" transform="translate(519 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_32" data-name="32" class="cls-2" transform="translate(469 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_31" data-name="31" class="cls-2" transform="translate(419 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-      </g>
-      <g id="Lounge" transform="translate(73 -175)">
-        <g id="_29" data-name="29" class="cls-2" transform="translate(519 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_28" data-name="28" class="cls-2" transform="translate(469 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_27" data-name="27" class="cls-3" transform="translate(419 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_26" data-name="26" class="cls-2" transform="translate(519 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_25" data-name="25" class="cls-2" transform="translate(469 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_24" data-name="24" class="cls-2" transform="translate(419 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_23" data-name="23" class="cls-2" transform="translate(519 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_22" data-name="22" class="cls-2" transform="translate(469 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_21" data-name="21" class="cls-2" transform="translate(419 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-      </g>
-      <g id="Hall" transform="translate(-127 -175)">
-        <g id="_19" data-name="19" class="cls-2" transform="translate(519 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_18" data-name="18" class="cls-2" transform="translate(469 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_17" data-name="17" class="cls-2" transform="translate(419 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_16" data-name="16" class="cls-2" transform="translate(519 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_15" data-name="15" class="cls-2" transform="translate(469 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_14" data-name="14" class="cls-2" transform="translate(419 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_13" data-name="13" class="cls-2" transform="translate(519 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_12" data-name="12" class="cls-2" transform="translate(469 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_11" data-name="11" class="cls-2" transform="translate(419 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-      </g>
-      <g id="Study" transform="translate(-327 -175)">
-        <g id="_09" data-name="09" class="cls-3" transform="translate(519 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_08" data-name="08" class="cls-2" transform="translate(469 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_07" data-name="07" class="cls-2" transform="translate(419 355)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_06" data-name="06" class="cls-2" transform="translate(519 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_05" data-name="05" class="cls-2" transform="translate(469 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_04" data-name="04" class="cls-2" transform="translate(419 305)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_03" data-name="03" class="cls-2" transform="translate(519 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_02" data-name="02" class="cls-2" transform="translate(469 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-        <g id="_01" data-name="01" class="cls-2" transform="translate(419 255)">
-          <rect class="cls-15" width="50" height="50"/>
-          <rect class="cls-16" x="1" y="1" width="48" height="48"/>
-        </g>
-      </g>
+    <g id="Labels" transform="translate(678 61)">
+      <text id="KITCHEN-2" data-name="KITCHEN" class="cls-3" transform="translate(567 563)"><tspan x="-30.75" y="0">KITCHEN</tspan></text>
+      <text id="BALLROOM-2" data-name="BALLROOM" class="cls-3" transform="translate(367 563)"><tspan x="-39.94" y="0">BALLROOM</tspan></text>
+      <text id="CONSERVATORY-2" data-name="CONSERVATORY" class="cls-3" transform="translate(167 563)"><tspan x="-56.14" y="0">CONSERVATORY</tspan></text>
+      <text id="DINING_ROOM-2" data-name="DINING ROOM" class="cls-3" transform="translate(567 363)"><tspan x="-51.77" y="0">DINING ROOM</tspan></text>
+      <text id="BILLIARD_ROOM-2" data-name="BILLIARD ROOM" class="cls-3" transform="translate(367 363)"><tspan x="-56.6" y="0">BILLIARD ROOM</tspan></text>
+      <text id="LIBRARY-2" data-name="LIBRARY" class="cls-3" transform="translate(167 363)"><tspan x="-29.13" y="0">LIBRARY</tspan></text>
+      <text id="LOUNGE-2" data-name="LOUNGE" class="cls-3" transform="translate(567 163)"><tspan x="-29.61" y="0">LOUNGE</tspan></text>
+      <text id="HALL-2" data-name="HALL" class="cls-3" transform="translate(367 163)"><tspan x="-17.51" y="0">HALL</tspan></text>
+      <text id="STUDY-2" data-name="STUDY" class="cls-3" transform="translate(167 163)"><tspan x="-22.77" y="0">STUDY</tspan></text>
     </g>
     <g id="Hallways" transform="translate(325 -34)">
-      <g id="Ballroom-Kitchen" class="cls-6" transform="translate(795 625)">
-        <rect class="cls-15" width="50" height="50"/>
-        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      <g id="_9-7" data-name="9-7" class="cls-4" transform="translate(795 625)">
+        <rect class="cls-18" width="50" height="50"/>
+        <rect class="cls-5" x="1" y="1" width="48" height="48"/>
       </g>
-      <g id="Conservatory-Ballroom" class="cls-6" transform="translate(595 625)">
-        <rect class="cls-15" width="50" height="50"/>
-        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      <g id="_9-3" data-name="9-3" class="cls-4" transform="translate(595 625)">
+        <rect class="cls-18" width="50" height="50"/>
+        <rect class="cls-5" x="1" y="1" width="48" height="48"/>
       </g>
-      <g id="Dining_Room-Kitchen" data-name="Dining Room-Kitchen" class="cls-6" transform="translate(895 525)">
-        <rect class="cls-15" width="50" height="50"/>
-        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      <g id="_7-9" data-name="7-9" class="cls-4" transform="translate(895 525)">
+        <rect class="cls-18" width="50" height="50"/>
+        <rect class="cls-5" x="1" y="1" width="48" height="48"/>
       </g>
-      <g id="Billiard_Room-Ballroom" data-name="Billiard Room-Ballroom" class="cls-6" transform="translate(695 525)">
-        <rect class="cls-15" width="50" height="50"/>
-        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      <g id="_7-5" data-name="7-5" class="cls-4" transform="translate(695 525)">
+        <rect class="cls-18" width="50" height="50"/>
+        <rect class="cls-5" x="1" y="1" width="48" height="48"/>
       </g>
-      <g id="Library-Conservatory" class="cls-6" transform="translate(495 525)">
-        <rect class="cls-15" width="50" height="50"/>
-        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      <g id="_7-1" data-name="7-1" class="cls-4" transform="translate(495 525)">
+        <rect class="cls-18" width="50" height="50"/>
+        <rect class="cls-5" x="1" y="1" width="48" height="48"/>
       </g>
-      <g id="Billiard_Room-Dining_Room" data-name="Billiard Room-Dining Room" class="cls-6" transform="translate(795 425)">
-        <rect class="cls-15" width="50" height="50"/>
-        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      <g id="_5-7" data-name="5-7" class="cls-4" transform="translate(795 425)">
+        <rect class="cls-18" width="50" height="50"/>
+        <rect class="cls-5" x="1" y="1" width="48" height="48"/>
       </g>
-      <g id="Library-Billiard_Room" data-name="Library-Billiard Room" class="cls-6" transform="translate(595 425)">
-        <rect class="cls-15" width="50" height="50"/>
-        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      <g id="_5-3" data-name="5-3" class="cls-4" transform="translate(595 425)">
+        <rect class="cls-18" width="50" height="50"/>
+        <rect class="cls-5" x="1" y="1" width="48" height="48"/>
       </g>
-      <g id="Lounge-Dining_Room" data-name="Lounge-Dining Room" class="cls-6" transform="translate(895 325)">
-        <rect class="cls-15" width="50" height="50"/>
-        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      <g id="_3-9" data-name="3-9" class="cls-4" transform="translate(895 325)">
+        <rect class="cls-18" width="50" height="50"/>
+        <rect class="cls-5" x="1" y="1" width="48" height="48"/>
       </g>
-      <g id="Hall-Billiard_Room" data-name="Hall-Billiard Room" class="cls-6" transform="translate(695 325)">
-        <rect class="cls-15" width="50" height="50"/>
-        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      <g id="_3-5" data-name="3-5" class="cls-4" transform="translate(695 325)">
+        <rect class="cls-18" width="50" height="50"/>
+        <rect class="cls-5" x="1" y="1" width="48" height="48"/>
       </g>
-      <g id="Hall-Lounge" class="cls-6" transform="translate(795 225)">
-        <rect class="cls-15" width="50" height="50"/>
-        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      <g id="_3-1" data-name="3-1" class="cls-4" transform="translate(495 325)">
+        <rect class="cls-18" width="50" height="50"/>
+        <rect class="cls-5" x="1" y="1" width="48" height="48"/>
       </g>
-      <g id="Study-Hall" class="cls-6" transform="translate(595 225)">
-        <rect class="cls-15" width="50" height="50"/>
-        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      <g id="_1-7" data-name="1-7" class="cls-4" transform="translate(795 225)">
+        <rect class="cls-18" width="50" height="50"/>
+        <rect class="cls-5" x="1" y="1" width="48" height="48"/>
       </g>
-      <g id="Study-Library" class="cls-6" transform="translate(495 325)">
-        <rect class="cls-15" width="50" height="50"/>
-        <rect class="cls-16" x="1" y="1" width="48" height="48"/>
+      <g id="_1-3" data-name="1-3" class="cls-4" transform="translate(595 225)">
+        <rect class="cls-18" width="50" height="50"/>
+        <rect class="cls-5" x="1" y="1" width="48" height="48"/>
+      </g>
+    </g>
+    <g id="Rooms" transform="translate(678 61)">
+      <g id="Kitchen-3" data-name="Kitchen" transform="translate(73 225)">
+        <rect id="_10-10" data-name="10-10" class="cls-5" width="50" height="50" transform="translate(519 355)"/>
+        <rect id="_10-9" data-name="10-9" class="cls-5" width="50" height="50" transform="translate(469 355)"/>
+        <rect id="_10-8" data-name="10-8" class="cls-5" width="50" height="50" transform="translate(419 355)"/>
+        <rect id="_9-10" data-name="9-10" class="cls-5" width="50" height="50" transform="translate(519 305)"/>
+        <rect id="_9-9" data-name="9-9" class="cls-5" width="50" height="50" transform="translate(469 305)"/>
+        <rect id="_9-8" data-name="9-8" class="cls-5" width="50" height="50" transform="translate(419 305)"/>
+        <rect id="_8-10" data-name="8-10" class="cls-5" width="50" height="50" transform="translate(519 255)"/>
+        <rect id="_8-9" data-name="8-9" class="cls-5" width="50" height="50" transform="translate(469 255)"/>
+      </g>
+      <g id="Ballroom-3" data-name="Ballroom" transform="translate(-127 225)">
+        <rect id="_10-6" data-name="10-6" class="cls-5" width="50" height="50" transform="translate(519 355)"/>
+        <rect id="_10-5" data-name="10-5" class="cls-5" width="50" height="50" transform="translate(469 355)"/>
+        <rect id="_10-4" data-name="10-4" class="cls-5" width="50" height="50" transform="translate(419 355)"/>
+        <rect id="_9-6" data-name="9-6" class="cls-5" width="50" height="50" transform="translate(519 305)"/>
+        <rect id="_9-5" data-name="9-5" class="cls-5" width="50" height="50" transform="translate(469 305)"/>
+        <rect id="_9-4" data-name="9-4" class="cls-5" width="50" height="50" transform="translate(419 305)"/>
+        <rect id="_8-6" data-name="8-6" class="cls-5" width="50" height="50" transform="translate(519 255)"/>
+        <rect id="_8-5" data-name="8-5" class="cls-5" width="50" height="50" transform="translate(469 255)"/>
+        <rect id="_8-4" data-name="8-4" class="cls-5" width="50" height="50" transform="translate(419 255)"/>
+      </g>
+      <g id="Conservatory-3" data-name="Conservatory" transform="translate(-327 225)">
+        <rect id="_10-2" data-name="10-2" class="cls-5" width="50" height="50" transform="translate(519 355)"/>
+        <rect id="_10-1" data-name="10-1" class="cls-5" width="50" height="50" transform="translate(469 355)"/>
+        <rect id="_10-0" data-name="10-0" class="cls-5" width="50" height="50" transform="translate(419 355)"/>
+        <rect id="_9-2" data-name="9-2" class="cls-5" width="50" height="50" transform="translate(519 305)"/>
+        <rect id="_9-1" data-name="9-1" class="cls-5" width="50" height="50" transform="translate(469 305)"/>
+        <rect id="_9-0" data-name="9-0" class="cls-5" width="50" height="50" transform="translate(419 305)"/>
+        <rect id="_8-1" data-name="8-1" class="cls-5" width="50" height="50" transform="translate(469 255)"/>
+        <rect id="_8-0" data-name="8-0" class="cls-5" width="50" height="50" transform="translate(419 255)"/>
+      </g>
+      <g id="Dining_Room-3" data-name="Dining Room" transform="translate(73 25)">
+        <rect id="_6-10" data-name="6-10" class="cls-5" width="50" height="50" transform="translate(519 355)"/>
+        <rect id="_6-9" data-name="6-9" class="cls-5" width="50" height="50" transform="translate(469 355)"/>
+        <rect id="_6-8" data-name="6-8" class="cls-5" width="50" height="50" transform="translate(419 355)"/>
+        <rect id="_5-10" data-name="5-10" class="cls-5" width="50" height="50" transform="translate(519 305)"/>
+        <rect id="_5-9" data-name="5-9" class="cls-5" width="50" height="50" transform="translate(469 305)"/>
+        <rect id="_5-8" data-name="5-8" class="cls-5" width="50" height="50" transform="translate(419 305)"/>
+        <rect id="_4-10" data-name="4-10" class="cls-5" width="50" height="50" transform="translate(519 255)"/>
+        <rect id="_4-9" data-name="4-9" class="cls-5" width="50" height="50" transform="translate(469 255)"/>
+        <rect id="_4-8" data-name="4-8" class="cls-5" width="50" height="50" transform="translate(419 255)"/>
+      </g>
+      <g id="Billiard_Room-3" data-name="Billiard Room" transform="translate(-127 25)">
+        <rect id="_6-6" data-name="6-6" class="cls-5" width="50" height="50" transform="translate(519 355)"/>
+        <rect id="_6-5" data-name="6-5" class="cls-6" width="50" height="50" transform="translate(469 355)"/>
+        <rect id="_6-4" data-name="6-4" class="cls-7" width="50" height="50" transform="translate(419 355)"/>
+        <rect id="_5-6" data-name="5-6" class="cls-5" width="50" height="50" transform="translate(519 305)"/>
+        <rect id="_5-5" data-name="5-5" class="cls-5" width="50" height="50" transform="translate(469 305)"/>
+        <rect id="_5-4" data-name="5-4" class="cls-5" width="50" height="50" transform="translate(419 305)"/>
+        <rect id="_4-6" data-name="4-6" class="cls-5" width="50" height="50" transform="translate(519 255)"/>
+        <rect id="_4-5" data-name="4-5" class="cls-5" width="50" height="50" transform="translate(469 255)"/>
+        <rect id="_4-4" data-name="4-4" class="cls-5" width="50" height="50" transform="translate(419 255)"/>
+      </g>
+      <g id="Library-3" data-name="Library" transform="translate(-327 25)">
+        <rect id="_6-2" data-name="6-2" class="cls-5" width="50" height="50" transform="translate(519 355)"/>
+        <rect id="_6-1" data-name="6-1" class="cls-5" width="50" height="50" transform="translate(469 355)"/>
+        <rect id="_6-0" data-name="6-0" class="cls-5" width="50" height="50" transform="translate(419 355)"/>
+        <rect id="_5-2" data-name="5-2" class="cls-5" width="50" height="50" transform="translate(519 305)"/>
+        <rect id="_5-1" data-name="5-1" class="cls-5" width="50" height="50" transform="translate(469 305)"/>
+        <rect id="_5-0" data-name="5-0" class="cls-5" width="50" height="50" transform="translate(419 305)"/>
+        <rect id="_4-2" data-name="4-2" class="cls-5" width="50" height="50" transform="translate(519 255)"/>
+        <rect id="_4-1" data-name="4-1" class="cls-5" width="50" height="50" transform="translate(469 255)"/>
+        <rect id="_4-0" data-name="4-0" class="cls-5" width="50" height="50" transform="translate(419 255)"/>
+      </g>
+      <g id="Lounge-3" data-name="Lounge" transform="translate(73 -175)">
+        <rect id="_2-10" data-name="2-10" class="cls-5" width="50" height="50" transform="translate(519 355)"/>
+        <rect id="_2-9" data-name="2-9" class="cls-5" width="50" height="50" transform="translate(469 355)"/>
+        <rect id="_1-10" data-name="1-10" class="cls-5" width="50" height="50" transform="translate(519 305)"/>
+        <rect id="_1-9" data-name="1-9" class="cls-5" width="50" height="50" transform="translate(469 305)"/>
+        <rect id="_1-8" data-name="1-8" class="cls-5" width="50" height="50" transform="translate(419 305)"/>
+        <rect id="_0-10" data-name="0-10" class="cls-5" width="50" height="50" transform="translate(519 255)"/>
+        <rect id="_0-9" data-name="0-9" class="cls-5" width="50" height="50" transform="translate(469 255)"/>
+        <rect id="_0-8" data-name="0-8" class="cls-5" width="50" height="50" transform="translate(419 255)"/>
+      </g>
+      <g id="Hall-3" data-name="Hall" transform="translate(-127 -175)">
+        <rect id="_2-6" data-name="2-6" class="cls-5" width="50" height="50" transform="translate(519 355)"/>
+        <rect id="_2-5" data-name="2-5" class="cls-5" width="50" height="50" transform="translate(469 355)"/>
+        <rect id="_2-4" data-name="2-4" class="cls-5" width="50" height="50" transform="translate(419 355)"/>
+        <rect id="_1-6" data-name="1-6" class="cls-5" width="50" height="50" transform="translate(519 305)"/>
+        <rect id="_1-5" data-name="1-5" class="cls-5" width="50" height="50" transform="translate(469 305)"/>
+        <rect id="_1-4" data-name="1-4" class="cls-5" width="50" height="50" transform="translate(419 305)"/>
+        <rect id="_0-6" data-name="0-6" class="cls-5" width="50" height="50" transform="translate(519 255)"/>
+        <rect id="_0-5" data-name="0-5" class="cls-5" width="50" height="50" transform="translate(469 255)"/>
+        <rect id="_0-4" data-name="0-4" class="cls-5" width="50" height="50" transform="translate(419 255)"/>
+      </g>
+      <g id="Study-3" data-name="Study" transform="translate(-327 -175)">
+        <rect id="_2-1" data-name="2-1" class="cls-5" width="50" height="50" transform="translate(469 355)"/>
+        <rect id="_2-0" data-name="2-0" class="cls-5" width="50" height="50" transform="translate(419 355)"/>
+        <rect id="_1-2" data-name="1-2" class="cls-5" width="50" height="50" transform="translate(519 305)"/>
+        <rect id="_1-1" data-name="1-1" class="cls-5" width="50" height="50" transform="translate(469 305)"/>
+        <rect id="_1-0" data-name="1-0" class="cls-5" width="50" height="50" transform="translate(419 305)"/>
+        <rect id="_0-2" data-name="0-2" class="cls-5" width="50" height="50" transform="translate(519 255)"/>
+        <rect id="_0-1" data-name="0-1" class="cls-5" width="50" height="50" transform="translate(469 255)"/>
+        <rect id="_0-0" data-name="0-0" class="cls-5" width="50" height="50" transform="translate(419 255)"/>
       </g>
     </g>
     <g id="Passages" transform="translate(678 61)">
-      <path id="Kitchen-Study" class="cls-7" d="M8,0,6.545,1.455l5.506,5.506H0V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(504 503.314) rotate(-135)"/>
-      <path id="Conservatory-Lounge" class="cls-7" d="M8,0,6.545,1.455l5.506,5.506H0V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(217.686 492) rotate(-45)"/>
-      <path id="Lounge-Conservatory" class="cls-7" d="M8,0,6.545,1.455l5.506,5.506H0V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(515.314 218) rotate(135)"/>
-      <path id="Study-Kitchen" class="cls-7" d="M8,0,6.545,1.455l5.506,5.506H0V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(229 205.686) rotate(45)"/>
+      <g id="_8-8" data-name="8-8" class="cls-8" transform="translate(492 480)">
+        <path class="cls-18" d="M0,0H50a0,0,0,0,1,0,0V45a5,5,0,0,1-5,5H0a0,0,0,0,1,0,0V0A0,0,0,0,1,0,0Z"/>
+        <path class="cls-5" d="M2,1H48a1,1,0,0,1,1,1V45a4,4,0,0,1-4,4H2a1,1,0,0,1-1-1V2A1,1,0,0,1,2,1Z"/>
+      </g>
+      <path id="Kitchen-Study" class="cls-9" d="M8,0,6.545,1.455l5.506,5.506H0V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(504 503.314) rotate(-135)"/>
+      <g id="_8-2" data-name="8-2" class="cls-8" transform="translate(192 480)">
+        <path class="cls-18" d="M0,0H50a0,0,0,0,1,0,0V50a0,0,0,0,1,0,0H5a5,5,0,0,1-5-5V0A0,0,0,0,1,0,0Z"/>
+        <path class="cls-5" d="M2,1H48a1,1,0,0,1,1,1V48a1,1,0,0,1-1,1H5a4,4,0,0,1-4-4V2A1,1,0,0,1,2,1Z"/>
+      </g>
+      <path id="Conservatory-Lounge" class="cls-9" d="M8,0,6.545,1.455l5.506,5.506H0V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(217.686 492) rotate(-45)"/>
+      <g id="_2-8" data-name="2-8" class="cls-8" transform="translate(492 180)">
+        <path class="cls-18" d="M0,0H45a5,5,0,0,1,5,5V50a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V0A0,0,0,0,1,0,0Z"/>
+        <path class="cls-5" d="M2,1H45a4,4,0,0,1,4,4V48a1,1,0,0,1-1,1H2a1,1,0,0,1-1-1V2A1,1,0,0,1,2,1Z"/>
+      </g>
+      <path id="Lounge-Conservatory" class="cls-9" d="M8,0,6.545,1.455l5.506,5.506H0V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(515.314 218) rotate(135)"/>
+      <g id="_2-2" data-name="2-2" class="cls-8" transform="translate(192 180)">
+        <path class="cls-18" d="M5,0H50a0,0,0,0,1,0,0V50a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V5A5,5,0,0,1,5,0Z"/>
+        <path class="cls-5" d="M5,1H48a1,1,0,0,1,1,1V48a1,1,0,0,1-1,1H2a1,1,0,0,1-1-1V5A4,4,0,0,1,5,1Z"/>
+      </g>
+      <path id="Study-Kitchen" class="cls-9" d="M8,0,6.545,1.455l5.506,5.506H0V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(229 205.686) rotate(45)"/>
     </g>
-    <g id="Labels" transform="translate(678 61)">
-      <text id="KITCHEN-2" data-name="KITCHEN" class="cls-8" transform="translate(567 563)"><tspan x="-38.438" y="0">KITCHEN</tspan></text>
-      <text id="BALLROOM-2" data-name="BALLROOM" class="cls-8" transform="translate(367 563)"><tspan x="-49.925" y="0">BALLROOM</tspan></text>
-      <text id="CONSERVATORY-2" data-name="CONSERVATORY" class="cls-8" transform="translate(167 563)"><tspan x="-70.175" y="0">CONSERVATORY</tspan></text>
-      <text id="DINING_ROOM-2" data-name="DINING ROOM" class="cls-8" transform="translate(567 363)"><tspan x="-64.713" y="0">DINING ROOM</tspan></text>
-      <text id="BILLIARD_ROOM-2" data-name="BILLIARD ROOM" class="cls-8" transform="translate(367 363)"><tspan x="-70.75" y="0">BILLIARD ROOM</tspan></text>
-      <text id="LIBRARY-2" data-name="LIBRARY" class="cls-8" transform="translate(167 363)"><tspan x="-36.413" y="0">LIBRARY</tspan></text>
-      <text id="LOUNGE-2" data-name="LOUNGE" class="cls-8" transform="translate(567 163)"><tspan x="-37.013" y="0">LOUNGE</tspan></text>
-      <text id="HALL-2" data-name="HALL" class="cls-8" transform="translate(367 163)"><tspan x="-21.887" y="0">HALL</tspan></text>
-      <text id="STUDY-2" data-name="STUDY" class="cls-8" transform="translate(167 163)"><tspan x="-28.462" y="0">STUDY</tspan></text>
+    <g id="Suspects">
+      <path id="Plum" class="cls-10" d="M145.137,230.171a3.031,3.031,0,1,0-2.985-3.032A3.011,3.011,0,0,0,145.137,230.171Zm6.829,3.893a2.745,2.745,0,0,0-2.725-2.765h-8.4a2.744,2.744,0,0,0-2.723,2.765l.008,11.158a1.189,1.189,0,1,0,2.377,0v-10.2h.5V262.3a1.782,1.782,0,1,0,3.564,0V247.365h.975V262.3a1.783,1.783,0,1,0,3.565,0V235.024h.48v10.158a1.191,1.191,0,1,0,2.381,0Z" transform="translate(650 72.041)"/>
+      <path id="White" class="cls-11" d="M145.137,230.171a3.031,3.031,0,1,0-2.985-3.032A3.011,3.011,0,0,0,145.137,230.171Zm6.829,3.893a2.745,2.745,0,0,0-2.725-2.765h-8.4a2.744,2.744,0,0,0-2.723,2.765l.008,11.158a1.189,1.189,0,1,0,2.377,0v-10.2h.5V262.3a1.782,1.782,0,1,0,3.564,0V247.365h.975V262.3a1.783,1.783,0,1,0,3.565,0V235.024h.48v10.158a1.191,1.191,0,1,0,2.381,0Z" transform="translate(1001 427.041)"/>
+      <path id="Peacock" class="cls-12" d="M162.344,144.215a3.032,3.032,0,1,0-2.985-3.033A3.012,3.012,0,0,0,162.344,144.215Zm6.829,3.892a2.745,2.745,0,0,0-2.726-2.765h-8.4a2.745,2.745,0,0,0-2.723,2.765l.008,11.158a1.189,1.189,0,1,0,2.377,0v-10.2h.5v27.278a1.782,1.782,0,1,0,3.564,0V161.409h.975V176.34a1.783,1.783,0,1,0,3.565,0V149.067h.48v10.158a1.191,1.191,0,1,0,2.381,0Z" transform="translate(633 359)"/>
+      <path id="Green" class="cls-13" d="M179.551,144.215a3.032,3.032,0,1,0-2.985-3.033A3.012,3.012,0,0,0,179.551,144.215Zm6.829,3.892a2.745,2.745,0,0,0-2.726-2.765h-8.4a2.745,2.745,0,0,0-2.723,2.765l.008,11.158a1.189,1.189,0,1,0,2.377,0v-10.2h.5v27.278a1.782,1.782,0,1,0,3.564,0V161.409h.975V176.34a1.783,1.783,0,1,0,3.565,0V149.067h.48v10.158a1.191,1.191,0,1,0,2.381,0Z" transform="translate(768 513)"/>
+      <path id="Scarlet" class="cls-14" d="M59.1,230.171a3.031,3.031,0,1,0-2.985-3.032A3.012,3.012,0,0,0,59.1,230.171Zm6.829,3.893a2.745,2.745,0,0,0-2.725-2.765h-8.4a2.745,2.745,0,0,0-2.723,2.765l.009,11.158a1.188,1.188,0,1,0,2.376,0v-10.2h.5V262.3a1.783,1.783,0,1,0,3.565,0V247.365h.974V262.3a1.783,1.783,0,1,0,3.565,0V235.024h.48v10.158a1.19,1.19,0,1,0,2.38,0Z" transform="translate(1087 -82.959)"/>
+      <path id="Mustard" class="cls-15" d="M127.93,187.192a3.031,3.031,0,1,0-2.985-3.031A3.012,3.012,0,0,0,127.93,187.192Zm6.828,3.893a2.744,2.744,0,0,0-2.724-2.764h-8.4a2.744,2.744,0,0,0-2.723,2.764l.008,11.159a1.189,1.189,0,1,0,2.377,0v-10.2h.5v27.277a1.783,1.783,0,1,0,3.566,0V204.387h.974v14.932a1.783,1.783,0,1,0,3.565,0V192.046h.48V202.2a1.191,1.191,0,1,0,2.381,0Z" transform="translate(1169 115.019)"/>
     </g>
-    <g id="People" transform="translate(325 -34)">
-      <path id="Professor_Plum" data-name="Professor Plum" class="cls-9" d="M145.137,230.085a2.988,2.988,0,1,0-2.985-2.989A2.99,2.99,0,0,0,145.137,230.085Zm6.829,3.838a2.725,2.725,0,0,0-2.725-2.726h-8.4a2.724,2.724,0,0,0-2.723,2.726l.008,11a1.189,1.189,0,1,0,2.377,0V234.869h.5V261.76a1.782,1.782,0,0,0,3.564,0V247.035h.975v14.721a1.783,1.783,0,1,0,3.565,0V234.869h.48v10.014a1.191,1.191,0,1,0,2.381,0Z" transform="translate(378 508)"/>
-      <path id="Mrs_White" data-name="Mrs. White" class="cls-10" d="M145.137,230.085a2.988,2.988,0,1,0-2.985-2.989A2.99,2.99,0,0,0,145.137,230.085Zm6.829,3.838a2.725,2.725,0,0,0-2.725-2.726h-8.4a2.724,2.724,0,0,0-2.723,2.726l.008,11a1.189,1.189,0,1,0,2.377,0V234.869h.5V261.76a1.782,1.782,0,0,0,3.564,0V247.035h.975v14.721a1.783,1.783,0,1,0,3.565,0V234.869h.48v10.014a1.191,1.191,0,1,0,2.381,0Z" transform="translate(403 508)"/>
-      <path id="Mrs_Peacock" data-name="Mrs. Peacock" class="cls-11" d="M162.344,144.129a2.989,2.989,0,1,0-2.985-2.99A2.991,2.991,0,0,0,162.344,144.129Zm6.829,3.837a2.725,2.725,0,0,0-2.726-2.726h-8.4a2.725,2.725,0,0,0-2.723,2.726l.008,11a1.189,1.189,0,1,0,2.377,0V148.912h.5V175.8a1.782,1.782,0,1,0,3.564,0V161.079h.975V175.8a1.783,1.783,0,1,0,3.565,0V148.912h.48v10.014a1.191,1.191,0,1,0,2.381,0Z" transform="translate(260 594)"/>
-      <path id="Mr_Green" data-name="Mr. Green" class="cls-12" d="M179.551,144.129a2.989,2.989,0,1,0-2.985-2.99A2.991,2.991,0,0,0,179.551,144.129Zm6.829,3.837a2.725,2.725,0,0,0-2.726-2.726h-8.4a2.725,2.725,0,0,0-2.723,2.726l.008,11a1.189,1.189,0,1,0,2.377,0V148.912h.5V175.8a1.782,1.782,0,1,0,3.564,0V161.079h.975V175.8a1.783,1.783,0,1,0,3.565,0V148.912h.48v10.014a1.191,1.191,0,1,0,2.381,0Z" transform="translate(268 594)"/>
-      <path id="Miss_Scarlet" data-name="Miss Scarlet" class="cls-13" d="M59.1,230.085a2.988,2.988,0,1,0-2.985-2.989A2.99,2.99,0,0,0,59.1,230.085Zm6.829,3.838a2.725,2.725,0,0,0-2.725-2.726h-8.4a2.725,2.725,0,0,0-2.723,2.726l.009,11a1.188,1.188,0,1,0,2.376,0V234.869h.5V261.76a1.783,1.783,0,0,0,3.565,0V247.035h.974v14.721a1.783,1.783,0,1,0,3.565,0V234.869h.48v10.014a1.19,1.19,0,1,0,2.38,0Z" transform="translate(439 508)"/>
-      <path id="Colonel_Mustard" data-name="Colonel Mustard" class="cls-14" d="M127.93,187.106a2.988,2.988,0,1,0-2.985-2.988A2.99,2.99,0,0,0,127.93,187.106Zm6.828,3.838a2.724,2.724,0,0,0-2.724-2.725h-8.4a2.724,2.724,0,0,0-2.723,2.725l.008,11a1.189,1.189,0,1,0,2.377,0V191.891h.5v26.89a1.783,1.783,0,0,0,3.566,0V204.057h.974v14.72a1.783,1.783,0,1,0,3.565,0V191.891h.48V201.9a1.191,1.191,0,1,0,2.381,0Z" transform="translate(345 551)"/>
+    <g id="Weapons" transform="translate(101 -46)">
+      <rect id="wrench" class="cls-16" width="40" height="40" rx="20" transform="translate(1076 743.5)"/>
+      <image id="rope" width="40" height="40" transform="translate(1026 743.5)" xlink:href="data:image/png;base64,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"/>
+      <image id="pipe" width="40" height="40" transform="translate(926 743.5)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAAG7AAABuwE67OPiAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAftQTFRF////////////v7+/////zMzM1f//ttu22///39/f7e3t7u7uv8+/ycnJ5PLy6OjzyMjI6+vr7Ozs5O3tysrK6PDwy8vL6urx6+vr5evr5uzs6O7uxszG6u/v5+zs6e7u6u7u6Ozw6e3txs3GxsrGxs3G6e3t5+3t5+3t5+3tx8rHyMvI6e7ux8zH6e7u6e7u5+zu6O3v6O3v6O3t5+7u6Ozv6e3vx8rH6O7u6O7u6ezu6ezu6e3u6O3t6e7u5+zuyMvI6O3v6e3tx8rHyMvI4ebm6Ozu6Ozu6Ozu4ebmx8vHzdLP6O7u6Ozu6e3ux8vH5+3uyMrI6O3u6O7u6Ozu5+3u19vb6O3u6O3u6O3v5erq6e7u6e3uz9PRxsvG6O3ux8vH6e3u6O3u6O3ux8rHzNDN6O3ux8vH6O3u6O3u6O3u6O3u6O3ux8vH6Ozu6O3u6O3u6O3u6O3ux8vHyMzIyMzJyc3Kyc7Ky8/My9DMzNDNzdHOztLPztLQ0NTR0NTS0NXS0dXT0dbT09fV09jW1NjW1NnX1dnY1drY1trZ1tvZ19vZ2N3b2N3c2d3c2d7d2t7d2t/e29/e2+Df3ODf3OHg3eHh3eLh3uPi3+Pj3+Tj4OTk4OXk4OXl4ebm4ufn4+jo5Ojp5Onp5Onq5erq5urr5uvs5+zt6O3uwnmC9gAAAHN0Uk5TAAEDBAQFBgcHCA4PEBMTFhcaGxwdISIlJicoLC0wNTs8QkZHSExTVFVWV1hnaGhpbG9wcXd8fYOEhYiJipGUl5icn6ChoqOkpausr7Cytre3uLm+wMPExMfKzMzY3N3h4+Pk5unq7O3v8PL19/j4+fz9/i6vD7AAAAI+SURBVFjD5dbpU1JRAAXwm5lltmf7nrZBWdm+73tWtC9WttsOHigiC83ANMw0K6UEg/KeP7MPKLxHD+S+18Q4nW/M5fzmzt3mCfHvMt1m/yO20tz7o+7BIDW5A+NgmP8KGHnbqH9NYRsnlZUfuazLgfKy8WpH4Sx1Oa58lv4iEOu2CLxGjzXgJbqGOxB0Ry1uo8z3OQi/67cG+BG2BkQ7ZJ7XQPZZBBrROzyP8pUk4MMX8qAycCsJPEMPuU21X+BKAkCEXKsKzEjt4nP8JJerAutSZyj6jeQCiweR0xT7U5z6/pMxisCetAmcUOzPcaUBFWr9wnOp6ld0knWT1YCdmvfQi1byklp/pWbunXDHyQ0q9RGbqZtAkHTNSgytOulwOI7Ozd6fUKVdvI9wx8i9A2OPAQC7s9WL19/X9vs8CJKPpg6MJr5U9mWe/PwtN3SbJ+vh7Se3Ch1wrMIoqzfuqrqZtvl8D3wn75bogfPMNb+AFpKVwizAQLMkTxWYBDp8YZKsLhGmAPkWCJGsnSlMAfF6oFmSzsXCDCBDHri7SNatEWaAbi/gi5B8uEyYAX4AnpAkeX2eMAXIQFOMJC9MFIbA1Q/aREjG29vaQq2BxldBDePcUSSMAX1ekAwM/vDI1PfAbIPLkvjXHb8mDZ9I9r7x+xuaWto/xwbrFxca3rYc1+Dp6aUZrmsuQO3hFWMz3veswIPqM4e2Vy4qzPbcJID9xUYpyuW5HOpFGjI1AIBN5oFSm91uXzJa5C2/Aej3bdJiYkcDAAAAAElFTkSuQmCC"/>
+      <rect id="gun" class="cls-17" width="40" height="40" transform="translate(976 743.5)"/>
+      <image id="candlestick" width="40" height="40" transform="translate(876 743.5)" xlink:href="data:image/png;base64,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"/>
+      <image id="butcher" width="40" height="40" transform="translate(824 743.5)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAA//AAAP/wFgkXfOAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAk9QTFRF////gIAA////qv//v4BAv7+/////qoAr1dXVtm1J39/fxuPjzMzMqmpA1dXVqndEzN3dn3BApWk81dXVoWtDzNnZztvbonQ60dHcn2pA1tbWpG1A0dHb09PT0djYz9bWonA+pG09pHE+0tfX09PY1NTZo3A9pW48pG1A09PXpHA9pm9A0NXZ09PXpG49o28/0dXY09bW0dXY0tXYpXA90tXXpW8+pG8/0tTX0tXX09XYpG4/o24+o3A/0tXX0dbY09bY293d0tXX3+Hho3A+0tbXo28+0dXYuZyD0tXXvKSM0tXXpW8/0tXXo28+pG49pG8+uJyDpG8+uZ2D0tbX0tXXpG4+pG8+pW8+0tbXpG8/pG8+4OHh0tbX0tXX3d7fpG8/0tXX0tXWpG8/0tXX09XXpG8+0tXX0tXW0tXXpG8+0tXX0tXXpG8+0tXX0tXXpG8+pG8+0tXXpG8+pG8+pG8+0tXXpG8+pG8+0tXX0tXXo28+0tXX0tXX0tXX1djZ0tbXpG8+0tXXpG8+4eLipG8+pG8/pXFApnNEpnRGqn1Tq35VrIJaroVer4hjsIpmsItns5BwtZV2t5l+u6GJvKWOwK2awbCfw7Wmxbirx72z0tXW0tXX09XX09bX09bY1NbY1NfY1NfZ1dfZ1djZ1dja1tja1tna19na19nb19rb2Nrb2Nrc2dvc2dvd2tzd29zd293e3N3e3N7f3d7f3d/g3t/g3+Dh4OHi4eHi4eLi4eLj4uPj4+Pk4+Tk5OTk5OTl5OXl5eXl5ebm5ubmiDZxMwAAAIV0Uk5TAAICAwQEBAYGBwgJCgwMDw8QERITFBUWFhgZHBwdISUpKi0tLi8yMzg6Ozw8QENFTlFUW2BgY2VlZ2htb3JydXV4gYaLmpyco6Soqq+0tbu+w8TExcjJysvLzM3O0dLS1NXW2Nja29vc3+Lj5OXm6evs7O7w8fHz9fb3+Pn6+/v8/f3+/ptlXbgAAAJKSURBVFjDpdVVV1VRFIbhbSMGiIWJiY2K3YndegywExUTOxGddhfGiwcBUUIRRQ4HCTnMH+YFIgy9Yc/93T8r5hjrW45jS9TqWMdLopIkNdabF0kd5M2L7I/w5kVWGH2i3M5480BEZJbRy1N4LSKyx+C7JIrI/be8EBGRXjYvcvfRTRGRs+1d+83yN+umTIzz4le1MNy/iT/SzZu/Hmfwmxq9LPTok9q59hFN/aE+3vyJAd78ueHu/Ua58+xxgx9r8fISHoqIyOlRJi+v4ImIyPFhNi/3Mp7fEpGdA137yCWN4zs1s7V770tb/4dfXNTTMXhIWysi19ZMtnRopA8gbdmMkZ1M/Vnv4Uq848lbV2j0cGOBN0+obp4nn696dZwHT5lWc6mf3X9Q/QqTzJ4KrcmEMWb/WbUYUsKtPuuXlgPTrJ6g1r6H5DZW/021CJhg9fmqZcD2lkafXavVfrgwxOgzKzSUB0w1egKqhcBSq/+hWgzs7Wz0JaqlwPnBRv9FNQDNfgT/+ULVikxgvtF/DGmVH1hs9Pkhrc0BVray+zzA19HmC0Jakwvs626cX51W5wBH+9t8kWpVNnA4xuaLVSuzgIPG/UtVf/qBA82r4fB/vL9cNegHdvdu5guand7U51SpBjKBbdHN7sD4C03GH1ItAdjQ1cUvMOJkw/EDqjWfABLCXP1jMcn1/V+rGswCLk93XKaH711eSaWqfgc4NtpxnQ47VFWDuQBb+jqGtN0aChQAnJkT5tgyNx1IT4h2zBm/K2X5ULfoN7iRXHNhl2QaAAAAAElFTkSuQmCC"/>
     </g>
   </g>
 </svg>

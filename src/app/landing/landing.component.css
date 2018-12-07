@@ -1,0 +1,14 @@
+.highlight {
+  display: inline-flex;
+  padding: 10px;
+  background-color: white;
+  color: black;
+}
+
+.landing-bg {
+  background-image: url("/assets/abstract.jpg");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

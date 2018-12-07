@@ -5,6 +5,7 @@ export interface Player {
     weapons: string[];
   };
   role: string;
+  position: string;
   xPos: number;
   yPos: number;
   suggestions: {

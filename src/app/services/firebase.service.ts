@@ -18,6 +18,7 @@ export class FirebaseService {
   private sessionId: string;
   private curXPos: number = 0;
   private curYPos: number = 0;
+  private curPos: string;
 
   constructor(private db: AngularFirestore) {}
 
@@ -65,6 +66,13 @@ export class FirebaseService {
     this.playerRef().update({ yPos: newY });
   }
 
+  getPlayerPos(): string {
+    var curPlayer = this.playerRef().valueChanges().subscribe(data=>{
+         this.curPos = data.position;
+    });
+    return this.curPos;
+  }
+
   eventRef(): AngularFirestoreCollection<Event> {
     return this.db.collection<Event>("sessions/" + this.sessionId + "/events", ref => ref.orderBy('timestamp'));
   }
@@ -108,6 +116,7 @@ export class FirebaseService {
         weapons: []
       },
       role: "",
+      position: "",
       xPos: 0,
       yPos: 0,
       suggestions: {
@@ -219,7 +228,8 @@ export class FirebaseService {
         "Wrench": "",
         "Candlestick": "",
         "Revolver": "",
-      }
+      },
+      gameBoard: {}
     };
 
     this.sessionRef().set(session);
