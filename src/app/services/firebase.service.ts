@@ -20,9 +20,6 @@ export class FirebaseService {
 
   private playerId: string;
   private sessionId: string;
-  private curXPos: number = 0;
-  private curYPos: number = 0;
-  private curPos: string;
 
   constructor(private db: AngularFirestore) {}
 
@@ -44,37 +41,6 @@ export class FirebaseService {
 
   setSessionId(id: string) {
     this.sessionId = id;
-  }
-
-  getPlayerXPos(): number {
-    var curPlayer = this.playerRef().valueChanges().subscribe(data => {
-      this.curXPos = data.xPos;
-    });
-    return this.curXPos;
-  }
-
-  setPlayerXPos(newX: number) {
-    console.log("setX: " + newX)
-    this.playerRef().update({ xPos: newX });
-  }
-
-  getPlayerYPos(): number {
-    var curPlayer = this.playerRef().valueChanges().subscribe(data => {
-      this.curYPos = data.yPos;
-    });
-    return this.curYPos;
-  }
-
-  setPlayerYPos(newY: number) {
-    console.log("setY: " + newY)
-    this.playerRef().update({ yPos: newY });
-  }
-
-  getPlayerPos(): string {
-    var curPlayer = this.playerRef().valueChanges().subscribe(data => {
-      this.curPos = data.position;
-    });
-    return this.curPos;
   }
 
   eventRef(): AngularFirestoreCollection<Event> {
@@ -119,10 +85,7 @@ export class FirebaseService {
         suspects: [],
         weapons: []
       },
-      role: "",
-      position: "",
-      xPos: 0,
-      yPos: 0
+      role: ""
     }
 
     this.playerRef(playerId).set(player);
@@ -159,12 +122,31 @@ export class FirebaseService {
         "Mrs. Peacock"
       ],
       suspects: {
-        "Colonel Mustard": _.filter(Suspects, ['name', "Colonel Mustard"])[0].board,
-        "Miss Scarlet": _.filter(Suspects, ['name', "Miss Scarlet"])[0].board,
-        "Professor Plum": _.filter(Suspects, ['name', "Professor Plum"])[0].board,
-        "Mr. Green": _.filter(Suspects, ['name', "Mr. Green"])[0].board,
-        "Mrs. White": _.filter(Suspects, ['name', "Mrs. White"])[0].board,
-        "Mrs. Peacock": _.filter(Suspects, ['name', "Mrs. Peacock"])[0].board,
+        "Colonel Mustard": {
+          position: "",
+          coordinate: _.filter(Suspects, ['name', "Colonel Mustard"])[0].board
+        },
+        "Miss Scarlet": {
+          position: "",
+          coordinate: _.filter(Suspects, ['name', "Miss Scarlet"])[0].board
+        },
+        "Professor Plum": {
+          position: "",
+          coordinate: _.filter(Suspects, ['name', "Professor Plum"])[0].board
+        },
+        "Mr. Green": {
+          position: "",
+          coordinate: _.filter(Suspects, ['name', "Mr. Green"])[0].board
+        },
+        "Mrs. White": {
+          position: "",
+          coordinate: _.filter(Suspects, ['name', "Mrs. White"])[0].board
+        }
+          ,
+        "Mrs. Peacock": {
+          position: "",
+          coordinate: _.filter(Suspects, ['name', "Mrs. Peacock"])[0].board
+        },
       },
       weapons: {
         "Rope": _.filter(Weapons, ['name', "Rope"])[0].position,

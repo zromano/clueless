@@ -152,14 +152,14 @@
 
             <div *ngIf="currPlayer && session.status == 'IN PROGRESS' && session.turnOrder[0] == currPlayer.role">
               <div class="btn-toolbar justify-content-center" role="group" style="padding-bottom: 15px;">
-                <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#moveCollapse" aria-expanded="false" aria-controls="moveCollapse">Move</button>
-                <div *ngIf="currPlayer.position.startsWith('Hallway')">
+                <button id="moveBtn" class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#moveCollapse" aria-expanded="false" aria-controls="moveCollapse">Move</button>
+                <div *ngIf="suspectPositions[currPlayer.role].position.startsWith('Hallway')">
                   <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" aria-expanded="false" aria-controls="suggestCollapse" disabled>Suggest</button>
                 </div>
-                <div *ngIf="!currPlayer.position.startsWith('Hallway')">
-                  <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" aria-expanded="false" aria-controls="suggestCollapse">Suggest</button>
+                <div *ngIf="!suspectPositions[currPlayer.role].position.startsWith('Hallway')">
+                  <button id="suggestBtn" class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" aria-expanded="false" aria-controls="suggestCollapse">Suggest</button>
                 </div>
-                <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#accuseCollapse" aria-expanded="false" aria-controls="accuseCollapse">Accuse</button>
+                <button id="accuseBtn" class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#accuseCollapse" aria-expanded="false" aria-controls="accuseCollapse">Accuse</button>
                 <button class="btn btn-dark btn-sm" (click)="endTurn()">End</button>
               </div>
 
@@ -169,7 +169,7 @@
                     <option selected>Choose...</option>
                     <option *ngFor="let option of getPossibleMoves()" value={{option}}>{{option}}</option>
                   </select>
-                  <button id="startSessionBtn" type="submit" class="btn btn-outline-dark btn-sm" (click)="makeMove()">Submit</button>
+                  <button id="submitMoveBtn" type="submit" class="btn btn-outline-dark btn-sm" (click)="makeMove()">Submit</button>
                 </form>
               </div>
 
@@ -177,7 +177,7 @@
                 <form class="form">
                   <div class="form-group">
                     <label class="col-sm-4 col-form-label" for="suggestedRoom">Room</label>
-                    {{currPlayer.position}}
+                    {{suspectPositions[currPlayer.role].position}}
                   </div>
 
                   <div class="form-group">

@@ -18,12 +18,12 @@ export interface Session {
   cardsShown: string[];
   lastGlobalAlert: string;
   suspects: {
-    "Colonel Mustard": string;
-    "Miss Scarlet": string;
-    "Professor Plum": string;
-    "Mr. Green": string;
-    "Mrs. White": string;
-    "Mrs. Peacock": string;
+    "Colonel Mustard": {};
+    "Miss Scarlet": {};
+    "Professor Plum": {};
+    "Mr. Green": {};
+    "Mrs. White": {};
+    "Mrs. Peacock": {};
   };
   weapons: {
     "Rope": string;

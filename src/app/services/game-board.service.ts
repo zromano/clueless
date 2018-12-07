@@ -62,8 +62,8 @@ export class GameBoardService {
         var transform = weapon.attr("transform").localMatrix;
         weapon.attr({
           tx: transform.e, ty: transform.f,
-          tx0: transform.e - (position[1] * 50),
-          ty0: transform.f - (position[0] * 50)
+          tx0: transform.e - (position[0] * 50),
+          ty0: transform.f - (position[1] * 50)
         });
       });
 

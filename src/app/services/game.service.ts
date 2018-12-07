@@ -13,37 +13,8 @@ export class GameService {
 
   constructor(private firebaseService: FirebaseService) { }
 
-  move(dirToMove: number){
-    switch(dirToMove){
-      case(0): //up
-        var curY = this.firebaseService.getPlayerYPos();
-        this.firebaseService.setPlayerYPos(curY + 1);
-        break;
-      case(1): //right
-        var curX = this.firebaseService.getPlayerXPos();
-        this.firebaseService.setPlayerXPos(curX + 1);
-        break;
-      case(2): //down
-        var curY = this.firebaseService.getPlayerYPos();
-        this.firebaseService.setPlayerYPos(curY - 1);
-        break;
-      case(3): //left
-        var curX = this.firebaseService.getPlayerXPos();
-        this.firebaseService.setPlayerXPos(curX - 1);
-        break;
-      default:
-        console.log("Bad Move Input - Not valid case");
-    }
-    // doesn't update quick enough??
-    // console.log(this.firebaseService.getPlayerXPos() + "," +
-    //   this.firebaseService.getPlayerYPos());
-
-  }
-
   addPlayer(playerRole?: string, playerIds?: string[]) : string{
     var playerId = this.firebaseService.addPlayer();
-
-    this.firebaseService.addEvent("Adding Player: " + " (" + playerId + ")");
 
     this.firebaseService.sessionRef().get().toPromise().then( (function(doc) {
       // console.log(obj.docs.forEach);

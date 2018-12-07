@@ -11,12 +11,12 @@ export const Rooms = [
 ];
 
 export const Suspects = [
-  { type: "suspect", id: "Mustard", name: "Colonel Mustard", position: "Hallway: Study-Hall", board: "3,10" },
-  { type: "suspect", id: "Scarlet", name: "Miss Scarlet", position: "Hallway: Kitchen-Ballroom", board: "0,7" },
-  { type: "suspect", id: "Green", name: "Mr. Green", position: "Hallway: Study-Library", board: "10,3" },
-  { type: "suspect", id: "Peacock", name: "Mrs. Peacock", position: "Hallway: Kitchen-Dining Room", board: "7,0" },
-  { type: "suspect", id: "White", name: "Mrs. White", position: "Hallway: Conservatory-Ballroom", board: "10,7" },
-  { type: "suspect", id: "Plum", name: "Professor Plum", position: "Hallway: Lounge-Hall", board: "3,0" }
+  { type: "suspect", id: "Mustard", name: "Colonel Mustard", board: "3,10", startOptions: ["Hallway: Lounge-Dining Room"]},
+  { type: "suspect", id: "Scarlet", name: "Miss Scarlet", board: "0,7", startOptions: ["Hallway: Lounge-Hall"] },
+  { type: "suspect", id: "Green", name: "Mr. Green", board: "10,3", startOptions: ["Hallway: Conservatory-Ballroom"] },
+  { type: "suspect", id: "Peacock", name: "Mrs. Peacock", board: "7,0", startOptions: ["Hallway: Conservatory-Library"] },
+  { type: "suspect", id: "White", name: "Mrs. White", board: "10,7", startOptions: ["Hallway: Kitchen-Ballroom"] },
+  { type: "suspect", id: "Plum", name: "Professor Plum", board: "3,0", startOptions: ["Hallway: Study-Library"] }
 ];
 
 export const Weapons = [
