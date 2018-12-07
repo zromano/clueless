@@ -5,9 +5,13 @@ import { map } from 'rxjs/operators';
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 
+import * as _ from "lodash";
+
 import { Event } from "../models/event";
 import { Player } from "../models/player";
 import { Session } from "../models/session";
+
+import { Suspects, Weapons } from '../share/constants';
 
 @Injectable({
   providedIn: "root"
@@ -43,8 +47,8 @@ export class FirebaseService {
   }
 
   getPlayerXPos(): number {
-    var curPlayer = this.playerRef().valueChanges().subscribe(data=>{
-         this.curXPos = data.xPos;
+    var curPlayer = this.playerRef().valueChanges().subscribe(data => {
+      this.curXPos = data.xPos;
     });
     return this.curXPos;
   }
@@ -55,8 +59,8 @@ export class FirebaseService {
   }
 
   getPlayerYPos(): number {
-    var curPlayer = this.playerRef().valueChanges().subscribe(data=>{
-         this.curYPos = data.yPos;
+    var curPlayer = this.playerRef().valueChanges().subscribe(data => {
+      this.curYPos = data.yPos;
     });
     return this.curYPos;
   }
@@ -67,8 +71,8 @@ export class FirebaseService {
   }
 
   getPlayerPos(): string {
-    var curPlayer = this.playerRef().valueChanges().subscribe(data=>{
-         this.curPos = data.position;
+    var curPlayer = this.playerRef().valueChanges().subscribe(data => {
+      this.curPos = data.position;
     });
     return this.curPos;
   }
@@ -118,36 +122,7 @@ export class FirebaseService {
       role: "",
       position: "",
       xPos: 0,
-      yPos: 0,
-      suggestions: {
-        rooms: {
-          "Study": null,
-          "Hall": null,
-          "Lounge": null,
-          "Library": null,
-          "Billiard Room": null,
-          "Dining Room": null,
-          "Conservatory": null,
-          "Ballroom": null,
-          "Kitchen": null,
-        },
-        suspects: {
-          "Colonel Mustard": null,
-          "Miss Scarlet": null,
-          "Professor Plum": null,
-          "Mr. Green": null,
-          "Mrs. White": null,
-          "Mrs. Peacock": null,
-        },
-        weapons: {
-          "Rope": null,
-          "Lead Pipe": null,
-          "Knife": null,
-          "Wrench": null,
-          "Candlestick": null,
-          "Revolver": null,
-        }
-      }
+      yPos: 0
     }
 
     this.playerRef(playerId).set(player);
@@ -184,20 +159,20 @@ export class FirebaseService {
         "Mrs. Peacock"
       ],
       suspects: {
-        "Colonel Mustard": "",
-        "Miss Scarlet": "",
-        "Professor Plum": "",
-        "Mr. Green": "",
-        "Mrs. White": "",
-        "Mrs. Peacock": "",
+        "Colonel Mustard": _.filter(Suspects, ['name', "Colonel Mustard"])[0].board,
+        "Miss Scarlet": _.filter(Suspects, ['name', "Miss Scarlet"])[0].board,
+        "Professor Plum": _.filter(Suspects, ['name', "Professor Plum"])[0].board,
+        "Mr. Green": _.filter(Suspects, ['name', "Mr. Green"])[0].board,
+        "Mrs. White": _.filter(Suspects, ['name', "Mrs. White"])[0].board,
+        "Mrs. Peacock": _.filter(Suspects, ['name', "Mrs. Peacock"])[0].board,
       },
       weapons: {
-        "Rope": "",
-        "Lead Pipe": "",
-        "Knife": "",
-        "Wrench": "",
-        "Candlestick": "",
-        "Revolver": "",
+        "Rope": _.filter(Weapons, ['name', "Rope"])[0].position,
+        "Lead Pipe": _.filter(Weapons, ['name', "Lead Pipe"])[0].position,
+        "Knife": _.filter(Weapons, ['name', "Knife"])[0].position,
+        "Wrench": _.filter(Weapons, ['name', "Wrench"])[0].position,
+        "Candlestick": _.filter(Weapons, ['name', "Candlestick"])[0].position,
+        "Revolver": _.filter(Weapons, ['name', "Revolver"])[0].position,
       },
       gameBoard: {}
     };

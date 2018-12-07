@@ -11,12 +11,12 @@ export const Rooms = [
 ];
 
 export const Suspects = [
-  { type: "suspect", id: "Mustard", name: "Colonel Mustard", position: "Hallway: Study-Hall", board: "10,3" },
-  { type: "suspect", id: "Scarlet", name: "Miss Scarlet", position: "Hallway: Kitchen-Ballroom", board: "7,0" },
-  { type: "suspect", id: "Green", name: "Mr. Green", position: "Hallway: Study-Library", board: "3,10" },
-  { type: "suspect", id: "Peacock", name: "Mrs. Peacock", position: "Hallway: Kitchen-Dining Room", board: "0,7" },
-  { type: "suspect", id: "White", name: "Mrs. White", position: "Hallway: Conservatory-Ballroom", board: "7,10" },
-  { type: "suspect", id: "Plum", name: "Professor Plum", position: "Hallway: Lounge-Hall", board: "0,3" }
+  { type: "suspect", id: "Mustard", name: "Colonel Mustard", position: "Hallway: Study-Hall", board: "3,10" },
+  { type: "suspect", id: "Scarlet", name: "Miss Scarlet", position: "Hallway: Kitchen-Ballroom", board: "0,7" },
+  { type: "suspect", id: "Green", name: "Mr. Green", position: "Hallway: Study-Library", board: "10,3" },
+  { type: "suspect", id: "Peacock", name: "Mrs. Peacock", position: "Hallway: Kitchen-Dining Room", board: "7,0" },
+  { type: "suspect", id: "White", name: "Mrs. White", position: "Hallway: Conservatory-Ballroom", board: "10,7" },
+  { type: "suspect", id: "Plum", name: "Professor Plum", position: "Hallway: Lounge-Hall", board: "3,0" }
 ];
 
 export const Weapons = [
@@ -37,42 +37,15 @@ export const Positions = {
       "Hallway: Study-Library"
     ],
     uiCoords: [
-      { x: 0,
-        y: 0,
-        isOccupied: false
-      },
-      { x: 0,
-        y: 1,
-        isOccupied: false
-      },
-      { x: 0,
-        y: 2,
-        isOccupied: false
-      },
-      { x: 1,
-        y: 0,
-        isOccupied: false
-      },
-      { x: 1,
-        y: 1,
-        isOccupied: false
-      },
-      { x: 0,
-        y: 2,
-        isOccupied: false
-      },
-      { x: 2,
-        y: 0,
-        isOccupied: false
-      },
-      { x: 2,
-        y: 1,
-        isOccupied: false
-      },
-      { x: 2,
-        y: 2,
-        isOccupied: false
-      }
+      { x: 0, y: 0, isOccupied: false },
+      { x: 0, y: 1, isOccupied: false },
+      { x: 0, y: 2, isOccupied: false },
+      { x: 1, y: 0, isOccupied: false },
+      { x: 1, y: 1, isOccupied: false },
+      { x: 1, y: 2, isOccupied: false },
+      { x: 2, y: 0, isOccupied: false },
+      { x: 2, y: 1, isOccupied: false },
+      { x: 2, y: 2, isOccupied: false }
     ]
   },
   "Hall": {
@@ -83,42 +56,15 @@ export const Positions = {
       "Hallway: Hall-Billiard Room"
     ],
     uiCoords: [
-      { x: 4,
-        y: 0,
-        isOccupied: false
-      },
-      { x: 4,
-        y: 1,
-        isOccupied: false
-      },
-      { x: 4,
-        y: 2,
-        isOccupied: false
-      },
-      { x: 5,
-        y: 0,
-        isOccupied: false
-      },
-      { x: 5,
-        y: 1,
-        isOccupied: false
-      },
-      { x: 5,
-        y: 2,
-        isOccupied: false
-      },
-      { x: 6,
-        y: 0,
-        isOccupied: false
-      },
-      { x: 6,
-        y: 1,
-        isOccupied: false
-      },
-      { x: 6,
-        y: 2,
-        isOccupied: false
-      }
+      { x: 0, y: 4, isOccupied: false },
+      { x: 0, y: 5, isOccupied: false },
+      { x: 0, y: 6, isOccupied: false },
+      { x: 1, y: 4, isOccupied: false },
+      { x: 1, y: 5, isOccupied: false },
+      { x: 1, y: 6, isOccupied: false },
+      { x: 2, y: 4, isOccupied: false },
+      { x: 2, y: 5, isOccupied: false },
+      { x: 2, y: 6, isOccupied: false }
     ]
   },
   "Lounge": {
@@ -129,42 +75,15 @@ export const Positions = {
       "Conservatory"
     ],
     uiCoords: [
-      { x: 8,
-        y: 0,
-        isOccupied: false
-      },
-      { x: 8,
-        y: 1,
-        isOccupied: false
-      },
-      { x: 8,
-        y: 2,
-        isOccupied: false
-      },
-      { x: 9,
-        y: 0,
-        isOccupied: false
-      },
-      { x: 9,
-        y: 1,
-        isOccupied: false
-      },
-      { x: 9,
-        y: 2,
-        isOccupied: false
-      },
-      { x: 10,
-        y: 0,
-        isOccupied: false
-      },
-      { x: 10,
-        y: 1,
-        isOccupied: false
-      },
-      { x: 10,
-        y: 2,
-        isOccupied: false
-      }
+      { x: 0, y: 8, isOccupied: false },
+      { x: 0, y: 9, isOccupied: false },
+      { x: 0, y: 10, isOccupied: false },
+      { x: 1, y: 8, isOccupied: false },
+      { x: 1, y: 9, isOccupied: false },
+      { x: 1, y: 10, isOccupied: false },
+      { x: 2, y: 8, isOccupied: false },
+      { x: 2, y: 9, isOccupied: false },
+      { x: 2, y: 10, isOccupied: false }
     ]
   },
   "Library": {
@@ -175,42 +94,15 @@ export const Positions = {
       "Hallway: Conservatory-Library"
     ],
     uiCoords: [
-      { x: 0,
-        y: 4,
-        isOccupied: false
-      },
-      { x: 0,
-        y: 5,
-        isOccupied: false
-      },
-      { x: 0,
-        y: 6,
-        isOccupied: false
-      },
-      { x: 1,
-        y: 4,
-        isOccupied: false
-      },
-      { x: 1,
-        y: 5,
-        isOccupied: false
-      },
-      { x: 1,
-        y: 6,
-        isOccupied: false
-      },
-      { x: 2,
-        y: 4,
-        isOccupied: false
-      },
-      { x: 2,
-        y: 5,
-        isOccupied: false
-      },
-      { x: 2,
-        y: 6,
-        isOccupied: false
-      }
+      { x: 4, y: 0, isOccupied: false },
+      { x: 4, y: 1, isOccupied: false },
+      { x: 4, y: 2, isOccupied: false },
+      { x: 5, y: 0, isOccupied: false },
+      { x: 5, y: 1, isOccupied: false },
+      { x: 5, y: 2, isOccupied: false },
+      { x: 6, y: 0, isOccupied: false },
+      { x: 6, y: 1, isOccupied: false },
+      { x: 6, y: 2, isOccupied: false }
     ]
   },
   "Billiard Room": {
@@ -222,42 +114,15 @@ export const Positions = {
       "Hallway: Ballroom-Billiard Room",
     ],
     uiCoords: [
-      { x: 4,
-        y: 4,
-        isOccupied: false
-      },
-      { x: 4,
-        y: 5,
-        isOccupied: false
-      },
-      { x: 4,
-        y: 6,
-        isOccupied: false
-      },
-      { x: 5,
-        y: 4,
-        isOccupied: false
-      },
-      { x: 5,
-        y: 5,
-        isOccupied: false
-      },
-      { x: 5,
-        y: 6,
-        isOccupied: false
-      },
-      { x: 6,
-        y: 4,
-        isOccupied: false
-      },
-      { x: 6,
-        y: 5,
-        isOccupied: false
-      },
-      { x: 6,
-        y: 6,
-        isOccupied: false
-      }
+      { x: 4, y: 4, isOccupied: false },
+      { x: 4, y: 5, isOccupied: false },
+      { x: 4, y: 6, isOccupied: false },
+      { x: 5, y: 4, isOccupied: false },
+      { x: 5, y: 5, isOccupied: false },
+      { x: 5, y: 6, isOccupied: false },
+      { x: 6, y: 4, isOccupied: false },
+      { x: 6, y: 5, isOccupied: false },
+      { x: 6, y: 6, isOccupied: false }
     ]
   },
   "Dining Room": {
@@ -268,42 +133,15 @@ export const Positions = {
       "Hallway: Dining Room-Billiard Room"
     ],
     uiCoords: [
-      { x: 8,
-        y: 4,
-        isOccupied: false
-      },
-      { x: 8,
-        y: 5,
-        isOccupied: false
-      },
-      { x: 8,
-        y: 6,
-        isOccupied: false
-      },
-      { x: 9,
-        y: 4,
-        isOccupied: false
-      },
-      { x: 9,
-        y: 5,
-        isOccupied: false
-      },
-      { x: 9,
-        y: 6,
-        isOccupied: false
-      },
-      { x: 10,
-        y: 4,
-        isOccupied: false
-      },
-      { x: 10,
-        y: 5,
-        isOccupied: false
-      },
-      { x: 10,
-        y: 6,
-        isOccupied: false
-      }
+      { x: 4, y: 8, isOccupied: false },
+      { x: 4, y: 9, isOccupied: false },
+      { x: 4, y: 10, isOccupied: false },
+      { x: 5, y: 8, isOccupied: false },
+      { x: 5, y: 9, isOccupied: false },
+      { x: 5, y: 10, isOccupied: false },
+      { x: 6, y: 8, isOccupied: false },
+      { x: 6, y: 9, isOccupied: false },
+      { x: 6, y: 10, isOccupied: false }
     ]
   },
   "Conservatory": {
@@ -314,42 +152,15 @@ export const Positions = {
       "Lounge"
     ],
     uiCoords: [
-      { x: 0,
-        y: 8,
-        isOccupied: false
-      },
-      { x: 0,
-        y: 9,
-        isOccupied: false
-      },
-      { x: 0,
-        y: 10,
-        isOccupied: false
-      },
-      { x: 1,
-        y: 8,
-        isOccupied: false
-      },
-      { x: 1,
-        y: 9,
-        isOccupied: false
-      },
-      { x: 1,
-        y: 10,
-        isOccupied: false
-      },
-      { x: 2,
-        y: 8,
-        isOccupied: false
-      },
-      { x: 2,
-        y: 9,
-        isOccupied: false
-      },
-      { x: 2,
-        y: 10,
-        isOccupied: false
-      }
+      { x: 8, y: 0, isOccupied: false },
+      { x: 8, y: 1, isOccupied: false },
+      { x: 8, y: 2, isOccupied: false },
+      { x: 9, y: 0, isOccupied: false },
+      { x: 9, y: 1, isOccupied: false },
+      { x: 9, y: 2, isOccupied: false },
+      { x: 10, y: 0, isOccupied: false },
+      { x: 10, y: 1, isOccupied: false },
+      { x: 10, y: 2, isOccupied: false }
     ]
   },
   "Ballroom": {
@@ -360,42 +171,15 @@ export const Positions = {
       "Hallway: Ballroom-Billiard Room",
     ],
     uiCoords: [
-      { x: 4,
-        y: 8,
-        isOccupied: false
-      },
-      { x: 4,
-        y: 9,
-        isOccupied: false
-      },
-      { x: 4,
-        y: 10,
-        isOccupied: false
-      },
-      { x: 5,
-        y: 8,
-        isOccupied: false
-      },
-      { x: 5,
-        y: 9,
-        isOccupied: false
-      },
-      { x: 5,
-        y: 10,
-        isOccupied: false
-      },
-      { x: 6,
-        y: 8,
-        isOccupied: false
-      },
-      { x: 6,
-        y: 9,
-        isOccupied: false
-      },
-      { x: 6,
-        y: 10,
-        isOccupied: false
-      }
+      { x: 8, y: 4, isOccupied: false },
+      { x: 8, y: 5, isOccupied: false },
+      { x: 8, y: 6, isOccupied: false },
+      { x: 9, y: 4, isOccupied: false },
+      { x: 9, y: 5, isOccupied: false },
+      { x: 9, y: 6, isOccupied: false },
+      { x: 10, y: 4, isOccupied: false },
+      { x: 10, y: 5, isOccupied: false },
+      { x: 10, y: 6, isOccupied: false }
     ]
   },
   "Kitchen": {
@@ -406,42 +190,15 @@ export const Positions = {
       "Study"
     ],
     uiCoords: [
-      { x: 0,
-        y: 8,
-        isOccupied: false
-      },
-      { x: 0,
-        y: 9,
-        isOccupied: false
-      },
-      { x: 0,
-        y: 10,
-        isOccupied: false
-      },
-      { x: 1,
-        y: 8,
-        isOccupied: false
-      },
-      { x: 1,
-        y: 9,
-        isOccupied: false
-      },
-      { x: 1,
-        y: 10,
-        isOccupied: false
-      },
-      { x: 2,
-        y: 8,
-        isOccupied: false
-      },
-      { x: 2,
-        y: 9,
-        isOccupied: false
-      },
-      { x: 2,
-        y: 10,
-        isOccupied: false
-      }
+      { x: 8, y: 8, isOccupied: false },
+      { x: 8, y: 9, isOccupied: false },
+      { x: 8, y: 10, isOccupied: false },
+      { x: 9, y: 8, isOccupied: false },
+      { x: 9, y: 9, isOccupied: false },
+      { x: 9, y: 10, isOccupied: false },
+      { x: 10, y: 8, isOccupied: false },
+      { x: 10, y: 9, isOccupied: false },
+      { x: 10, y: 10, isOccupied: false }
     ]
   },
   "Hallway: Study-Hall": {
@@ -451,10 +208,7 @@ export const Positions = {
       "Hall"
     ],
     uiCoords: [
-      { x: 3,
-        y: 1,
-        isOccupied: false
-      }
+      { x: 1, y: 3, isOccupied: false }
     ]
   },
   "Hallway: Lounge-Hall": {
@@ -464,10 +218,7 @@ export const Positions = {
       "Hall"
     ],
     uiCoords: [
-      { x: 7,
-        y: 1,
-        isOccupied: false
-      }
+      { x: 1, y: 7, isOccupied: false }
     ]
   },
   "Hallway: Study-Library": {
@@ -477,10 +228,7 @@ export const Positions = {
       "Library"
     ],
     uiCoords: [
-      { x: 1,
-        y: 3,
-        isOccupied: false
-      }
+      { x: 3, y: 1, isOccupied: false }
     ]
   },
   "Hallway: Hall-Billiard Room": {
@@ -490,10 +238,7 @@ export const Positions = {
       "Billiard Room"
     ],
     uiCoords: [
-      { x: 5,
-        y: 3,
-        isOccupied: false
-      }
+      { x: 3, y: 5, isOccupied: false }
     ]
   },
   "Hallway: Lounge-Dining Room": {
@@ -503,10 +248,7 @@ export const Positions = {
       "Dining Room"
     ],
     uiCoords: [
-      { x: 9,
-        y: 3,
-        isOccupied: false
-      }
+      { x: 3, y: 9, isOccupied: false }
     ]
   },
   "Hallway: Library-Billiard Room": {
@@ -516,10 +258,7 @@ export const Positions = {
       "Billiard Room"
     ],
     uiCoords: [
-      { x: 3,
-        y: 5,
-        isOccupied: false
-      }
+      { x: 5, y: 3, isOccupied: false }
     ]
   },
   "Hallway: Dining Room-Billiard Room": {
@@ -529,10 +268,7 @@ export const Positions = {
       "Billiard Room"
     ],
     uiCoords: [
-      { x: 7,
-        y: 5,
-        isOccupied: false
-      }
+      { x: 5, y: 7, isOccupied: false }
     ]
   },
   "Hallway: Conservatory-Library": {
@@ -542,10 +278,7 @@ export const Positions = {
       "Library"
     ],
     uiCoords: [
-      { x: 1,
-        y: 7,
-        isOccupied: false
-      }
+      { x: 7, y: 1, isOccupied: false }
     ]
   },
   "Hallway: Ballroom-Billiard Room": {
@@ -555,10 +288,7 @@ export const Positions = {
       "Billiard Room"
     ],
     uiCoords: [
-      { x: 5,
-        y: 7,
-        isOccupied: false
-      }
+      { x: 7, y: 5, isOccupied: false }
     ]
   },
   "Hallway: Kitchen-Dining Room": {
@@ -568,10 +298,7 @@ export const Positions = {
       "Dining Room"
     ],
     uiCoords: [
-      { x: 9,
-        y: 7,
-        isOccupied: false
-      }
+      { x: 7, y: 9, isOccupied: false }
     ]
   },
   "Hallway: Conservatory-Ballroom": {
@@ -581,10 +308,7 @@ export const Positions = {
       "Ballroom"
     ],
     uiCoords: [
-      { x: 3,
-        y: 9,
-        isOccupied: false
-      }
+      { x: 9, y: 3, isOccupied: false }
     ]
   },
   "Hallway: Kitchen-Ballroom": {
@@ -594,10 +318,7 @@ export const Positions = {
       "Ballroom"
     ],
     uiCoords: [
-      { x: 7,
-        y: 9,
-        isOccupied: false
-      }
+      { x: 9, y: 7, isOccupied: false }
     ]
   },
 };

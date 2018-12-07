@@ -7,9 +7,9 @@
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" href="#about">About</a>
-      <a class="nav-item nav-link" href="#team">Team</a>
-      <a class="nav-item nav-link" href="#credits">Credits</a>
+      <!-- <a class="nav-item nav-link" href="#about">About</a> -->
+      <!-- <a class="nav-item nav-link" href="#team">Team</a> -->
+      <!-- <a class="nav-item nav-link" href="#credits">Credits</a> -->
     </div>
   </div>
 </nav>
@@ -160,7 +160,7 @@
                   <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" aria-expanded="false" aria-controls="suggestCollapse">Suggest</button>
                 </div>
                 <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#accuseCollapse" aria-expanded="false" aria-controls="accuseCollapse">Accuse</button>
-                <button class="btn btn-dark btn-sm">End</button>
+                <button class="btn btn-dark btn-sm" (click)="endTurn()">End</button>
               </div>
 
               <div class="collapse multi-collapse" id="moveCollapse">
@@ -184,7 +184,7 @@
                     <label class="col-sm-4 col-form-label" for="suggestedSuspect">Suspect</label>
                     <select class="col-sm-8 custom-select" id="suggestedSuspect" [(ngModel)]="suggestion.suspect" name="suggestedSuspect">
                       <option selected>Choose...</option>
-                      <option *ngFor="let option of suspects" value={{option}}>{{option}}</option>
+                      <option *ngFor="let option of suggestionSuspectList" value={{option}}>{{option}}</option>
                     </select>
                   </div>
 

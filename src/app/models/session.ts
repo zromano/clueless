@@ -33,5 +33,5 @@ export interface Session {
     "Candlestick": string;
     "Revolver": string;
   };
-  gameBoard: {}; 
+  gameBoard: {};
 }

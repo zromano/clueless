@@ -40,6 +40,9 @@ export class SessionComponent implements OnInit {
   gameBoard: {};
   suggestion: Suggestion;
   lastGlobalAlert: string;
+  suggestionSuspectList: string[];
+  suspectPositions: any;
+  weaponPositions: any;
 
   rooms: string[];
   suspects: string[];
@@ -55,9 +58,6 @@ export class SessionComponent implements OnInit {
     this.rooms = _.map(Rooms, "name");
     this.suspects = _.map(Suspects, "name");
     this.weapons = _.map(Weapons, "name");
-
-    //TODO: Update with actual available moves
-    this.availableMoves = ["Study", "Library", "Hallway"];
   }
 
   ngOnInit() {
@@ -79,9 +79,28 @@ export class SessionComponent implements OnInit {
 
         this.addAlert(this.lastGlobalAlert);
       };
+
+      this.suspectPositions = session.suspects;
+      this.weaponPositions = session.weapons;
+
+      // Update positons of players on board
+      for (let suspect of Object.keys(session.suspects)) {
+        var position = session.suspects[suspect].split(",").map(Number);
+        this.gameBoardService.movePlayer(suspect, position[0], position[1]);
+      }
+
+      // Update positons of weapons on board
+      for (let weapon of Object.keys(session.weapons)) {
+        var position = session.weapons[weapon].split(",").map(Number);
+        this.gameBoardService.moveWeapon(weapon, position[0], position[1]);
+      }
     });
+
     this.firebaseService.playerRef().valueChanges().subscribe(player => {
       this.currPlayer = player;
+
+      // Remove player from list of suspects
+      this.suggestionSuspectList = _.without(this.suspects, player.role);
     });
 
     this.players$ = this.firebaseService.playersRef().snapshotChanges().pipe(
@@ -122,14 +141,13 @@ export class SessionComponent implements OnInit {
 
     $("#selectRoleBtn").prop('disabled', true);
 
-
     // Set starting Position
     var suspectList = Suspects;
     var startPosition = "";
 
     suspectList.forEach(function (arrayItem) {
       var curSuspect = arrayItem.name;
-      if (curSuspect === selectedRole){
+      if (curSuspect === selectedRole) {
         console.log("Starting Position for " + curSuspect + " is: " + arrayItem.position);
         startPosition = arrayItem.position;
       }
@@ -142,7 +160,6 @@ export class SessionComponent implements OnInit {
       xPos: startingRoomSpace.x,
       yPos: startingRoomSpace.y
     });
-
 
     this.firebaseService.addEvent("Player (" + this.playerId + ") has selected role: " + selectedRole );
     this.firebaseService.sessionRef().update({ availableRoles: updatedAvailableRoles });
@@ -163,7 +180,6 @@ export class SessionComponent implements OnInit {
 
     this.shuffle(playerArrMutable);
 
-    // playerIdArr = ["hi", "bye"];s
     console.log(playerArrMutable);
     console.log(playerArrMutable.length);
 
@@ -245,7 +261,7 @@ export class SessionComponent implements OnInit {
         position: suspectPositions[role]
       });
 
-      this.sendPlayerToRoom(id, suspectPositions[role], gameBoard);
+      // this.sendPlayerToRoom(id, suspectPositions[role], gameBoard);
     }).bind(this));
 
     this.firebaseService.sessionRef().update({
@@ -334,12 +350,14 @@ export class SessionComponent implements OnInit {
 
     this.firebaseService.playersRef().get().toPromise().then( (function(obj) {
       var playerObjSnapshot = {};
+
       obj.docs.forEach(function (doc) {
         playerObjSnapshot[doc.id] = doc.data();
       });
 
       Object.keys(playerObjSnapshot).forEach((function(playerId) {
         var player = playerObjSnapshot[playerId];
+
         if (player.role == this.suggestion.suspect) {
           this.firebaseService.playerRef(playerId).update({
             position: this.suggestion.room
@@ -355,7 +373,7 @@ export class SessionComponent implements OnInit {
           var i = currGameboard[curPos].uiCoords.length;
           while (i--) {
               var curPosToCheck = currGameboard[curPos].uiCoords[i];
-              if (curPosToCheck.x == curX && curPosToCheck.y == curY){
+              if (curPosToCheck.x == curX && curPosToCheck.y == curY) {
                 currGameboard[curPos].uiCoords[i].isOccupied = false;
                 break;
             }
@@ -365,6 +383,7 @@ export class SessionComponent implements OnInit {
           // this.gameBoard[this.selectedMove].uiCoords.forEach(function (space, index) {
 
           this.sendPlayerToRoom(playerId, this.suggestion.room, currGameboard);
+          this.sendWeaponToRoom(this.suggestion.weapon, this.suggestion.room, currGameboard);
 
           this.firebaseService.sessionRef().update({
             gameBoard: currGameboard
@@ -412,10 +431,17 @@ export class SessionComponent implements OnInit {
     });
   }
 
-  makeMove() {
+  endTurn() {
     var updatedTurnOrder = this.rotate(this.session.turnOrder);
     console.log(updatedTurnOrder);
 
+    this.firebaseService.sessionRef().update({
+      turnOrder: updatedTurnOrder,
+      currentTurn: updatedTurnOrder[0]
+    });
+  }
+
+  makeMove() {
     // marking comingfrom position empty
     var curX = this.currPlayer.xPos;
     var curY = this.currPlayer.yPos;
@@ -426,7 +452,7 @@ export class SessionComponent implements OnInit {
     var i = currGameboard[curPos].uiCoords.length;
     while (i--) {
         var curPosToCheck = currGameboard[curPos].uiCoords[i];
-        if (curPosToCheck.x == curX && curPosToCheck.y == curY){
+        if (curPosToCheck.x == curX && curPosToCheck.y == curY) {
           currGameboard[curPos].uiCoords[i].isOccupied = false;
           break;
       }
@@ -436,17 +462,9 @@ export class SessionComponent implements OnInit {
     // this.gameBoard[this.selectedMove].uiCoords.forEach(function (space, index) {
 
     this.sendPlayerToRoom(this.playerId, this.selectedMove, currGameboard);
-
-    this.firebaseService.sessionRef().update({
-      turnOrder: updatedTurnOrder,
-      currentTurn: updatedTurnOrder[0],
-      gameBoard: currGameboard
-    });
   }
 
   sendPlayerToRoom(playerId, targetRoom, gameBoard) {
-    console.log(targetRoom);
-    console.log(gameBoard);
     var i = gameBoard[targetRoom].uiCoords.length;
     var curX = 0;
     var curY = 0;
@@ -460,13 +478,48 @@ export class SessionComponent implements OnInit {
         break;
       }
     }
-    
+
     this.gameBoardService.movePlayer(this.currPlayer.role, curX, curY);
 
     this.firebaseService.playerRef(playerId).update({
       position: targetRoom,
       xPos: curX,
       yPos: curY
+    });
+
+    var positionString = curX + "," + curY;
+    this.suspectPositions[this.currPlayer.role] = positionString;
+
+    this.firebaseService.sessionRef().update({
+      gameBoard: gameBoard,
+      suspects: this.suspectPositions
+    });
+  }
+
+  sendWeaponToRoom(weapon, targetRoom, gameBoard) {
+    var i = gameBoard[targetRoom].uiCoords.length;
+    var curX = 0;
+    var curY = 0;
+
+    while (i--) {
+      var curPosToCheck = gameBoard[targetRoom].uiCoords[i];
+
+      if (curPosToCheck.isOccupied == false) {
+        gameBoard[targetRoom].uiCoords[i].isOccupied = true;
+        curX = curPosToCheck.x;
+        curY = curPosToCheck.y;
+        break;
+      }
+    }
+
+    this.gameBoardService.moveWeapon(name, curX, curY);
+
+    var positionString = curX + "," + curY;
+    this.weaponPositions[weapon] = positionString;
+
+    this.firebaseService.sessionRef().update({
+      gameBoard: gameBoard,
+      weapons: this.weaponPositions
     });
   }
 

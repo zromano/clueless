@@ -4,7 +4,7 @@ import "snapsvg-cjs";
 declare var Snap: any;
 
 import * as _ from "lodash";
-import { Rooms, Suspects, Weapons } from "../share/constants";
+import { Suspects, Weapons } from "../share/constants";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,7 @@ export class GameBoardService {
       var hallways = data.selectAll("#Hallways *");
       var suspects = data.selectAll("#Suspects *");
       var weapons = data.selectAll("#Weapons *");
+      var labels = data.select("#Labels");
 
       rooms.forEach(function(room) {
         room.mouseover(function() {
@@ -47,8 +48,8 @@ export class GameBoardService {
         var transform = suspect.attr("transform").localMatrix;
         suspect.attr({
           tx: transform.e, ty: transform.f,
-          tx0: transform.e - (position[0] * 50),
-          ty0: transform.f - (position[1] * 50)
+          tx0: transform.e - (position[1] * 50),
+          ty0: transform.f - (position[0] * 50)
         });
       });
 
@@ -61,10 +62,17 @@ export class GameBoardService {
         var transform = weapon.attr("transform").localMatrix;
         weapon.attr({
           tx: transform.e, ty: transform.f,
-          tx0: transform.e - (position[0] * 50),
-          ty0: transform.f - (position[1] * 50)
+          tx0: transform.e - (position[1] * 50),
+          ty0: transform.f - (position[0] * 50)
         });
       });
+
+      // Fix positioning of labels
+      var labelTransform = labels.attr("transform").localMatrix;
+      labels.transform("t" + (labelTransform.e - 10) + "," + labelTransform.f);
+      labels.attr({
+        tx: labelTransform.e, ty: labelTransform.f,
+      })
 
       board.append(data);
     });
@@ -74,16 +82,9 @@ export class GameBoardService {
     var board = Snap("#board");
     var suspectIndex = _.map(Suspects, "name").indexOf(name);
 
-    console.log("Move Player Inputs: " + name + "," + x + "," + y);
-    console.log("Move Player Suspect Index: " + suspectIndex);
-
     var suspect = board.select("#" + Suspects[suspectIndex].id);
-    var positionX = Number(suspect.attr("tx0")) + (x * 50);
-    var positionY = Number(suspect.attr("ty0")) + (y * 50);
-
-    console.log("Move Player X: " + suspect.attr("tx0") + "," + (x * 50));
-    console.log("Move Player Y: " + suspect.attr("ty0") + "," + (y * 50));
-    console.log("Move Player: " + positionX + "," + positionY);
+    var positionX = Number(suspect.attr("tx0")) + (y * 50);
+    var positionY = Number(suspect.attr("ty0")) + (x * 50);
 
     suspect.transform("t" + positionX + "," + positionY);
   }
@@ -93,13 +94,9 @@ export class GameBoardService {
     var weaponIndex = _.map(Weapons, "name").indexOf(name);
 
     var weapon = board.select("#" + Weapons[weaponIndex].id);
-    var positionX = Number(weapon.attr("tx0")) + (x * 50);
-    var positionY = Number(weapon.attr("ty0")) + (y * 50);
-
-    console.log(weapon.attr("transform"));
+    var positionX = Number(weapon.attr("tx0")) + (y * 50);
+    var positionY = Number(weapon.attr("ty0")) + (x * 50);
 
     weapon.transform("t" + positionX + "," + positionY);
-
-    console.log(weapon.attr("transform"));
   }
 }
