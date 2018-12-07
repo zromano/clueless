@@ -316,8 +316,6 @@ export class SessionComponent implements OnInit {
     // will need to loop through possible positions to find open one
     // this.gameBoard[this.selectedMove].uiCoords.forEach(function (space, index) {
 
-    console.log("Suggestion Test: " + this.suggestion.weapon);
-
     this.sendPlayerToRoom(this.suggestion.suspect, this.suggestion.room, currGameboard);
     this.sendWeaponToRoom(this.suggestion.weapon, this.suggestion.room, currGameboard);
 
@@ -387,20 +385,21 @@ export class SessionComponent implements OnInit {
   makeAccusation(){
     console.log(this.accusation);
 
-          var confidentialCard = this.session.confidential;
-          
-          if (this.accusation.room == confidentialCard.room && this.accusation.weapon == confidentialCard.weapon && this.accusation.suspect == confidentialCard.suspect) {
-            this.firebaseService.addEvent("Accusation (" + this.accusation.room + "," + this.accusation.weapon + "," + this.accusation.suspect + ") is Correct");
-            this.firebaseService.addEvent(this.currPlayer + "Wins the Game!");
-            this.session.status = "Session is Over!";
-          } else {
-            //need to write code to remove player from turn order and update turn order
-            
-            this.updateTurnOrder();
-          }
+    var confidentialCard = this.session.confidential;
 
+    if (this.accusation.room == confidentialCard.room && this.accusation.weapon == confidentialCard.weapon && this.accusation.suspect == confidentialCard.suspect) {
+      this.firebaseService.addEvent("Accusation (" + this.accusation.room + "," + this.accusation.weapon + "," + this.accusation.suspect + ") is Correct");
+      this.firebaseService.addEvent(this.currPlayer + "Wins the Game!");
+      this.session.status = "Session is Over!";
+    } else {
+      //need to write code to remove player from turn order and update turn order
+
+      this.updateTurnOrder();
+    }
+
+    $('#accuseCollapse').removeClass('show');
+    $("#accuseBtn").prop('disabled', true);
   }
-
 
   updateTurnOrder() {
     var updatedTurnOrder = this.rotate(this.session.turnOrder);

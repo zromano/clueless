@@ -94,8 +94,8 @@ export class GameBoardService {
     var weaponIndex = _.map(Weapons, "name").indexOf(name);
 
     var weapon = board.select("#" + Weapons[weaponIndex].id);
-    var positionX = Number(weapon.attr("tx0")) + (y * 50);
-    var positionY = Number(weapon.attr("ty0")) + (x * 50);
+    var positionX = Number(weapon.attr("tx0")) + (x * 50);
+    var positionY = Number(weapon.attr("ty0")) + (y * 50);
 
     weapon.transform("t" + positionX + "," + positionY);
   }

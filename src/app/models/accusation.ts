@@ -1,7 +1,7 @@
 export interface Accusation {
-    playerId: string;
-    room: string;
-    suspect: string;
-    weapon: string;
-    checkArr: string[];
-  }
+  playerId: string;
+  room: string;
+  suspect: string;
+  weapon: string;
+  checkArr: string[];
+}
