@@ -15,7 +15,8 @@ import { Accusation } from '../models/accusation';
 import { FirebaseService } from "../services/firebase.service";
 import { GameBoardService } from "../services/game-board.service";
 
-import * as $ from "jquery";
+declare var jquery:any;
+declare var $ :any;
 import { Suspects, Weapons, Rooms, Positions } from '../share/constants';
 import { forEach } from '@angular/router/src/utils/collection';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
@@ -135,6 +136,10 @@ export class SessionComponent implements OnInit {
         }).bind(this));
       }
 
+      if (session.status == 'FINISHED') {
+        $('#gameOverModal').modal('show');
+      }
+
       
     });
 
@@ -152,7 +157,8 @@ export class SessionComponent implements OnInit {
 
     this.events$.subscribe(event => {
       // play is a correct function here
-      document.getElementById("ping").play();
+      var audioPlayer = <HTMLVideoElement>document.getElementById("ping");
+      audioPlayer.play();
     })
     this.resetSuggestionForm();
 

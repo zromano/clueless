@@ -303,3 +303,21 @@
   </div>
 </div>
 <audio id="ping" src="assets/Ping.wav" preload="auto"></audio>
+
+<!-- Modal -->
+<div class="modal fade" id="gameOverModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="text-align: center;">
+      <div class="modal-header">
+        <h5 class="modal-title col-md-12"><strong>Game Over</strong></h5>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let event of events$ | async as event; last as isLast">
+          <div *ngIf="isLast">
+            <h5>{{ event.message }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
