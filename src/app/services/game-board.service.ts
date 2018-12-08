@@ -81,12 +81,7 @@ export class GameBoardService {
   movePlayer(name: string, x: number, y: number) {
     var board = Snap("#board");
     var suspectIndex = _.map(Suspects, "name").indexOf(name);
-
-    console.log("Board - Move Suspect: " + name + "," + x + "," + y);
-
     var suspect = board.select("#" + Suspects[suspectIndex].id);
-
-    console.log("Board - Suspect: " + Suspects[suspectIndex].id + "," + Suspects[suspectIndex].name);
 
     if (suspect) {
       var positionX = Number(suspect.attr("tx0")) + (y * 50);
@@ -99,12 +94,7 @@ export class GameBoardService {
   moveWeapon(name: string, x: number, y: number) {
     var board = Snap("#board");
     var weaponIndex = _.map(Weapons, "name").indexOf(name);
-
-    console.log("Board - Move Weapon: " + name + "," + x + "," + y);
-
     var weapon = board.select("#" + Weapons[weaponIndex].id);
-
-    console.log("Board - Weapon: " + Weapons[weaponIndex].id + "," + Weapons[weaponIndex].name);
 
     if (weapon) {
       var positionX = Number(weapon.attr("tx0")) + (y * 50);
