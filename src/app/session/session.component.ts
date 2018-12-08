@@ -32,6 +32,7 @@ export class SessionComponent implements OnInit {
   playerId: string;
   currPlayer: Player;
   events$: Observable<Event[]>;
+  playerEvents$: Observable<Event[]>;
   players$: Observable<Player[]>;
   session$: Observable<Session>;
   session: Session;
@@ -41,7 +42,6 @@ export class SessionComponent implements OnInit {
   gameBoard: {};
   suggestion: Suggestion;
   accusation: Accusation;
-  lastGlobalAlert: string;
   suggestionSuspectList: string[];
   suspectPositions: any;
   weaponPositions: any;
@@ -87,11 +87,6 @@ export class SessionComponent implements OnInit {
     this.firebaseService.sessionRef().valueChanges().subscribe(session => {
       this.session = session;
       this.gameBoard = session.gameBoard;
-      if (session.lastGlobalAlert != null && this.lastGlobalAlert != session.lastGlobalAlert) {
-        this.lastGlobalAlert = session.lastGlobalAlert;
-
-        this.addAlert(this.lastGlobalAlert);
-      };
 
       this.suspectPositions = session.suspects;
       this.weaponPositions = session.weapons;
@@ -165,6 +160,14 @@ export class SessionComponent implements OnInit {
     this.events$ = this.firebaseService.eventRef().valueChanges();
 
     this.events$.subscribe(event => {
+      // play is a correct function here
+      var audioPlayer = <HTMLVideoElement>document.getElementById("ping");
+      audioPlayer.play();
+    })
+
+    this.playerEvents$ = this.firebaseService.playerEventRef().valueChanges();
+
+    this.playerEvents$.subscribe(event => {
       // play is a correct function here
       var audioPlayer = <HTMLVideoElement>document.getElementById("ping");
       audioPlayer.play();
@@ -386,12 +389,8 @@ export class SessionComponent implements OnInit {
           } else {
             var card = suggestionListener.cardShown;
             if (card != null && card != "") {
-              sessionInstance.firebaseService.sessionRef().update({
-                cardShown: sessionInstance.session.cardsShown.push(card),
-                lastGlobalAlert: "Card Shown: " + card
-              });
-
-              sessionInstance.firebaseService.addEvent("New card shown: " + card);
+              sessionInstance.firebaseService.addPlayerEvent("New card shown: " + card);
+              sessionInstance.firebaseService.addEvent("Suggestion (" + suggestionListener.room + ", " + suggestionListener.suspect + ", " + suggestionListener.weapon + ") Refuted");
             } else {
               sessionInstance.firebaseService.addEvent("Suggestion (" + suggestionListener.room + ", " + suggestionListener.suspect + ", " + suggestionListener.weapon + ") Not Refuted");
             }
@@ -400,7 +399,7 @@ export class SessionComponent implements OnInit {
               suggestionInProgess: null
             });
           }
-        }, 500);
+        }, 100);
       };
 
       outer(this);

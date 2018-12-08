@@ -52,6 +52,11 @@ export class FirebaseService {
     return this.db.doc<Player>("sessions/" + this.sessionId + "/players/" + playerId);
   }
 
+  playerEventRef(id?: string): AngularFirestoreCollection<Event> {
+    var playerId = id ? id : this.playerId;
+    return this.db.collection<Event>("sessions/" + this.sessionId + "/players/" + playerId + "/events", ref => ref.orderBy('timestamp', 'desc'));
+  }
+
   playersRef(): AngularFirestoreCollection<Player> {
     return this.db.collection<Player>("sessions/" + this.sessionId + "/players");
   }
@@ -73,6 +78,17 @@ export class FirebaseService {
     };
 
     this.eventRef().add(event);
+  }
+
+  addPlayerEvent(message: string) {
+    const event: Event = {
+      authorId: this.getPlayerId(),
+      message: message,
+      role: "",
+      timestamp: firebase.firestore.Timestamp.now()
+    };
+
+    this.playerEventRef().add(event);
   }
 
   addPlayer(): string {
@@ -112,8 +128,6 @@ export class FirebaseService {
       currentTurn: "",
       turnOrder: [],
       suggestionInProgess: null,
-      cardsShown: [],
-      lastGlobalAlert: null,
       availableRoles: [
         "Colonel Mustard",
         "Miss Scarlet",

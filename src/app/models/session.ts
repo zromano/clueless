@@ -15,8 +15,6 @@ export interface Session {
   turnOrder: string[];
   availableRoles: string[];
   suggestionInProgess: Suggestion;
-  cardsShown: string[];
-  lastGlobalAlert: string;
   suspects: {
     "Colonel Mustard": {};
     "Miss Scarlet": {};
