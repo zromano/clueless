@@ -46,6 +46,7 @@ export class SessionComponent implements OnInit {
   suspectPositions: any;
   weaponPositions: any;
   disableSuggestBtn: boolean;
+  possibleMoves: string[];
 
   rooms: string[];
   suspects: string[];
@@ -116,7 +117,9 @@ export class SessionComponent implements OnInit {
           this.updateTurnOrder();
         }
 
-        if (session.status == 'IN PROGRESS' && this.currPlayer.noTurn == false) {
+        this.possibleMoves = this.getPossibleMoves();
+
+        if (this.currPlayer.noTurn == false) {
           this.firebaseService.playersRef().get().toPromise().then( (function(obj) {
             var playerObjSnapshot = {};
 
@@ -328,7 +331,7 @@ export class SessionComponent implements OnInit {
 
   getPossibleMoves() {
     var curPos = this.session.suspects[this.selectedRole].position;
-    var validMoves = ["No Moves Available"];
+    var validMoves = [];
 
     if (curPos === "") {
       // First Move
@@ -389,7 +392,7 @@ export class SessionComponent implements OnInit {
           } else {
             var card = suggestionListener.cardShown;
             if (card != null && card != "") {
-              sessionInstance.firebaseService.addPlayerEvent("New card shown: " + card);
+              sessionInstance.firebaseService.addPlayerEvent("New Card Shown: " + card);
               sessionInstance.firebaseService.addEvent("Suggestion (" + suggestionListener.room + ", " + suggestionListener.suspect + ", " + suggestionListener.weapon + ") Refuted");
             } else {
               sessionInstance.firebaseService.addEvent("Suggestion (" + suggestionListener.room + ", " + suggestionListener.suspect + ", " + suggestionListener.weapon + ") Not Refuted");
