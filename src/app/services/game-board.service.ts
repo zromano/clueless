@@ -62,8 +62,8 @@ export class GameBoardService {
         var transform = weapon.attr("transform").localMatrix;
         weapon.attr({
           tx: transform.e, ty: transform.f,
-          tx0: transform.e - (position[0] * 50),
-          ty0: transform.f - (position[1] * 50)
+          tx0: transform.e - (position[1] * 50),
+          ty0: transform.f - (position[0] * 50)
         });
       });
 
@@ -82,6 +82,8 @@ export class GameBoardService {
     var board = Snap("#board");
     var suspectIndex = _.map(Suspects, "name").indexOf(name);
 
+    console.log("Board - Move Weapon: " + name + "," + x + "," + y);
+
     var suspect = board.select("#" + Suspects[suspectIndex].id);
     var positionX = Number(suspect.attr("tx0")) + (y * 50);
     var positionY = Number(suspect.attr("ty0")) + (x * 50);
@@ -93,9 +95,11 @@ export class GameBoardService {
     var board = Snap("#board");
     var weaponIndex = _.map(Weapons, "name").indexOf(name);
 
+    console.log("Board - Move Weapon: " + name + "," + x + "," + y);
+
     var weapon = board.select("#" + Weapons[weaponIndex].id);
-    var positionX = Number(weapon.attr("tx0")) + (x * 50);
-    var positionY = Number(weapon.attr("ty0")) + (y * 50);
+    var positionX = Number(weapon.attr("tx0")) + (y * 50);
+    var positionY = Number(weapon.attr("ty0")) + (x * 50);
 
     weapon.transform("t" + positionX + "," + positionY);
   }

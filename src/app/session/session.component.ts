@@ -139,8 +139,6 @@ export class SessionComponent implements OnInit {
       if (session.status == 'FINISHED') {
         $('#gameOverModal').modal('show');
       }
-
-      
     });
 
     this.players$ = this.firebaseService.playersRef().snapshotChanges().pipe(
@@ -224,8 +222,6 @@ export class SessionComponent implements OnInit {
     var playerSuspectCards = {};
     var playerRoomCards = {};
     var playerWeaponCards = {};
-
-
 
     while(suspects.length > 0) {
       if (playerSuspectCards[rotatingPlayers[0]] != null) {
@@ -313,8 +309,6 @@ export class SessionComponent implements OnInit {
 
       this.initiateSession(playerObjSnapshot);
     }).bind(this))
-
-    // get possible moves for first player
   }
 
   getPossibleMoves() {
@@ -350,6 +344,8 @@ export class SessionComponent implements OnInit {
     var suspectY = suspectCoord[1];
     var suspectPos = this.session.suspects[this.suggestion.suspect].position;
 
+    console.log("Suspect Coordinates: " + suspectX + "," + suspectY + "," + suspectPos);
+
     var currGameboard = JSON.parse(JSON.stringify(this.gameBoard));
 
     if (suspectPos) {
@@ -363,9 +359,6 @@ export class SessionComponent implements OnInit {
         }
       }
     }
-
-    // will need to loop through possible positions to find open one
-    // this.gameBoard[this.selectedMove].uiCoords.forEach(function (space, index) {
 
     this.sendPlayerToRoom(this.suggestion.suspect, this.suggestion.room, currGameboard);
     this.sendWeaponToRoom(this.suggestion.weapon, this.suggestion.room, currGameboard);
@@ -495,9 +488,6 @@ export class SessionComponent implements OnInit {
       }
     }
 
-    // will need to loop through possible positions to find open one
-    // this.gameBoard[this.selectedMove].uiCoords.forEach(function (space, index) {
-
     this.sendPlayerToRoom(this.selectedRole, this.selectedMove, currGameboard);
 
     $('#moveCollapse').removeClass('show');
@@ -522,7 +512,7 @@ export class SessionComponent implements OnInit {
     this.gameBoardService.movePlayer(name, curX, curY);
 
     var coordString = curX + "," + curY;
-    this.suspectPositions[this.currPlayer.role] = {
+    this.suspectPositions[name] = {
       position: targetRoom,
       coordinate: coordString
     };

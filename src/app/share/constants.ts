@@ -20,12 +20,12 @@ export const Suspects = [
 ];
 
 export const Weapons = [
-  { type: "weapon", id: "candlestick", name: "Candlestick", position: "4,11" },
-  { type: "weapon", id: "butcher", name: "Knife", position: "3,11" },
-  { type: "weapon", id: "pipe", name: "Lead Pipe", position: "5,11" },
-  { type: "weapon", id: "gun", name: "Revolver", position: "6,11" },
-  { type: "weapon", id: "rope", name: "Rope", position: "7,11" },
-  { type: "weapon", id: "wrench", name: "Wrench", position: "8,11" }
+  { type: "weapon", id: "candlestick", name: "Candlestick", position: "11,4" },
+  { type: "weapon", id: "butcher", name: "Knife", position: "11,3" },
+  { type: "weapon", id: "pipe", name: "Lead Pipe", position: "11,5" },
+  { type: "weapon", id: "gun", name: "Revolver", position: "11,6" },
+  { type: "weapon", id: "rope", name: "Rope", position: "11,7" },
+  { type: "weapon", id: "wrench", name: "Wrench", position: "11,8" }
 ];
 
 export const Positions = {
