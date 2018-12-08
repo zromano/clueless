@@ -150,6 +150,10 @@ export class SessionComponent implements OnInit {
 
     this.events$ = this.firebaseService.eventRef().valueChanges();
 
+    this.events$.subscribe(event => {
+      // play is a correct function here
+      document.getElementById("ping").play();
+    })
     this.resetSuggestionForm();
 
     this.accusation = {
