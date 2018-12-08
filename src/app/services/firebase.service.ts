@@ -61,7 +61,7 @@ export class FirebaseService {
   }
 
   gameRef(): AngularFirestoreCollection<Session> {
-    return this.db.collection<Session>("sessions/");
+    return this.db.collection<Session>("sessions/", ref => ref.orderBy('sessionName'));
   }
 
   addEvent(message: string) {

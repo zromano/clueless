@@ -109,7 +109,7 @@ export class SessionComponent implements OnInit {
       }
 
       // Player current turn
-      if (this.currPlayer && session.currentTurn == this.currPlayer.role) {
+      if (this.currPlayer && session.currentTurn == this.currPlayer.role && this.suspectPositions) {
         var currentPosition = this.suspectPositions[this.currPlayer.role].position;
         if (currentPosition === "" || currentPosition.startsWith("Hallway")) {
           this.disableSuggestBtn = true;
@@ -507,7 +507,7 @@ export class SessionComponent implements OnInit {
     $('#moveCollapse').removeClass('show');
     $("#moveBtn").prop('disabled', true);
 
-    if (this.currPlayer && this.session.currentTurn == this.currPlayer.role) {
+    if (this.currPlayer && this.session.currentTurn == this.currPlayer.role && this.suspectPositions) {
       var currentPosition = this.suspectPositions[this.currPlayer.role].position;
       if (currentPosition !== "" && ! currentPosition.startsWith("Hallway")) {
         this.disableSuggestBtn = false;
