@@ -74,6 +74,7 @@
             <strong>Action Required</strong>&nbsp;Validate Suggestion ({{session.suggestionInProgess.room}}, {{session.suggestionInProgess.suspect}}, {{session.suggestionInProgess.weapon}})
           </label>
           <select *ngIf="currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon) || currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect) || currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" class="custom-select my-1 mr-sm-2" id="cardShown" [(ngModel)]="session.suggestionInProgess.cardShown" name="cardShown">
+            <option selected>Choose...</option>
             <option *ngIf="currPlayer.cards.rooms.includes(session.suggestionInProgess.room)" value={{session.suggestionInProgess.room}}>{{session.suggestionInProgess.room}}</option>
             <option *ngIf="currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect)" value={{session.suggestionInProgess.suspect}}>{{session.suggestionInProgess.suspect}}</option>
             <option *ngIf="currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" value={{session.suggestionInProgess.weapon}}>{{session.suggestionInProgess.weapon}}</option>
@@ -235,7 +236,7 @@
                       <option *ngFor="let option of weapons" value={{option}}>{{option}}</option>
                     </select>
                   </div>
-                  
+
                   <div class="form-row text-center">
                     <div class="col-12">
                       <button id="makeAccusationBtn" type="submit" class="btn btn-outline-dark btn-sm" (click)="makeAccusation()">Submit</button>

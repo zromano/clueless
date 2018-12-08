@@ -19,7 +19,7 @@
 
       .cls-3 {
         fill: rgba(112,112,112,0.3);
-        font-size: 20px;
+        font-size: 18px;
         font-family: AvenirNextCondensed-Regular, Avenir Next Condensed;
       }
 
@@ -128,15 +128,15 @@
       </g>
     </g>
     <g id="Labels" transform="translate(678 61)">
-      <text id="KITCHEN-2" data-name="KITCHEN" class="cls-3" transform="translate(567 563)"><tspan x="-30.75" y="0">KITCHEN</tspan></text>
-      <text id="BALLROOM-2" data-name="BALLROOM" class="cls-3" transform="translate(367 563)"><tspan x="-39.94" y="0">BALLROOM</tspan></text>
-      <text id="CONSERVATORY-2" data-name="CONSERVATORY" class="cls-3" transform="translate(167 563)"><tspan x="-56.14" y="0">CONSERVATORY</tspan></text>
-      <text id="DINING_ROOM-2" data-name="DINING ROOM" class="cls-3" transform="translate(567 363)"><tspan x="-51.77" y="0">DINING ROOM</tspan></text>
-      <text id="BILLIARD_ROOM-2" data-name="BILLIARD ROOM" class="cls-3" transform="translate(367 363)"><tspan x="-56.6" y="0">BILLIARD ROOM</tspan></text>
-      <text id="LIBRARY-2" data-name="LIBRARY" class="cls-3" transform="translate(167 363)"><tspan x="-29.13" y="0">LIBRARY</tspan></text>
-      <text id="LOUNGE-2" data-name="LOUNGE" class="cls-3" transform="translate(567 163)"><tspan x="-29.61" y="0">LOUNGE</tspan></text>
-      <text id="HALL-2" data-name="HALL" class="cls-3" transform="translate(367 163)"><tspan x="-17.51" y="0">HALL</tspan></text>
-      <text id="STUDY-2" data-name="STUDY" class="cls-3" transform="translate(167 163)"><tspan x="-22.77" y="0">STUDY</tspan></text>
+      <text id="KITCHEN-2" data-name="KITCHEN" class="cls-3" transform="translate(567 563)"><tspan x="-27.675" y="0">KITCHEN</tspan></text>
+      <text id="BALLROOM-2" data-name="BALLROOM" class="cls-3" transform="translate(367 563)"><tspan x="-35.946" y="0">BALLROOM</tspan></text>
+      <text id="CONSERVATORY-2" data-name="CONSERVATORY" class="cls-3" transform="translate(161 563)"><tspan x="-50.526" y="0">CONSERVATORY</tspan></text>
+      <text id="DINING_ROOM-2" data-name="DINING ROOM" class="cls-3" transform="translate(567 363)"><tspan x="-46.593" y="0">DINING ROOM</tspan></text>
+      <text id="BILLIARD_ROOM-2" data-name="BILLIARD ROOM" class="cls-3" transform="translate(362 363)"><tspan x="-50.94" y="0">BILLIARD ROOM</tspan></text>
+      <text id="LIBRARY-2" data-name="LIBRARY" class="cls-3" transform="translate(167 363)"><tspan x="-26.217" y="0">LIBRARY</tspan></text>
+      <text id="LOUNGE-2" data-name="LOUNGE" class="cls-3" transform="translate(567 163)"><tspan x="-26.649" y="0">LOUNGE</tspan></text>
+      <text id="HALL-2" data-name="HALL" class="cls-3" transform="translate(367 163)"><tspan x="-15.759" y="0">HALL</tspan></text>
+      <text id="STUDY-2" data-name="STUDY" class="cls-3" transform="translate(167 163)"><tspan x="-20.493" y="0">STUDY</tspan></text>
     </g>
     <g id="Hallways" transform="translate(325 -34)">
       <g id="_9-7" data-name="9-7" class="cls-4" transform="translate(795 625)">
@@ -309,10 +309,10 @@
     </g>
     <g id="Suspects">
       <path id="Plum" class="cls-10" d="M145.137,230.171a3.031,3.031,0,1,0-2.985-3.032A3.011,3.011,0,0,0,145.137,230.171Zm6.829,3.893a2.745,2.745,0,0,0-2.725-2.765h-8.4a2.744,2.744,0,0,0-2.723,2.765l.008,11.158a1.189,1.189,0,1,0,2.377,0v-10.2h.5V262.3a1.782,1.782,0,1,0,3.564,0V247.365h.975V262.3a1.783,1.783,0,1,0,3.565,0V235.024h.48v10.158a1.191,1.191,0,1,0,2.381,0Z" transform="translate(650 72.041)"/>
-      <path id="White" class="cls-11" d="M145.137,230.171a3.031,3.031,0,1,0-2.985-3.032A3.011,3.011,0,0,0,145.137,230.171Zm6.829,3.893a2.745,2.745,0,0,0-2.725-2.765h-8.4a2.744,2.744,0,0,0-2.723,2.765l.008,11.158a1.189,1.189,0,1,0,2.377,0v-10.2h.5V262.3a1.782,1.782,0,1,0,3.564,0V247.365h.975V262.3a1.783,1.783,0,1,0,3.565,0V235.024h.48v10.158a1.191,1.191,0,1,0,2.381,0Z" transform="translate(1001 427.041)"/>
+      <path id="White" class="cls-11" d="M145.137,230.171a3.031,3.031,0,1,0-2.985-3.032A3.011,3.011,0,0,0,145.137,230.171Zm6.829,3.893a2.745,2.745,0,0,0-2.725-2.765h-8.4a2.744,2.744,0,0,0-2.723,2.765l.008,11.158a1.189,1.189,0,1,0,2.377,0v-10.2h.5V262.3a1.782,1.782,0,1,0,3.564,0V247.365h.975V262.3a1.783,1.783,0,1,0,3.565,0V235.024h.48v10.158a1.191,1.191,0,1,0,2.381,0Z" transform="translate(1001 423.041)"/>
       <path id="Peacock" class="cls-12" d="M162.344,144.215a3.032,3.032,0,1,0-2.985-3.033A3.012,3.012,0,0,0,162.344,144.215Zm6.829,3.892a2.745,2.745,0,0,0-2.726-2.765h-8.4a2.745,2.745,0,0,0-2.723,2.765l.008,11.158a1.189,1.189,0,1,0,2.377,0v-10.2h.5v27.278a1.782,1.782,0,1,0,3.564,0V161.409h.975V176.34a1.783,1.783,0,1,0,3.565,0V149.067h.48v10.158a1.191,1.191,0,1,0,2.381,0Z" transform="translate(633 359)"/>
-      <path id="Green" class="cls-13" d="M179.551,144.215a3.032,3.032,0,1,0-2.985-3.033A3.012,3.012,0,0,0,179.551,144.215Zm6.829,3.892a2.745,2.745,0,0,0-2.726-2.765h-8.4a2.745,2.745,0,0,0-2.723,2.765l.008,11.158a1.189,1.189,0,1,0,2.377,0v-10.2h.5v27.278a1.782,1.782,0,1,0,3.564,0V161.409h.975V176.34a1.783,1.783,0,1,0,3.565,0V149.067h.48v10.158a1.191,1.191,0,1,0,2.381,0Z" transform="translate(768 513)"/>
-      <path id="Scarlet" class="cls-14" d="M59.1,230.171a3.031,3.031,0,1,0-2.985-3.032A3.012,3.012,0,0,0,59.1,230.171Zm6.829,3.893a2.745,2.745,0,0,0-2.725-2.765h-8.4a2.745,2.745,0,0,0-2.723,2.765l.009,11.158a1.188,1.188,0,1,0,2.376,0v-10.2h.5V262.3a1.783,1.783,0,1,0,3.565,0V247.365h.974V262.3a1.783,1.783,0,1,0,3.565,0V235.024h.48v10.158a1.19,1.19,0,1,0,2.38,0Z" transform="translate(1087 -82.959)"/>
+      <path id="Green" class="cls-13" d="M179.551,144.215a3.032,3.032,0,1,0-2.985-3.033A3.012,3.012,0,0,0,179.551,144.215Zm6.829,3.892a2.745,2.745,0,0,0-2.726-2.765h-8.4a2.745,2.745,0,0,0-2.723,2.765l.008,11.158a1.189,1.189,0,1,0,2.377,0v-10.2h.5v27.278a1.782,1.782,0,1,0,3.564,0V161.409h.975V176.34a1.783,1.783,0,1,0,3.565,0V149.067h.48v10.158a1.191,1.191,0,1,0,2.381,0Z" transform="translate(766 509)"/>
+      <path id="Scarlet" class="cls-14" d="M59.1,230.171a3.031,3.031,0,1,0-2.985-3.032A3.012,3.012,0,0,0,59.1,230.171Zm6.829,3.893a2.745,2.745,0,0,0-2.725-2.765h-8.4a2.745,2.745,0,0,0-2.723,2.765l.009,11.158a1.188,1.188,0,1,0,2.376,0v-10.2h.5V262.3a1.783,1.783,0,1,0,3.565,0V247.365h.974V262.3a1.783,1.783,0,1,0,3.565,0V235.024h.48v10.158a1.19,1.19,0,1,0,2.38,0Z" transform="translate(1087 -77.959)"/>
       <path id="Mustard" class="cls-15" d="M127.93,187.192a3.031,3.031,0,1,0-2.985-3.031A3.012,3.012,0,0,0,127.93,187.192Zm6.828,3.893a2.744,2.744,0,0,0-2.724-2.764h-8.4a2.744,2.744,0,0,0-2.723,2.764l.008,11.159a1.189,1.189,0,1,0,2.377,0v-10.2h.5v27.277a1.783,1.783,0,1,0,3.566,0V204.387h.974v14.932a1.783,1.783,0,1,0,3.565,0V192.046h.48V202.2a1.191,1.191,0,1,0,2.381,0Z" transform="translate(1169 115.019)"/>
     </g>
     <g id="Weapons" transform="translate(101 -46)">
