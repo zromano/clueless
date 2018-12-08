@@ -167,10 +167,10 @@
 
             <div *ngIf="currPlayer && session && session.status == 'IN PROGRESS' && session.turnOrder[0] == currPlayer.role">
               <div class="btn-toolbar justify-content-center" role="group" style="padding-bottom: 15px;">
-                <button id="moveBtn" class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#moveCollapse" aria-expanded="false" aria-controls="moveCollapse">Move</button>
-                <button id="suggestBtn" class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" [disabled]="disableSuggestBtn" aria-expanded="false" aria-controls="suggestCollapse">Suggest</button>
-                <button id="accuseBtn" class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#accuseCollapse" aria-expanded="false" aria-controls="accuseCollapse">Accuse</button>
-                <button class="btn btn-dark btn-sm" (click)="endTurn()" [disabled]="session.suggestionInProgess">End</button>
+                <button id="moveBtn" class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#moveCollapse" [disabled]="session.suggestionInProgess || suggestionMade" aria-expanded="false" aria-controls="moveCollapse">Move</button>
+                <button id="suggestBtn" class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" [disabled]="disableSuggestBtn || (!moved && !suspectPositions[currPlayer.role].movedBySuggestion)" aria-expanded="false" aria-controls="suggestCollapse">Suggest</button>
+                <button id="accuseBtn" class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#accuseCollapse" [disabled]="session.suggestionInProgess || suspectPositions[currPlayer.role].position == ''" aria-expanded="false" aria-controls="accuseCollapse">Accuse</button>
+                <button class="btn btn-dark btn-sm" (click)="endTurn()" [disabled]="session.suggestionInProgess || (!moved && !suspectPositions[currPlayer.role].movedBySuggestion) || (!suggestionMade && suspectPositions[currPlayer.role].movedBySuggestion)">End Turn</button>
               </div>
 
               <div class="collapse multi-collapse" id="moveCollapse">

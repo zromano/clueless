@@ -46,6 +46,10 @@ export class SessionComponent implements OnInit {
   suspectPositions: any;
   weaponPositions: any;
   disableSuggestBtn: boolean;
+  moved: boolean;
+  movedBySuggestion: boolean;
+  suggestionMade: boolean;
+  
 
   rooms: string[];
   suspects: string[];
@@ -108,6 +112,10 @@ export class SessionComponent implements OnInit {
         var currentPosition = this.suspectPositions[this.currPlayer.role].position;
         if (currentPosition === "" || currentPosition.startsWith("Hallway")) {
           this.disableSuggestBtn = true;
+        }
+
+        if (this.suspectPositions[this.currPlayer.role].movedBySuggestion && !currentPosition.startsWith("Hallway")) {
+          this.disableSuggestBtn = false;
         }
 
         // If turn order is curr player and curr player has already made a false accusation, then skip
@@ -180,6 +188,9 @@ export class SessionComponent implements OnInit {
       suspect: "",
       weapon: ""
     }
+
+    this.moved = false;
+    this.suggestionMade = false;
   }
 
   addAlert(text) {
@@ -349,6 +360,8 @@ export class SessionComponent implements OnInit {
 
   makeSuggestion() {
     console.log(this.suggestion);
+    this.suggestionMade = true;
+
     this.suggestion.room = this.session.suspects[this.selectedRole].position;
     var checkArr = this.session.turnOrder.slice();
     checkArr.shift()
@@ -375,7 +388,7 @@ export class SessionComponent implements OnInit {
       }
     }
 
-    this.sendPlayerToRoom(this.suggestion.suspect, this.suggestion.room, currGameboard);
+    this.sendPlayerToRoom(this.suggestion.suspect, this.suggestion.room, currGameboard, true);
     this.sendWeaponToRoom(this.suggestion.weapon, this.suggestion.room, currGameboard);
 
     this.firebaseService.sessionRef().update({
@@ -478,9 +491,14 @@ export class SessionComponent implements OnInit {
       turnOrder: updatedTurnOrder,
       currentTurn: updatedTurnOrder[0]
     });
+
+    this.moved = false;
+    this.suggestionMade = false;
   }
 
   makeMove() {
+    this.moved = true;
+
     // marking comingfrom position empty
     var curCoord = this.session.suspects[this.selectedRole].coordinate.split(",").map(Number);
     var curX = curCoord[0];
@@ -501,20 +519,18 @@ export class SessionComponent implements OnInit {
     }
 
     this.firebaseService.addEvent(this.selectedRole + " moved to " + this.selectedMove);
-    this.sendPlayerToRoom(this.selectedRole, this.selectedMove, currGameboard);
+    this.sendPlayerToRoom(this.selectedRole, this.selectedMove, currGameboard, false);
 
     $('#moveCollapse').removeClass('show');
     $("#moveBtn").prop('disabled', true);
 
-    if (this.currPlayer && this.session.currentTurn == this.currPlayer.role && this.session.status == 'IN PROGRESS') {
-      var currentPosition = this.suspectPositions[this.currPlayer.role].position;
-      if (currentPosition !== "" && ! currentPosition.startsWith("Hallway")) {
-        this.disableSuggestBtn = false;
-      }
+    var updatedPosition = this.selectedMove;
+    if (updatedPosition !== "" && ! updatedPosition.startsWith("Hallway")) {
+      this.disableSuggestBtn = false;
     }
   }
 
-  sendPlayerToRoom(name, targetRoom, gameBoard) {
+  sendPlayerToRoom(name, targetRoom, gameBoard, suggestion) {
     var i = gameBoard[targetRoom].uiCoords.length;
     var curX = 0;
     var curY = 0;
@@ -532,14 +548,17 @@ export class SessionComponent implements OnInit {
     this.gameBoardService.movePlayer(name, curX, curY);
 
     var coordString = curX + "," + curY;
-    this.suspectPositions[name] = {
+
+    var updateSuspectPositions = JSON.parse(JSON.stringify(this.suspectPositions));
+    updateSuspectPositions[name] = {
       position: targetRoom,
-      coordinate: coordString
+      coordinate: coordString,
+      movedBySuggestion: suggestion
     };
 
     this.firebaseService.sessionRef().update({
       gameBoard: gameBoard,
-      suspects: this.suspectPositions
+      suspects: updateSuspectPositions
     });
   }
 
