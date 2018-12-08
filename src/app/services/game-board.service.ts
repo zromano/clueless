@@ -82,13 +82,18 @@ export class GameBoardService {
     var board = Snap("#board");
     var suspectIndex = _.map(Suspects, "name").indexOf(name);
 
-    console.log("Board - Move Weapon: " + name + "," + x + "," + y);
+    console.log("Board - Move Suspect: " + name + "," + x + "," + y);
 
     var suspect = board.select("#" + Suspects[suspectIndex].id);
-    var positionX = Number(suspect.attr("tx0")) + (y * 50);
-    var positionY = Number(suspect.attr("ty0")) + (x * 50);
 
-    suspect.transform("t" + positionX + "," + positionY);
+    console.log("Board - Suspect: " + Suspects[suspectIndex].id + "," + Suspects[suspectIndex].name);
+
+    if (suspect) {
+      var positionX = Number(suspect.attr("tx0")) + (y * 50);
+      var positionY = Number(suspect.attr("ty0")) + (x * 50);
+
+      suspect.transform("t" + positionX + "," + positionY);
+    }
   }
 
   moveWeapon(name: string, x: number, y: number) {
@@ -98,9 +103,14 @@ export class GameBoardService {
     console.log("Board - Move Weapon: " + name + "," + x + "," + y);
 
     var weapon = board.select("#" + Weapons[weaponIndex].id);
-    var positionX = Number(weapon.attr("tx0")) + (y * 50);
-    var positionY = Number(weapon.attr("ty0")) + (x * 50);
 
-    weapon.transform("t" + positionX + "," + positionY);
+    console.log("Board - Weapon: " + Weapons[weaponIndex].id + "," + Weapons[weaponIndex].name);
+
+    if (weapon) {
+      var positionX = Number(weapon.attr("tx0")) + (y * 50);
+      var positionY = Number(weapon.attr("ty0")) + (x * 50);
+
+      weapon.transform("t" + positionX + "," + positionY);
+    }
   }
 }
