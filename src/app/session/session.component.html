@@ -30,14 +30,14 @@
   </div>
 
   <div *ngIf="session">
-    <div *ngFor="let event of events$ | async as event; last as isLast">
-      <div *ngIf="isLast && session.status != 'FINISHED'" class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-bottom: 0px;">
+    <div *ngFor="let event of events$ | async as event; first as isFirst">
+      <div *ngIf="isFirst && session.status != 'FINISHED'" class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-bottom: 0px;">
         {{ event.message }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div *ngIf="isLast && session.status == 'FINISHED'" class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-bottom: 0px;">
+      <div *ngIf="isFirst && session.status == 'FINISHED'" class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-bottom: 0px;">
           <strong>Game Over</strong>&nbsp;{{ event.message }}
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -73,7 +73,7 @@
           <label class="my-1 mr-2">
             <strong>Action Required</strong>&nbsp;Validate Suggestion ({{session.suggestionInProgess.room}}, {{session.suggestionInProgess.suspect}}, {{session.suggestionInProgess.weapon}})
           </label>
-          <select *ngIf="currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon) || currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect) || currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" class="custom-select my-1 mr-sm-2" id="cardShown" [(ngModel)]="session.suggestionInProgess.cardShown" name="cardShown">
+          <select *ngIf="currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon) || currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect) || currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" class="custom-select my-1 mr-sm-2" id="cardShown" [(ngModel)]="session.suggestionInProgess.cardShown" name="cardShown" required>
             <option selected>Choose...</option>
             <option *ngIf="currPlayer.cards.rooms.includes(session.suggestionInProgess.room)" value={{session.suggestionInProgess.room}}>{{session.suggestionInProgess.room}}</option>
             <option *ngIf="currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect)" value={{session.suggestionInProgess.suspect}}>{{session.suggestionInProgess.suspect}}</option>
@@ -160,23 +160,18 @@
             <div *ngIf="currPlayer && session && session.status == 'IN PROGRESS' && session.turnOrder[0] == currPlayer.role">
               <div class="btn-toolbar justify-content-center" role="group" style="padding-bottom: 15px;">
                 <button id="moveBtn" class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#moveCollapse" aria-expanded="false" aria-controls="moveCollapse">Move</button>
-                <div *ngIf="suspectPositions[currPlayer.role].position.startsWith('Hallway')">
-                  <button class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" aria-expanded="false" aria-controls="suggestCollapse" disabled>Suggest</button>
-                </div>
-                <div *ngIf="!suspectPositions[currPlayer.role].position.startsWith('Hallway')">
-                  <button id="suggestBtn" class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" aria-expanded="false" aria-controls="suggestCollapse">Suggest</button>
-                </div>
+                <button id="suggestBtn" class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#suggestCollapse" [disabled]="disableSuggestBtn" aria-expanded="false" aria-controls="suggestCollapse">Suggest</button>
                 <button id="accuseBtn" class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#accuseCollapse" aria-expanded="false" aria-controls="accuseCollapse">Accuse</button>
-                <button class="btn btn-dark btn-sm" (click)="endTurn()">End</button>
+                <button class="btn btn-dark btn-sm" (click)="endTurn()" [disabled]="session.suggestionInProgess">End</button>
               </div>
 
               <div class="collapse multi-collapse" id="moveCollapse">
                 <form class="form-inline">
-                  <select class="custom-select my-1 mr-sm-2" id="selectedMove" [(ngModel)]="selectedMove" name="selectedMove">
+                  <select class="custom-select my-1 mr-sm-2" id="selectedMove" [(ngModel)]="selectedMove" name="selectedMove" required>
                     <option selected>Choose...</option>
                     <option *ngFor="let option of getPossibleMoves()" value={{option}}>{{option}}</option>
                   </select>
-                  <button id="submitMoveBtn" type="submit" class="btn btn-outline-dark btn-sm" (click)="makeMove()">Submit</button>
+                  <button id="submitMoveBtn" type="submit" class="btn btn-outline-dark btn-sm" (click)="makeMove()" style="margin-top: 15px; margin-bottom: 15px;">Submit</button>
                 </form>
               </div>
 
@@ -189,7 +184,7 @@
 
                   <div class="form-group">
                     <label class="col-sm-4 col-form-label" for="suggestedSuspect">Suspect</label>
-                    <select class="col-sm-8 custom-select" id="suggestedSuspect" [(ngModel)]="suggestion.suspect" name="suggestedSuspect">
+                    <select class="col-sm-8 custom-select" id="suggestedSuspect" [(ngModel)]="suggestion.suspect" name="suggestedSuspect" required>
                       <option selected>Choose...</option>
                       <option *ngFor="let option of suggestionSuspectList" value={{option}}>{{option}}</option>
                     </select>
@@ -197,7 +192,7 @@
 
                   <div class="form-group">
                     <label class="col-sm-4 col-form-label" for="suggestedWeapon">Weapon</label>
-                    <select class="col-sm-8 custom-select" id="suggestedWeapon" [(ngModel)]="suggestion.weapon" name="suggestedWeapon">
+                    <select class="col-sm-8 custom-select" id="suggestedWeapon" [(ngModel)]="suggestion.weapon" name="suggestedWeapon" required>
                       <option selected>Choose...</option>
                       <option *ngFor="let option of weapons" value={{option}}>{{option}}</option>
                     </select>
@@ -205,7 +200,7 @@
 
                   <div class="form-row text-center">
                     <div class="col-12">
-                      <button id="makeSuggestionBtn" type="submit" class="btn btn-outline-dark btn-sm" (click)="makeSuggestion()">Submit</button>
+                      <button id="makeSuggestionBtn" type="submit" class="btn btn-outline-dark btn-sm" (click)="makeSuggestion()" style="margin-top: 15px; margin-bottom: 15px;">Submit</button>
                     </div>
                   </div>
                 </form>
@@ -215,7 +210,7 @@
                 <form class="form">
                   <div class="form-group">
                     <label class="col-sm-4 col-form-label" for="accusedRoom">Room</label>
-                    <select class="col-sm-8 custom-select" id="accusedRoom" [(ngModel)]="accusation.room" name="accusedRoom">
+                    <select class="col-sm-8 custom-select" id="accusedRoom" [(ngModel)]="accusation.room" name="accusedRoom" required>
                       <option selected>Choose...</option>
                       <option *ngFor="let option of rooms" value={{option}}>{{option}}</option>
                     </select>
@@ -223,7 +218,7 @@
 
                   <div class="form-group">
                     <label class="col-sm-4 col-form-label" for="accusedSuspect">Suspect</label>
-                    <select class="col-sm-8 custom-select" id="accusedSuspect" [(ngModel)]="accusation.suspect" name="accusedSuspect">
+                    <select class="col-sm-8 custom-select" id="accusedSuspect" [(ngModel)]="accusation.suspect" name="accusedSuspect" required>
                       <option selected>Choose...</option>
                       <option *ngFor="let option of suspects" value={{option}}>{{option}}</option>
                     </select>
@@ -231,7 +226,7 @@
 
                   <div class="form-group">
                     <label class="col-sm-4 col-form-label" for="accusedWeapon">Weapon</label>
-                    <select class="col-sm-8 custom-select" id="accusedWeapon" [(ngModel)]="accusation.weapon" name="accusedWeapon">
+                    <select class="col-sm-8 custom-select" id="accusedWeapon" [(ngModel)]="accusation.weapon" name="accusedWeapon" required>
                       <option selected>Choose...</option>
                       <option *ngFor="let option of weapons" value={{option}}>{{option}}</option>
                     </select>
@@ -239,7 +234,7 @@
 
                   <div class="form-row text-center">
                     <div class="col-12">
-                      <button id="makeAccusationBtn" type="submit" class="btn btn-outline-dark btn-sm" (click)="makeAccusation()">Submit</button>
+                      <button id="makeAccusationBtn" type="submit" class="btn btn-outline-dark btn-sm" (click)="makeAccusation()" style="margin-top: 15px; margin-bottom: 15px;">Submit</button>
                     </div>
                   </div>
                 </form>
@@ -305,7 +300,7 @@
 </div>
 <audio id="ping" src="assets/Ping.wav" preload="auto"></audio>
 
-<!-- Modal -->
+<!-- Modals -->
 <div class="modal fade" id="gameOverModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content" style="text-align: center;">
@@ -313,11 +308,30 @@
         <h5 class="modal-title col-md-12"><strong>Game Over</strong></h5>
       </div>
       <div class="modal-body">
-        <div *ngFor="let event of events$ | async as event; last as isLast">
-          <div *ngIf="isLast">
+        <div *ngFor="let event of events$ | async as event; first as isFirst">
+          <div *ngIf="isFirst">
             <h5>{{ event.message }}</h5>
           </div>
         </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-secondary" href="/" style="color:inherit; text-decoration: none; color: white;">Close</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="accusationModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Accusation Not Correct</h5>
+      </div>
+      <div class="modal-body">
+        <small>At least one element of your accusation is not correct. You have lost the ability to win, move, and make suggestions. However, you can still refute suggestions made by other players.</small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

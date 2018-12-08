@@ -44,7 +44,7 @@ export class FirebaseService {
   }
 
   eventRef(): AngularFirestoreCollection<Event> {
-    return this.db.collection<Event>("sessions/" + this.sessionId + "/events", ref => ref.orderBy('timestamp'));
+    return this.db.collection<Event>("sessions/" + this.sessionId + "/events", ref => ref.orderBy('timestamp', 'desc'));
   }
 
   playerRef(id?: string): AngularFirestoreDocument<Player> {

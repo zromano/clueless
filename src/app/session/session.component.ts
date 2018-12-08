@@ -45,6 +45,7 @@ export class SessionComponent implements OnInit {
   suggestionSuspectList: string[];
   suspectPositions: any;
   weaponPositions: any;
+  disableSuggestBtn: boolean;
 
   rooms: string[];
   suspects: string[];
@@ -63,6 +64,8 @@ export class SessionComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scrollTo(0, 0)
+
     this.gameBoardService.initBoard();
 
     this.sessionId = this.route.snapshot.paramMap.get('sessionId');
@@ -105,35 +108,43 @@ export class SessionComponent implements OnInit {
         this.gameBoardService.moveWeapon(weapon, position[0], position[1]);
       }
 
-      // If turn order is curr player and curr player has already made a false accusation, then skip
-      if (this.currPlayer && session.currentTurn == this.currPlayer.role && this.currPlayer.noTurn) {
-        console.log("skipped " + this.currPlayer.role);
-        this.updateTurnOrder();
-      }
+      // Player current turn
+      if (this.currPlayer && session.currentTurn == this.currPlayer.role) {
+        var currentPosition = this.suspectPositions[this.currPlayer.role].position;
+        if (currentPosition === "" || currentPosition.startsWith("Hallway")) {
+          this.disableSuggestBtn = true;
+        }
 
-      if (this.currPlayer && session.status == 'IN PROGRESS' && session.currentTurn == this.currPlayer.role && this.currPlayer.noTurn == false) {
-        this.firebaseService.playersRef().get().toPromise().then( (function(obj) {
-          var playerObjSnapshot = {};
+        // If turn order is curr player and curr player has already made a false accusation, then skip
+        if (this.currPlayer.noTurn) {
+          console.log("skipped " + this.currPlayer.role);
+          this.updateTurnOrder();
+        }
 
-          var otherThanCurrPlayerStillPlaying = false;
+        if (session.status == 'IN PROGRESS' && this.currPlayer.noTurn == false) {
+          this.firebaseService.playersRef().get().toPromise().then( (function(obj) {
+            var playerObjSnapshot = {};
 
-          obj.docs.forEach((function (doc) {
-            playerObjSnapshot[doc.id] = doc.data();
+            var otherThanCurrPlayerStillPlaying = false;
 
-            var play = doc.data() as Player;
+            obj.docs.forEach((function (doc) {
+              playerObjSnapshot[doc.id] = doc.data();
 
-            if (play.role != this.currPlayer.role && play.noTurn == false) {
-              otherThanCurrPlayerStillPlaying = true;
+              var play = doc.data() as Player;
+
+              if (play.role != this.currPlayer.role && play.noTurn == false) {
+                otherThanCurrPlayerStillPlaying = true;
+              }
+            }).bind(this));
+
+            if (otherThanCurrPlayerStillPlaying == false) {
+              this.firebaseService.addEvent(this.currPlayer.role + " Wins!");
+              this.firebaseService.sessionRef().update({
+                status: "FINISHED"
+              });
             }
           }).bind(this));
-
-          if (otherThanCurrPlayerStillPlaying == false) {
-            this.firebaseService.addEvent(this.currPlayer.role + " Wins!");
-            this.firebaseService.sessionRef().update({
-              status: "FINISHED"
-            });
-          }
-        }).bind(this));
+        }
       }
 
       if (session.status == 'FINISHED') {
@@ -158,6 +169,7 @@ export class SessionComponent implements OnInit {
       var audioPlayer = <HTMLVideoElement>document.getElementById("ping");
       audioPlayer.play();
     })
+
     this.resetSuggestionForm();
 
     this.accusation = {
@@ -441,6 +453,7 @@ export class SessionComponent implements OnInit {
         noTurn: true
       }).then((function(){
         this.updateTurnOrder();
+        $('#accusationModal').modal('show');
       }).bind(this));
     }
 
@@ -488,10 +501,18 @@ export class SessionComponent implements OnInit {
       }
     }
 
+    this.firebaseService.addEvent(this.selectedRole + " moved to " + this.selectedMove);
     this.sendPlayerToRoom(this.selectedRole, this.selectedMove, currGameboard);
 
     $('#moveCollapse').removeClass('show');
     $("#moveBtn").prop('disabled', true);
+
+    if (this.currPlayer && this.session.currentTurn == this.currPlayer.role) {
+      var currentPosition = this.suspectPositions[this.currPlayer.role].position;
+      if (currentPosition !== "" && ! currentPosition.startsWith("Hallway")) {
+        this.disableSuggestBtn = false;
+      }
+    }
   }
 
   sendPlayerToRoom(name, targetRoom, gameBoard) {
