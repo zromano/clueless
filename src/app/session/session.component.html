@@ -95,7 +95,7 @@
   </div>
 
   <div class="container-fluid" style="margin-left: 0px; margin-right: 0px; padding-top: 15px;">
-    <div class="row">
+    <div class="row" style="margin-right: -30px;">
       <div class="col-md-2">
         <div class="p-3 bg-white rounded shadow">
           <h6 class="border-bottom border-gray pb-2 mb-0 text-center">Check List</h6>
@@ -150,14 +150,14 @@
         </div>
       </div>
 
-      <div class="col-md-7">
+      <div class="col-md-7" style="margin-left: -15px;">
         <div class="rounded shadow text-center" style="padding: 16px;">
           <svg id="board" width="500px" height="500px" viewBox="0 0 650 650"></svg>
         </div>
       </div>
 
       <div class="col-md-3">
-        <div *ngIf="currPlayer && session && session.status == 'IN PROGRESS'" class="row">
+        <div *ngIf="currPlayer && session && session.status == 'IN PROGRESS'" class="row" style="margin-left: -15px; margin-right: 0px;">
           <div class="col-md-12 bg-white rounded shadow" style="padding-bottom: 5px; margin-bottom: 15px;">
             <h6 class="pb-2 mb-0 text-center" style="padding-top: 15px;">Your Actions</h6>
 
@@ -252,7 +252,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" style="margin-left: -15px; margin-right: 0px;">
           <div class="col-md-12 bg-white rounded shadow recent-updates" style="margin-bottom: 15px;">
             <h6 class="pb-2 mb-0 text-center" style="padding-top: 15px; display: inline-block;">Session Information</h6>
             <button type="button" class="btn btn-light btn-sm float-right" data-toggle="collapse" data-target="#sessionCollapse" aria-expanded="false" aria-controls="sessionCollapse" style="margin-top: 5px;">
@@ -268,7 +268,7 @@
           </div>
         </div>
 
-        <div *ngIf="currPlayer && currPlayer.role" class="row">
+        <div *ngIf="currPlayer && currPlayer.role" class="row" style="margin-left: -15px; margin-right: 0px;">
           <div class="col-md-12 bg-white rounded shadow recent-updates" style="margin-bottom: 15px;">
             <h6 class="pb-2 mb-0 text-center" style="padding-top: 15px; display: inline-block;">Your Information</h6>
             <button type="button" class="btn btn-light btn-sm float-right" data-toggle="collapse" data-target="#cardsCollapse" aria-expanded="false" aria-controls="cardsCollapse" style="margin-top: 5px;">
@@ -288,7 +288,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" style="margin-left: -15px; margin-right: 0px;">
           <div class="col-md-12 bg-white rounded shadow recent-updates" style="margin-bottom: 15px;">
             <h6 class="pb-2 mb-0 text-center" style="padding-top: 15px; display: inline-block;">Recent Updates</h6>
             <button type="button" class="btn btn-light btn-sm float-right" data-toggle="collapse" data-target="#eventsCollapse" aria-expanded="false" aria-controls="eventsCollapse" style="margin-top: 5px;">
