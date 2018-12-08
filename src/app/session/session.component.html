@@ -15,11 +15,11 @@
 </nav>
 
 <div style="padding-top: 56px;">
-  <div *ngIf="currPlayer && currPlayer.role == ''">
+  <div *ngIf="currPlayer && session && currPlayer.role == ''">
     <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
       <form class="form-inline">
         <label class="my-1 mr-2" for="selectedRole">
-          <strong>Action Required</strong> Select Your Player Role:
+          <strong>Action Required</strong>&nbsp;Select Your Player Role:
         </label>
         <select class="custom-select my-1 mr-sm-2" id="selectedRole" [(ngModel)]="selectedRole" name="selectedRole">
           <option *ngFor="let role of session.availableRoles">{{role}}</option>
@@ -40,7 +40,7 @@
     </div>
     <div *ngIf="playerId != session.hostId && session.status != 'IN PROGRESS' && session.status != 'FINISHED'">
       <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
-        <strong>Host Action Required</strong> Standby for other players to join and for the host to start the session. Open Roles ({{session.availableRoles.length}})
+        <strong>Host Action Required</strong>&nbsp;Standby for other players to join and for the host to start the session. Open Roles ({{session.availableRoles.length}})
       </div>
     </div>
 
@@ -48,7 +48,7 @@
       <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
         <form class="form-inline">
           <label class="my-1 mr-2" for="startSessionBtn">
-            <strong>Action Required</strong> Open Roles ({{session.availableRoles.length}})
+            <strong>Action Required</strong>&nbsp;Open Roles ({{session.availableRoles.length}})
           </label>
           <button id="startSessionBtn" type="submit" class="btn btn-outline-warning btn-sm float-right" (click)="startSession()">Start Session</button>
         </form>
@@ -65,7 +65,7 @@
       <div class="alert alert-warning" role="alert" style="margin-bottom: 0px;">
         <form class="form-inline">
           <label class="my-1 mr-2">
-            <strong>Action Required</strong> Validate Suggestion ({{session.suggestionInProgess.room}}, {{session.suggestionInProgess.suspect}}, {{session.suggestionInProgess.weapon}})
+            <strong>Action Required</strong>&nbsp;Validate Suggestion ({{session.suggestionInProgess.room}}, {{session.suggestionInProgess.suspect}}, {{session.suggestionInProgess.weapon}})
           </label>
           <select *ngIf="currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon) || currPlayer.cards.suspects.includes(session.suggestionInProgess.suspect) || currPlayer.cards.weapons.includes(session.suggestionInProgess.weapon)" class="custom-select my-1 mr-sm-2" id="cardShown" [(ngModel)]="session.suggestionInProgess.cardShown" name="cardShown">
             <option *ngIf="currPlayer.cards.rooms.includes(session.suggestionInProgess.room)" value={{session.suggestionInProgess.room}}>{{session.suggestionInProgess.room}}</option>
@@ -142,7 +142,7 @@
       </div>
 
       <div class="col-md-3">
-        <div *ngIf="currPlayer && session.status == 'IN PROGRESS'" class="row">
+        <div *ngIf="currPlayer && session && session.status == 'IN PROGRESS'" class="row">
           <div class="col-md-12 bg-white rounded shadow" style="padding-bottom: 5px; margin-bottom: 15px;">
             <h6 class="pb-2 mb-0 text-center" style="padding-top: 15px;">Your Actions</h6>
 
@@ -150,7 +150,7 @@
               <p class="text-center">Wait for Your Turn</p>
             </div>
 
-            <div *ngIf="currPlayer && session.status == 'IN PROGRESS' && session.turnOrder[0] == currPlayer.role">
+            <div *ngIf="currPlayer && session && session.status == 'IN PROGRESS' && session.turnOrder[0] == currPlayer.role">
               <div class="btn-toolbar justify-content-center" role="group" style="padding-bottom: 15px;">
                 <button id="moveBtn" class="btn btn-dark btn-sm" style="margin-right: 5px;" data-toggle="collapse" data-target="#moveCollapse" aria-expanded="false" aria-controls="moveCollapse">Move</button>
                 <div *ngIf="suspectPositions[currPlayer.role].position.startsWith('Hallway')">

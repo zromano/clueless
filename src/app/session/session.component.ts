@@ -109,6 +109,33 @@ export class SessionComponent implements OnInit {
         console.log("skipped " + this.currPlayer.role);
         this.updateTurnOrder();
       }
+
+      if (this.currPlayer && session.status == 'IN PROGRESS' && session.currentTurn == this.currPlayer.role && this.currPlayer.noTurn == false) {
+        this.firebaseService.playersRef().get().toPromise().then( (function(obj) {
+          var playerObjSnapshot = {};
+
+          var otherThanCurrPlayerStillPlaying = false;
+
+          obj.docs.forEach((function (doc) {
+            playerObjSnapshot[doc.id] = doc.data();
+
+            var play = doc.data() as Player;
+
+            if (play.role != this.currPlayer.role && play.noTurn == false) {
+              otherThanCurrPlayerStillPlaying = true;
+            }
+          }).bind(this));
+
+          if (otherThanCurrPlayerStillPlaying == false) {
+            this.firebaseService.addEvent(this.currPlayer.role + " Wins!");
+            this.firebaseService.sessionRef().update({
+              status: "FINISHED"
+            });
+          }
+        }).bind(this));
+      }
+
+      
     });
 
     this.players$ = this.firebaseService.playersRef().snapshotChanges().pipe(
@@ -357,8 +384,6 @@ export class SessionComponent implements OnInit {
             sessionInstance.firebaseService.sessionRef().update({
               suggestionInProgess: null
             });
-
-            sessionInstance.updateTurnOrder();
           }
         }, 500);
       };
