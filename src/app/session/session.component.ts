@@ -226,9 +226,9 @@ export class SessionComponent implements OnInit {
 
   initiateSession(playerObjs) {
     var playerArrMutable = Object.keys(playerObjs);
-    var suspects = this.shuffle(Suspects.slice());
-    var rooms = this.shuffle(Rooms.slice());
-    var weapons = this.shuffle(Weapons.slice());
+    var suspects = _.shuffle(Suspects.slice());
+    var rooms = _.shuffle(Rooms.slice());
+    var weapons = _.shuffle(Weapons.slice());
 
     var confidential = {
       suspect: suspects.pop().name,
@@ -236,7 +236,7 @@ export class SessionComponent implements OnInit {
       weapon: weapons.pop().name,
     };
 
-    this.shuffle(playerArrMutable);
+    playerArrMutable = _.shuffle(playerArrMutable);
 
     console.log(playerArrMutable);
     console.log(playerArrMutable.length);
@@ -596,23 +596,6 @@ export class SessionComponent implements OnInit {
   rotate(array) {
     var arrayCopy = array;
     arrayCopy.push(arrayCopy.shift());
-    return arrayCopy;
-  }
-
-  // from: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-  shuffle(array) {
-    var arrayCopy = array;
-    var currentIndex = arrayCopy.length, temporaryValue, randomIndex;
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-      // And swap it with the current element.
-      temporaryValue = arrayCopy[currentIndex];
-      arrayCopy[currentIndex] = arrayCopy[randomIndex];
-      arrayCopy[randomIndex] = temporaryValue;
-    }
     return arrayCopy;
   }
 }
