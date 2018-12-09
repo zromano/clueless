@@ -297,9 +297,9 @@ export class SessionComponent implements OnInit {
       var role;
       this.firebaseService.playerRef(id).update({
         cards: {
-          rooms: playerRoomCards[id],
-          suspects: playerSuspectCards[id],
-          weapons: playerWeaponCards[id]
+          rooms: playerRoomCards[id] ? playerRoomCards[id] : [],
+          suspects: playerSuspectCards[id] ? playerSuspectCards[id] : [],
+          weapons: playerWeaponCards[id] ? playerWeaponCards[id] : []
         }
       });
 
