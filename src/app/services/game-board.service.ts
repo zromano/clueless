@@ -69,7 +69,7 @@ export class GameBoardService {
 
       // Fix positioning of labels
       var labelTransform = labels.attr("transform").localMatrix;
-      labels.transform("t" + (labelTransform.e - 10) + "," + labelTransform.f);
+      labels.transform("t" + (labelTransform.e - 4) + "," + labelTransform.f);
       labels.attr({
         tx: labelTransform.e, ty: labelTransform.f,
       })

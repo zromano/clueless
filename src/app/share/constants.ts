@@ -11,21 +11,21 @@ export const Rooms = [
 ];
 
 export const Suspects = [
-  { type: "suspect", id: "Mustard", name: "Colonel Mustard", board: "3,10", startOptions: ["Hallway: Lounge-Dining Room"]},
-  { type: "suspect", id: "Scarlet", name: "Miss Scarlet", board: "0,7", startOptions: ["Hallway: Lounge-Hall"] },
-  { type: "suspect", id: "Green", name: "Mr. Green", board: "10,3", startOptions: ["Hallway: Conservatory-Ballroom"] },
-  { type: "suspect", id: "Peacock", name: "Mrs. Peacock", board: "7,0", startOptions: ["Hallway: Conservatory-Library"] },
-  { type: "suspect", id: "White", name: "Mrs. White", board: "10,7", startOptions: ["Hallway: Kitchen-Ballroom"] },
-  { type: "suspect", id: "Plum", name: "Professor Plum", board: "3,0", startOptions: ["Hallway: Study-Library"] }
+  { type: "suspect", id: "Mustard-2", name: "Colonel Mustard", board: "3,10", startOptions: ["Hallway: Lounge-Dining Room"]},
+  { type: "suspect", id: "Scarlet-2", name: "Miss Scarlet", board: "0,7", startOptions: ["Hallway: Lounge-Hall"] },
+  { type: "suspect", id: "Green-2", name: "Mr. Green", board: "10,3", startOptions: ["Hallway: Conservatory-Ballroom"] },
+  { type: "suspect", id: "Peacock-2", name: "Mrs. Peacock", board: "7,0", startOptions: ["Hallway: Conservatory-Library"] },
+  { type: "suspect", id: "White-2", name: "Mrs. White", board: "10,7", startOptions: ["Hallway: Kitchen-Ballroom"] },
+  { type: "suspect", id: "Plum-2", name: "Professor Plum", board: "3,0", startOptions: ["Hallway: Study-Library"] }
 ];
 
 export const Weapons = [
-  { type: "weapon", id: "candlestick", name: "Candlestick", position: "11,4" },
-  { type: "weapon", id: "butcher", name: "Knife", position: "11,3" },
-  { type: "weapon", id: "pipe", name: "Lead Pipe", position: "11,5" },
-  { type: "weapon", id: "gun", name: "Revolver", position: "11,6" },
-  { type: "weapon", id: "rope", name: "Rope", position: "11,7" },
-  { type: "weapon", id: "wrench", name: "Wrench", position: "11,8" }
+  { type: "weapon", id: "candlestick-3", name: "Candlestick", position: "11,4" },
+  { type: "weapon", id: "butcher-3", name: "Knife", position: "11,3" },
+  { type: "weapon", id: "pipe-3", name: "Lead Pipe", position: "11,5" },
+  { type: "weapon", id: "gun-3", name: "Revolver", position: "11,6" },
+  { type: "weapon", id: "rope-3", name: "Rope", position: "11,7" },
+  { type: "weapon", id: "wrench-3", name: "Wrench", position: "11,8" }
 ];
 
 export const Positions = {
