@@ -348,7 +348,7 @@ export class SessionComponent implements OnInit {
       // First Move
       validMoves = _.filter(Suspects, ['name', this.selectedRole])[0].startOptions;
     } else if (this.gameBoard.hasOwnProperty(curPos)) {
-      validMoves = this.gameBoard[curPos].validMoves;
+      validMoves = _.clone(this.gameBoard[curPos].validMoves);
       var i = validMoves.length;
       while (i--) {
         var curPosToCheck = validMoves[i];
