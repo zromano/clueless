@@ -405,7 +405,7 @@ export class SessionComponent implements OnInit {
           } else {
             var card = suggestionListener.cardShown;
             if (card != null && card != "") {
-              sessionInstance.firebaseService.addPlayerEvent("New Card Shown: " + card);
+              sessionInstance.firebaseService.addPlayerEvent("Card Shown: " + card);
               sessionInstance.firebaseService.addEvent("Suggestion (" + suggestionListener.room + ", " + suggestionListener.suspect + ", " + suggestionListener.weapon + ") Refuted");
             } else {
               sessionInstance.firebaseService.addEvent("Suggestion (" + suggestionListener.room + ", " + suggestionListener.suspect + ", " + suggestionListener.weapon + ") Not Refuted");
@@ -521,7 +521,7 @@ export class SessionComponent implements OnInit {
       }
     }
 
-    this.firebaseService.addEvent(this.selectedRole + " moved to " + this.selectedMove);
+    this.firebaseService.addEvent(this.selectedRole + " moved to the " + this.selectedMove);
     this.sendPlayerToRoom(this.selectedRole, this.selectedMove, currGameboard, false);
 
     $('#moveCollapse').removeClass('show');
